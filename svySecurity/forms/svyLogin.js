@@ -208,6 +208,7 @@ function readCookie(){
  * @properties={typeid:24,uuid:"185B8002-4048-4F2A-89F7-355F3B627D4A"}
  */
 function onShow(firstShow, event) {
+	plugins.ngclientutils.setViewportMetaForMobileAwareSites(plugins.ngclientutils.VIEWPORT_MOBILE_DENY_ZOOM);
 	if(firstShow){
 		readCookie();
 	}
