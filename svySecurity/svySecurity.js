@@ -1410,11 +1410,12 @@ function User(record) {
     /**
      * @public 
      * @param {Number} maxattempts
+     * @param {Number} minutes
      * 
      * @return {Boolean}
      * */
-    this.isDeviceLocked = function (maxattempts) {
-    	return countLoginAttempts(maxattempts);
+    this.isDeviceLocked = function (maxattempts, minutes) {
+    	return countLoginAttempts(maxattempts, minutes);
     }
     
     /**
@@ -2815,11 +2816,11 @@ function initLoginAttempts(user, reason, success) {
 /**
  * @public 
  * @param {Number} maxattempts
- * 
+ * @param {Number} minutes
  * @return
  * @properties={typeid:24,uuid:"E88C5EB4-028A-47F3-978C-8ABB326F1763"}
  */
-function countLoginAttempts(maxattempts) {
+function countLoginAttempts(maxattempts, minutes) {
 	var count = 1;
 	/**
 	 * @type {Date}
@@ -2854,7 +2855,7 @@ function countLoginAttempts(maxattempts) {
 		 * @type {Date}
 		 * */
 		var checkDate = new Date(date);
-		checkDate.setMinutes(date.getMinutes() + 30);
+		checkDate.setMinutes(date.getMinutes() + minutes);
 		if (count >= maxattempts && checkDate > new Date()) {
 			return false;
 		}

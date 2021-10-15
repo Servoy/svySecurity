@@ -108,8 +108,10 @@ function login() {
 		return false;
 	}
 	
-	if(!user.isDeviceLocked(3)){
-		onLoginError("This device is locked, please try again in 30 minutes!");
+	var maxattempts = 3;
+	var minutesLocked = 30;
+	if(!user.isDeviceLocked(maxattempts, minutesLocked)){
+		onLoginError("This device is locked, please try again in "+minutesLocked+" minutes!");
 		return false;
 	}
 	
