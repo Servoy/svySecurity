@@ -3484,17 +3484,17 @@ function verifyPasswordStrength(password){
          msg += ' 8 characters!';
          result = false;
     }else if(!capitalLetterRegex.test(pwd)){
-        msg += ' one capital letter!!';
+        msg += ' one capital letter!';
         result = false;
     }else if(!smallLetterRegex.test(pwd)){
-    	msg += ' one small letter!!';
+    	msg += ' one small letter!';
         
     	result = false;
     }else if(!numberRegex.test(pwd)){
-    	msg += ' one number !!';
+    	msg += ' one number!';
         result = false;
     }else if(!specialCharRegex.test(pwd)){
-    	msg += ' one special character!!';
+    	msg += ' one special character!';
         
         result = false;
     }
