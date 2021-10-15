@@ -1509,7 +1509,11 @@ function User(record) {
         if (!password) {
             throw 'Password must be non-null, non-empty string';
         }
-
+        if(enableVerifyPasswordStrength){
+        	verifyPasswordStrength(password);
+        }
+        	
+        
         // no change
         if (utils.validatePBKDF2Hash(password, record.user_password)) {
             return this;
@@ -3451,6 +3455,52 @@ function clearToken(){
 		logDebug('Login token cleared for namespace=' + tokenBasedAuth.namespace);
 	}
 }
+
+/**
+ * TODO generated, please specify type and doc for the params
+ * @param password
+ * @private 
+ * @properties={typeid:24,uuid:"E40B158C-2B0C-4B0C-963C-80D362D87963"}
+ */
+function verifyPasswordStrength(password){
+   
+	var msg = 'The password must have at least';
+	var result = true;
+    var pwd = password
+	/*conditions*/
+    var numberOfCharRegex = new RegExp("^(?=.{8,}).*$", "g");
+    var capitalLetterRegex = new RegExp("^(?=.*[A-Z]).*$", "g");
+    var smallLetterRegex = new RegExp("^(?=.*[a-z]).*$", "g");
+    var numberRegex = new RegExp("^(?=.*[0-9]).*$", "g");
+    var specialCharRegex = new RegExp("^(?=.*\\W).*$", "g");
+    
+    if (pwd.length > 0) {      
+    if (!numberOfCharRegex.test(pwd)) {
+         msg += ' 8 characters!';
+         result = false;
+    }else if(!capitalLetterRegex.test(pwd)){
+        msg += ' one capital letter!!';
+        result = false;
+    }else if(!smallLetterRegex.test(pwd)){
+    	msg += ' one small letter!!';
+        
+    	result = false;
+    }else if(!numberRegex.test(pwd)){
+    	msg += ' one number !!';
+        result = false;
+    }else if(!specialCharRegex.test(pwd)){
+    	msg += ' one special character!!';
+        
+        result = false;
+    }
+    
+ }   
+    if(!result){
+    	throw msg;
+    }
+}
+
+
 
 /**
  * Initializes the module.
