@@ -1539,7 +1539,7 @@ function User(record) {
 				throw 'Please use a different password, this one looks the same with one of the last '+nPreviousPasswords+' passwords!';	
 			}
 			
-			initLoginHistory(this,password);
+			initLoginHistory(this,record.user_password);
 		}
          
         // no change
