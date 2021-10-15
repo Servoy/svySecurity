@@ -138,7 +138,10 @@ var USER_PROPERTIES = {
 	LOGIN_WITH_USER_ID_AS_USER_UID: "svy.security.login-with-user-id-as-user-uid",
 	
 	/** When set to true USER_CACHE will be used to avoid a lot of foundset looping */
-	USE_CACHE: "svy.security.use-cache"
+	USE_CACHE: "svy.security.use-cache",
+		
+	/** When set to true the verifyPasswordStrength() will be activated in user.setPassord , checking the strength of the password*/
+	PASSWORD_STRENGTH_ENFORCED: "svy.security.password-Strength-Enforced"
 }
 
 /**
@@ -1509,6 +1512,8 @@ function User(record) {
         if (!password) {
             throw 'Password must be non-null, non-empty string';
         }
+        /*verify the password strength if this is activated via USER_PROPERTIES.PASSWORD_STRENGTH_ENFORCED*/
+        var enableVerifyPasswordStrength = USER_PROPERTIES.PASSWORD_STRENGTH_ENFORCED;
         if(enableVerifyPasswordStrength){
         	verifyPasswordStrength(password);
         }
