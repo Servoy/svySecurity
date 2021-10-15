@@ -141,7 +141,7 @@ var USER_PROPERTIES = {
 	USE_CACHE: "svy.security.use-cache",
 		
 	/** When set to true the verifyPasswordStrength() will be activated in user.setPassord , checking the strength of the password*/
-	PASSWORD_STRENGTH_ENFORCED: "svy.security.password-Strength-Enforced"
+	PASSWORD_STRENGTH_ENFORCED: "svy.security.password-strength-enforced"
 }
 
 /**
