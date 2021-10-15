@@ -3464,7 +3464,7 @@ function clearToken(){
 /**
  * TODO generated, please specify type and doc for the params
  * @param password
- * @private 
+ * 
  * @properties={typeid:24,uuid:"E40B158C-2B0C-4B0C-963C-80D362D87963"}
  */
 function verifyPasswordStrength(password){
