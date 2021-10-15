@@ -1415,7 +1415,7 @@ function User(record) {
      * @return {Boolean}
      * */
     this.isDeviceLocked = function (maxattempts, minutes) {
-    	return countLoginAttempts(maxattempts, minutes);
+    	return countLoginAttempts(maxattempts, minutes, this);
     }
     
     /**
@@ -1529,6 +1529,19 @@ function User(record) {
             throw 'Password must be non-null, non-empty string';
         }
 
+		if (true) {
+			var nPreviousPasswords = 4;
+			
+			if (utils.validatePBKDF2Hash(password, record.user_password)) {
+				throw 'Please use a different password, this one is the same with your last password!';
+			}
+			if(checkLoginHistory(this, password, nPreviousPasswords)){
+				throw 'Please use a different password, this one looks the same with one of the last '+nPreviousPasswords+' passwords!';	
+			}
+			
+			initLoginHistory(this,password);
+		}
+         
         // no change
         if (utils.validatePBKDF2Hash(password, record.user_password)) {
             return this;
@@ -2785,6 +2798,64 @@ function initSession(user) {
 /**
  * @public
  * @param {User} user
+ * @param {String} password
+ * 
+ * @properties={typeid:24,uuid:"1EE34261-6060-4D9D-B802-90A5597C390B"}
+ */
+function initLoginHistory(user, password) {
+
+	if (!user) throw 'No user';
+
+	// login history
+	var fs = datasources.db.svy_security.users_history.getFoundSet();
+	var loginHistoryRec = fs.getRecord(fs.newRecord(false, false));
+
+	loginHistoryRec.user_name = user.getUserName();
+	loginHistoryRec.tenant_name = user.getTenant().getName();
+	loginHistoryRec.previouspassword = password;
+	loginHistoryRec.creationdate = new Date();
+
+	saveRecord(loginHistoryRec);
+}
+/**
+ * @public
+ * @param {User} user
+ * @param {String} currentPassword
+ * @param {Number} nPreviousPasswords
+ * 
+ * @return {Boolean}
+ * *
+ * @properties={typeid:24,uuid:"4BAF0993-BF7D-408C-B5FD-862BD8EA8F7F"}
+ */
+function checkLoginHistory(user, currentPassword, nPreviousPasswords) {
+	var count = 0;
+
+	var fs = datasources.db.svy_security.users_history.getFoundSet();
+	var query = datasources.db.svy_security.users_history.createSelect();
+	query.where.add(query.columns.user_name.eq(user.getUserName()));
+	query.where.add(query.columns.tenant_name.eq(user.getTenant().getName()));
+	fs.loadRecords(query);
+	fs.sort(function(a, b) {
+		return new Date(a.creationdate) - new Date(b.creationdate);
+	});
+	for (var i = 1; i <= nPreviousPasswords; i++) {
+		if (fs.getRecord(i)) {
+			if (fs.getRecord(i).previouspassword == currentPassword) {
+				count++
+			}
+		}
+	}
+
+	if (count > 0) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
+ * @public
+ * @param {User} user
  * @param {String} reason
  * @param {Number} success //0 = fail, 1 = success
  * 
@@ -2798,7 +2869,6 @@ function initLoginAttempts(user, reason, success) {
 	var fs = datasources.db.svy_security.users_login_attempts.getFoundSet();
 	var loginAttemptsRec = fs.getRecord(fs.newRecord(false, false));
 
-	//using the Servoy client session ID
 	loginAttemptsRec.user_name = user.getUserName();
 	loginAttemptsRec.tenant_name = user.getTenant().getName();
 	loginAttemptsRec.failreason = reason;
@@ -2817,10 +2887,12 @@ function initLoginAttempts(user, reason, success) {
  * @public 
  * @param {Number} maxattempts
  * @param {Number} minutes
- * @return
+ * @param {User} user
+ * 
+ * @return {Boolean}
  * @properties={typeid:24,uuid:"E88C5EB4-028A-47F3-978C-8ABB326F1763"}
  */
-function countLoginAttempts(maxattempts, minutes) {
+function countLoginAttempts(maxattempts, minutes, user) {
 	var count = 1;
 	/**
 	 * @type {Date}
@@ -2829,6 +2901,8 @@ function countLoginAttempts(maxattempts, minutes) {
 
 	var fs = datasources.db.svy_security.users_login_attempts.getFoundSet();
 	var query = datasources.db.svy_security.users_login_attempts.createSelect();
+	query.where.add(query.columns.user_name.eq(user.getUserName()));
+	query.where.add(query.columns.tenant_name.eq(user.getTenant().getName()));
 	query.where.add(query.columns.ipaddress.eq(application.getIPAddress()));
 	query.where.add(query.columns.solutionname.eq(application.getSolutionName()));
 	if (application.getApplicationType() == APPLICATION_TYPES.NG_CLIENT) {
