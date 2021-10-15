@@ -175,12 +175,14 @@ function login(user, userUid, permissionsToApply) {
 
     // check for lock
     if (user.isLocked()) {
+    	initLoginAttempts(user, utils.stringFormat('User "%1$s" is locked and cannot logged in.', [user.getUserName()]), 0);
         logInfo(utils.stringFormat('User "%1$s" is locked and cannot logged in.', [user.getUserName()]));
         return false;
     }
 
     // check for tenant lock
     if (user.getTenant().isLocked()) {
+    	initLoginAttempts(user, utils.stringFormat('Tenant "%1$s" is locked and users associated with it cannot logged in.', [user.getTenant().getName()]), 0);
         logInfo(utils.stringFormat('Tenant "%1$s" is locked and users associated with it cannot logged in.', [user.getTenant().getName()]));
         return false;
     }
@@ -204,6 +206,7 @@ function login(user, userUid, permissionsToApply) {
     	function(groupName) {
     		var groupIdx = servoyGroups.indexOf(groupName);
     		if (groupIdx === -1) {
+    			initLoginAttempts(user, utils.stringFormat('Permission "%1$s" is no longer found within internal security settings and cannot be assigned to user "%2$s".', [groupName, user.getUserName()]), 0);
     			logWarning(utils.stringFormat('Permission "%1$s" is no longer found within internal security settings and cannot be assigned to user "%2$s".', [groupName, user.getUserName()]));
     		}
     		return groupIdx >= 0;
@@ -212,6 +215,7 @@ function login(user, userUid, permissionsToApply) {
 
     // no groups
     if (!groups.length) {
+    	initLoginAttempts(user, 'No Permissions. Cannot login', 0);
         logWarning('No Permissions. Cannot login');
         return false;
     }
@@ -231,6 +235,7 @@ function login(user, userUid, permissionsToApply) {
     
     // login
     if (!security.login(user.getUserName(), loginUserUid, groups)) {
+    	initLoginAttempts(user, utils.stringFormat('Servoy security.login failed for user: "%1$s" with groups: "%2$s"', [user.getUserName(), groups]), 0);
         logWarning(utils.stringFormat('Servoy security.login failed for user: "%1$s" with groups: "%2$s"', [user.getUserName(), groups]));
         return false;
     }
@@ -240,6 +245,9 @@ function login(user, userUid, permissionsToApply) {
     
     // create session
     initSession(user);
+    
+    // login attempts
+    initLoginAttempts(user, 'Success', 1);
 
     // filter security tables
     filterSecurityTables();
@@ -1397,6 +1405,16 @@ function Tenant(record) {
 function User(record) {
     if (!record) {
         throw new Error('User record is not specified');
+    }
+    
+    /**
+     * @public 
+     * @param {Number} maxattempts
+     * 
+     * @return {Boolean}
+     * */
+    this.isDeviceLocked = function (maxattempts) {
+    	return countLoginAttempts(maxattempts);
     }
     
     /**
@@ -2764,6 +2782,88 @@ function initSession(user) {
 }
 
 /**
+ * @public
+ * @param {User} user
+ * @param {String} reason
+ * @param {Number} success //0 = fail, 1 = success
+ * 
+ * @properties={typeid:24,uuid:"AA06AE1B-1E52-4541-B819-124F5B7AD501"}
+ */
+function initLoginAttempts(user, reason, success) {
+
+	if (!user) throw 'No user';
+
+	// login attempts
+	var fs = datasources.db.svy_security.users_login_attempts.getFoundSet();
+	var loginAttemptsRec = fs.getRecord(fs.newRecord(false, false));
+
+	//using the Servoy client session ID
+	loginAttemptsRec.user_name = user.getUserName();
+	loginAttemptsRec.tenant_name = user.getTenant().getName();
+	loginAttemptsRec.failreason = reason;
+	loginAttemptsRec.success = success;
+	loginAttemptsRec.creationdate = new Date();
+	loginAttemptsRec.ipaddress = application.getIPAddress();
+	loginAttemptsRec.solutionname = application.getSolutionName();
+	if (application.getApplicationType() == APPLICATION_TYPES.NG_CLIENT) {
+		loginAttemptsRec.useragentstring = plugins.ngclientutils.getUserAgent();
+	}
+
+	saveRecord(loginAttemptsRec);
+}
+
+/**
+ * @public 
+ * @param {Number} maxattempts
+ * 
+ * @return
+ * @properties={typeid:24,uuid:"E88C5EB4-028A-47F3-978C-8ABB326F1763"}
+ */
+function countLoginAttempts(maxattempts) {
+	var count = 1;
+	/**
+	 * @type {Date}
+	 * */
+	var date = null;
+
+	var fs = datasources.db.svy_security.users_login_attempts.getFoundSet();
+	var query = datasources.db.svy_security.users_login_attempts.createSelect();
+	query.where.add(query.columns.ipaddress.eq(application.getIPAddress()));
+	query.where.add(query.columns.solutionname.eq(application.getSolutionName()));
+	if (application.getApplicationType() == APPLICATION_TYPES.NG_CLIENT) {
+		query.where.add(query.columns.useragentstring.eq(plugins.ngclientutils.getUserAgent()));
+	}
+	fs.loadRecords(query);
+	fs.sort(function(a, b) {
+		return new Date(a.creationdate) - new Date(b.creationdate);
+	});
+	for (var i = 1; i < fs.getSize(); i++) {
+		if (fs.getRecord(i).success == 0) {
+			count++
+		} else {
+			count = 1;
+		}
+
+		if (i == fs.getSize() - 1) {
+			date = fs.getRecord(i).creationdate;
+		}
+	}
+
+	if (date != null) {
+		/**
+		 * @type {Date}
+		 * */
+		var checkDate = new Date(date);
+		checkDate.setMinutes(date.getMinutes() + 30);
+		if (count >= maxattempts && checkDate > new Date()) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
  * Sends the current session going to DB. For internal use only with initSession() which schedules it
  *
  * @private
@@ -3354,7 +3454,7 @@ function setTokenBasedAuth(namespace, expiresIn, resources){
 /**
  * Called after login
  * @private   
- * @param {scopes.svySecurity.User} user
+ * @param {User} user
  * 
  * @properties={typeid:24,uuid:"E2D3BD33-9A85-4407-8B0E-008F1B71F1CE"}
  */

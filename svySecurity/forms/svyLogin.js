@@ -107,8 +107,15 @@ function login() {
 		onLoginError(ERROR_CODES.USER_NOT_FOUND);
 		return false;
 	}
+	
+	if(!user.isDeviceLocked(3)){
+		onLoginError("This device is locked, please try again in 30 minutes!");
+		return false;
+	}
+	
 	if(!user.checkPassword(password)){
-		onLoginError(ERROR_CODES.PASSWORD_MISMATCH);
+		onLoginError(ERROR_CODES.PASSWORD_MISMATCH);		
+		scopes.svySecurity.initLoginAttempts(user,'Wrong password', 0);
 		return false;
 	}
 	if(user.isLocked()){
