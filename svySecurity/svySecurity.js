@@ -140,7 +140,7 @@ var USER_PROPERTIES = {
 	/** When set to true USER_CACHE will be used to avoid a lot of foundset looping */
 	USE_CACHE: "svy.security.use-cache",
 		
-	/** When set to true the verifyPasswordStrength() will be activated in user.setPassord , checking the strength of the password*/
+	/** When set to true the verifyPasswordStrength() will be activated in user.setPassword() and in the tenant.createUser() , checking the strength of the password. Default false*/
 	PASSWORD_STRENGTH_ENFORCED: "svy.security.password-strength-enforced"
 }
 
