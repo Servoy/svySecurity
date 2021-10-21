@@ -842,7 +842,14 @@ function Tenant(record) {
         if (userNameExists(userName, this.getName())) {
             throw new Error(utils.stringFormat('User Name "%1$s"is not unique to this tenant', [userName]));
         }
+		/**the verifyPasswordStrength(password); will throw an exception that may be captured with a bloc try-catch end use it to display it for the end user*/
+		var enableVerifyPasswordStrength = application.getUserProperty(USER_PROPERTIES.PASSWORD_STRENGTH_ENFORCED);
+		if (password && enableVerifyPasswordStrength == "true") {
 
+			verifyPasswordStrength(password);
+
+		}
+		
         var userRec = record.tenants_to_users.getRecord(record.tenants_to_users.newRecord(false, false));
         if (!userRec) {
             throw 'Failed to create user record';
@@ -1512,11 +1519,11 @@ function User(record) {
         if (!password) {
             throw 'Password must be non-null, non-empty string';
         }
-        /*verify the password strength if this is activated via USER_PROPERTIES.PASSWORD_STRENGTH_ENFORCED*/
-        var enableVerifyPasswordStrength = USER_PROPERTIES.PASSWORD_STRENGTH_ENFORCED;
-        if(enableVerifyPasswordStrength){
-        	verifyPasswordStrength(password);
-        }
+		/**it may need to have a validation of the password before creating the user. The verifyPasswordStrength(password) throws an exception that can be capturet with a try-catch and use it to show a message to the end user*/
+		var enableVerifyPasswordStrength = application.getUserProperty(USER_PROPERTIES.PASSWORD_STRENGTH_ENFORCED);
+		if (enableVerifyPasswordStrength == "true") {
+			verifyPasswordStrength(password);
+		}
         	
         
         // no change
@@ -3467,43 +3474,45 @@ function clearToken(){
  * 
  * @properties={typeid:24,uuid:"E40B158C-2B0C-4B0C-963C-80D362D87963"}
  */
-function verifyPasswordStrength(password){
-   
+function verifyPasswordStrength(password) {
+
 	var msg = 'The password must have at least';
 	var result = true;
-    var pwd = password
+	var pwd = password
 	/*conditions*/
-    var numberOfCharRegex = new RegExp("^(?=.{8,}).*$", "g");
-    var capitalLetterRegex = new RegExp("^(?=.*[A-Z]).*$", "g");
-    var smallLetterRegex = new RegExp("^(?=.*[a-z]).*$", "g");
-    var numberRegex = new RegExp("^(?=.*[0-9]).*$", "g");
-    var specialCharRegex = new RegExp("^(?=.*\\W).*$", "g");
-    
-    if (pwd.length > 0) {      
-    if (!numberOfCharRegex.test(pwd)) {
-         msg += ' 8 characters!';
-         result = false;
-    }else if(!capitalLetterRegex.test(pwd)){
-        msg += ' one capital letter!';
-        result = false;
-    }else if(!smallLetterRegex.test(pwd)){
-    	msg += ' one small letter!';
-        
-    	result = false;
-    }else if(!numberRegex.test(pwd)){
-    	msg += ' one number!';
-        result = false;
-    }else if(!specialCharRegex.test(pwd)){
-    	msg += ' one special character!';
-        
-        result = false;
-    }
-    
- }   
-    if(!result){
-    	throw msg;
-    }
+	var numberOfCharRegex = new RegExp("^(?=.{8,}).*$", "g");
+	var capitalLetterRegex = new RegExp("^(?=.*[A-Z]).*$", "g");
+	var smallLetterRegex = new RegExp("^(?=.*[a-z]).*$", "g");
+	var numberRegex = new RegExp("^(?=.*[0-9]).*$", "g");
+	var specialCharRegex = new RegExp("^(?=.*\\W).*$", "g");
+
+	if (pwd.length > 0) {
+		if (!numberOfCharRegex.test(pwd)) {
+			msg += ' 8 characters!';
+			result = false;
+		} else if (!capitalLetterRegex.test(pwd)) {
+			msg += ' one capital letter!';
+			result = false;
+		} else if (!smallLetterRegex.test(pwd)) {
+			msg += ' one small letter!';
+
+			result = false;
+		} else if (!numberRegex.test(pwd)) {
+			msg += ' one number!';
+			result = false;
+		} else if (!specialCharRegex.test(pwd)) {
+			msg += ' one special character!';
+
+			result = false;
+		}
+
+	}
+	if (!result) {
+		throw msg;
+	}
+	/*you need validation*/
 }
+
 
 
 
