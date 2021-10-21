@@ -1,4 +1,20 @@
 /**
+ * @protected 
+ * @type {Number}
+ * *
+ * @properties={typeid:35,uuid:"FB0BE1BD-2ADD-4B10-9DB4-6AE4188AF2AA",variableType:8}
+ */
+var MINUTES_DEVICE_LOCKED = 30;
+
+/**
+ * @protected 
+ * @type {Number}
+ * *
+ * @properties={typeid:35,uuid:"B107EB03-2F3C-4BD8-8EAB-C0006C10780B",variableType:8}
+ */
+var MAX_LOGIN_ATTEMPTS = 3;
+
+/**
  * Login cookie name
  * 
  * @private
@@ -108,16 +124,14 @@ function login() {
 		return false;
 	}
 	
-	var maxattempts = 3;
-	var minutesLocked = 30;
-	if(!user.isDeviceLocked(maxattempts, minutesLocked)){
-		onLoginError("This device is locked, please try again in "+minutesLocked+" minutes!");
+	if (!user.isDeviceLocked(MAX_LOGIN_ATTEMPTS, MINUTES_DEVICE_LOCKED)) {
+		onLoginError("This device is locked, please try again in " + MINUTES_DEVICE_LOCKED + " minutes!");
 		return false;
 	}
 	
 	if(!user.checkPassword(password)){
 		onLoginError(ERROR_CODES.PASSWORD_MISMATCH);		
-		scopes.svySecurity.initLoginAttempts(user,'Wrong password', 0);
+		user.addLoginAttempts('Wrong password', false);
 		return false;
 	}
 	if(user.isLocked()){
