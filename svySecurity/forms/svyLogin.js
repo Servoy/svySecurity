@@ -134,6 +134,14 @@ function login() {
 		user.addLoginAttempts('Wrong password', false);
 		return false;
 	}
+	
+	if (user.checkPasswordExpiration()) {
+		onLoginError("Your password expired!");		
+		user.addLoginAttempts('Expired password', false);
+		return false;
+	}
+	
+	
 	if(user.isLocked()){
 		onLoginError(ERROR_CODES.LOCKED_USER);
 		return false;

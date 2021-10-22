@@ -152,7 +152,10 @@ var USER_PROPERTIES = {
 	ENABLE_LOGIN_ATTEMPTS: "svy.security.enable-login-attempts",
 	
 	/** When set to true ENABLE_LOGIN_HISTORY will be used to check previous passwords before setting the new one */
-	ENABLE_LOGIN_HISTORY: "svy.security.enable-login-history"
+	ENABLE_LOGIN_HISTORY: "svy.security.enable-login-history",
+	
+	/** When set to true ENABLE_PASSWORD_EXPIRATION will be used to check password expiration */
+	PASSWORD_EXPIRATION_DAYS: "svy.security.password-expiration-days"
 }
 
 /**
@@ -882,6 +885,21 @@ function Tenant(record) {
         }
         return user;
     }
+    
+	/**
+	 * @public
+	 * @param {String} days
+	 * */
+	this.setPasswordExpirationDays = function(days) {
+		scopes.svyProperties.setProperty('password_expiration_days', 'Number', days, '', this.getName())
+	}
+
+	/**
+	 * @public
+	 * */
+	this.getPasswordExpirationDays = function() {
+		scopes.svyProperties.getProperties('password_expiration_days', 'Number', this.getName(), '');
+	}
 
     /**
      * Gets all users for this tenant.
@@ -1430,7 +1448,7 @@ function User(record) {
      * */
 	this.isDeviceLocked = function(maxattempts, minutes) {
 		if (application.getUserProperty(USER_PROPERTIES.ENABLE_LOGIN_ATTEMPTS) == true) {
-			return countLoginAttempts(this, minutes, maxattempts);
+			return checkLoginAttempts(this, minutes, maxattempts);
 		} else {
 			return true;
 		}
@@ -1438,8 +1456,8 @@ function User(record) {
     
     /**
      * @public 
-     * @param {Boolean} success
      * @param {String} reason
+     * @param {Boolean} success
      * */
 	this.addLoginAttempts = function(reason, success) {
 		var code = success ? 1 : 0;
@@ -1569,8 +1587,43 @@ function User(record) {
         if (!password) {
             throw 'Password must be non-null, non-empty string';
         }
+		
         return utils.validatePBKDF2Hash(password, record.user_password);
     }
+    
+    /**
+     * @public
+     * 
+     * @return {Boolean}
+     * */
+	this.checkPasswordExpiration = function() {
+		var fs = datasources.db.svy_security.users.getFoundSet();
+		var query = datasources.db.svy_security.users.createSelect();
+		query.where.add(query.columns.user_name.eq(this.getUserName()));
+		query.where.add(query.columns.tenant_name.eq(this.getTenant().getName()));
+		fs.loadRecords(query);
+
+		if (fs.getRecord(1).password_modification_date != null && application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS) != null) {
+			var days;
+			if(this.getTenant().getPasswordExpirationDays() != null){
+				days = parseInt(this.getTenant().getPasswordExpirationDays());
+			}
+			else{
+				days = parseInt(application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS));
+			}
+			var date = new Date(fs.getRecord(1).password_modification_date);
+			var expDate = new Date(date);
+			expDate.setDate(expDate.getDate() + days)
+			var currentDate = new Date();
+			if (expDate < currentDate) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
     /**
      * Sets the users password.
@@ -1587,7 +1640,7 @@ function User(record) {
             throw 'Password must be non-null, non-empty string';
         }
 
-		if (application.getUserProperty(USER_PROPERTIES.ENABLE_LOGIN_HISTORY) == true) {
+		if (application.getUserProperty(USER_PROPERTIES.ENABLE_LOGIN_HISTORY) == "true") {
 			if (utils.validatePBKDF2Hash(password, record.user_password)) {
 				throw 'Please use a different password, this one is the same with your last password!';
 			} else if (checkLoginHistory(this, password, CHECK_PREVIOUS_PASSWORDS) && CHECK_PREVIOUS_PASSWORDS > 1) {
@@ -1603,6 +1656,7 @@ function User(record) {
         }
 
         record.user_password = utils.stringPBKDF2Hash(password, 10000);
+        record.password_modification_date = new Date();
         saveRecord(record);
         return this;
     }
@@ -2895,7 +2949,7 @@ function checkLoginHistory(user, currentPassword, nPreviousPasswords) {
  * @return {Boolean}
  * @properties={typeid:24,uuid:"E88C5EB4-028A-47F3-978C-8ABB326F1763"}
  */
-function countLoginAttempts(user, minutes, maxattempts) {
+function checkLoginAttempts(user, minutes, maxattempts) {
 	var count = 1;
 	/**
 	 * @type {Date}
