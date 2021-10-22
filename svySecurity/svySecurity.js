@@ -14,6 +14,15 @@
 //var CHECK_PREVIOUS_PASSWORDS = 1
 
 /**
+ * @private  
+ * @enum
+ * @type {Number}
+ *
+ * @properties={typeid:35,uuid:"8332C209-34EA-4027-B234-81705BF52AF9",variableType:4}
+ */
+var DEFAULT_MINUTES_DEVICE_LOCKED = 30;
+
+/**
  * @protected
  * @type {String}
  * @ignore
@@ -149,14 +158,17 @@ var USER_PROPERTIES = {
 	/** When set to true USER_CACHE will be used to avoid a lot of foundset looping */
 	USE_CACHE: "svy.security.use-cache",
 	
-	/** When set to true ENABLE_LOGIN_ATTEMPTS will be used to block a device */
-	ENABLE_LOGIN_ATTEMPTS: "svy.security.enable-login-attempts",
+	/** When this is set, will block a device after n attempts */
+	MAX_LOGIN_ATTEMPTS: "svy.security.max-login-attempts",
 	
 	/** When set to true ENABLE_LOGIN_HISTORY will be used to check previous passwords before setting the new one */
 	ENABLE_LOGIN_HISTORY: "svy.security.enable-login-history",
 	
-	/** When set to true ENABLE_PASSWORD_EXPIRATION will be used to check password expiration */
-	PASSWORD_EXPIRATION_DAYS: "svy.security.password-expiration-days"
+	/** When this is set, will check password expiration */
+	PASSWORD_EXPIRATION_DAYS: "svy.security.password-expiration-days",
+	
+	/** When this is set, will block a device for n minutes */
+	LOGIN_LOCK_DURATION: "svy.security.login-lock-duration"
 }
 
 /**
@@ -889,17 +901,89 @@ function Tenant(record) {
     
 	/**
 	 * @public
-	 * @param {String} days
+	 * @param {Number} days
 	 * */
 	this.setPasswordExpirationDays = function(days) {
-		scopes.svyProperties.setProperty('password_expiration_days', 'Number', days, '', this.getName())
+		scopes.svyProperties.setProperty('password_expiration_days', 'enum', days.toString(), null, this.getName());
 	}
 
 	/**
 	 * @public
+	 *
+	 * @return
 	 * */
 	this.getPasswordExpirationDays = function() {
-		scopes.svyProperties.getProperties('password_expiration_days', 'Number', this.getName(), '');
+		var days = 0;
+		if (scopes.svyProperties.getProperty('password_expiration_days', 'enum', this.getName(), null) != null) {
+			/**
+			 * @type {scopes.svyProperties.Property}
+			 * */
+			var prop = scopes.svyProperties.getProperty('password_expiration_days', 'enum', this.getName(), null);
+			days = parseInt(prop.getPropertyValue());
+		} else if (application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS) != null) {
+			days = parseInt(application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS));
+		}
+
+		return days;
+	}
+
+	/**
+	 * @public
+	 * @param {Number} maxAttempts
+	 * */
+	this.setMaxLoginAttempts = function(maxAttempts) {
+		scopes.svyProperties.setProperty('max_login_attempts', 'enum', maxAttempts.toString(), null, this.getName());
+	}
+
+	/**
+	 * @public
+	 *
+	 * @return
+	 * */
+	this.getMaxLoginAttempts = function() {
+		var maxAttempts = 0;
+		if (scopes.svyProperties.getProperty('max_login_attempts', 'enum', this.getName(), null) != null) {
+			/**
+			 * @type {scopes.svyProperties.Property}
+			 * */
+			var prop = scopes.svyProperties.getProperty('max_login_attempts', 'enum', this.getName(), null);
+			maxAttempts = parseInt(prop.getPropertyValue());
+		} else if (application.getUserProperty(USER_PROPERTIES.MAX_LOGIN_ATTEMPTS) != null) {
+			maxAttempts = parseInt(application.getUserProperty(USER_PROPERTIES.MAX_LOGIN_ATTEMPTS));
+		}
+
+		return maxAttempts;
+	}
+
+	/**
+	 * @public
+	 * @param {Number} minutes
+	 * */
+	this.setMinutesDeviceLocked = function(minutes) {
+		scopes.svyProperties.setProperty('minutes_device_locked', 'enum', minutes.toString(), null, this.getName());
+	}
+
+	/**
+	 * @public
+	 *
+	 * @return
+	 * */
+	this.getMinutesDeviceLocked = function() {
+		var minutes;
+		if (scopes.svyProperties.getProperty('minutes_device_locked', 'enum', this.getName(), null) != null) {
+			/**
+			 * @type {scopes.svyProperties.Property}
+			 * */
+			var prop = scopes.svyProperties.getProperty('minutes_device_locked', 'enum', this.getName(), null);
+			application.output(prop)
+			minutes = parseInt(prop.getPropertyValue());
+		} else if (application.getUserProperty(USER_PROPERTIES.LOGIN_LOCK_DURATION) != null) {
+			minutes = parseInt(application.getUserProperty(USER_PROPERTIES.LOGIN_LOCK_DURATION));
+		} else {
+			minutes = DEFAULT_MINUTES_DEVICE_LOCKED;
+		}
+
+		return minutes;
 	}
 
     /**
@@ -1441,15 +1525,13 @@ function User(record) {
     }
     
     /**
-     * @public 
-     * @param {Number} maxattempts
-     * @param {Number} minutes
+     * @public
      * 
      * @return {Boolean}
      * */
-	this.isDeviceLocked = function(maxattempts, minutes) {
-		if (application.getUserProperty(USER_PROPERTIES.ENABLE_LOGIN_ATTEMPTS) == true) {
-			return checkLoginAttempts(this, minutes, maxattempts);
+	this.isDeviceLocked = function() {
+		if (application.getUserProperty(USER_PROPERTIES.MAX_LOGIN_ATTEMPTS) != null) {
+			return checkLoginAttempts(this, this.getTenant().getMinutesDeviceLocked(), this.getTenant().getMaxLoginAttempts());
 		} else {
 			return true;
 		}
@@ -1597,21 +1679,12 @@ function User(record) {
      * 
      * @return {Boolean}
      * */
-	this.checkPasswordExpiration = function() {
-		var fs = datasources.db.svy_security.users.getFoundSet();
-		var query = datasources.db.svy_security.users.createSelect();
-		query.where.add(query.columns.user_name.eq(this.getUserName()));
-		query.where.add(query.columns.tenant_name.eq(this.getTenant().getName()));
-		fs.loadRecords(query);
+	this.checkPasswordExpiration = function() {		
+		record.modification_datetime;
 
-		if (fs.getRecord(1).password_modification_date != null && application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS) != null) {
-			var days;
-			if (this.getTenant().getPasswordExpirationDays() != null) {
-				days = parseInt(this.getTenant().getPasswordExpirationDays());
-			} else {
-				days = parseInt(application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS));
-			}
-			var date = new Date(fs.getRecord(1).password_modification_date);
+		if (record.password_modification_date != null && application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS) != null) {
+			var days = this.getTenant().getPasswordExpirationDays();
+			var date = new Date(record.password_modification_date);
 			var expDate = new Date(date);
 			expDate.setDate(expDate.getDate() + days)
 			var currentDate = new Date();

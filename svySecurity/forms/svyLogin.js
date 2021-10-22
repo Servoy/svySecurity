@@ -1,20 +1,4 @@
 /**
- * @protected 
- * @type {Number}
- * *
- * @properties={typeid:35,uuid:"FB0BE1BD-2ADD-4B10-9DB4-6AE4188AF2AA",variableType:8}
- */
-var MINUTES_DEVICE_LOCKED = 30;
-
-/**
- * @protected 
- * @type {Number}
- * *
- * @properties={typeid:35,uuid:"B107EB03-2F3C-4BD8-8EAB-C0006C10780B",variableType:8}
- */
-var MAX_LOGIN_ATTEMPTS = 3;
-
-/**
  * Login cookie name
  * 
  * @private
@@ -124,8 +108,8 @@ function login() {
 		return false;
 	}
 	
-	if (!user.isDeviceLocked(MAX_LOGIN_ATTEMPTS, MINUTES_DEVICE_LOCKED)) {
-		onLoginError("This device is locked, please try again in " + MINUTES_DEVICE_LOCKED + " minutes!");
+	if (!user.isDeviceLocked()) {
+		onLoginError("This device is locked, please try again in " + tenant.getMinutesDeviceLocked() + " minutes!");
 		return false;
 	}
 	
