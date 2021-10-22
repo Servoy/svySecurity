@@ -4,13 +4,14 @@
  * 
  */
 
-/**
- * @protected 
- * @type {Number}
+/*/**
+ * @private
  * *
- * @properties={typeid:35,uuid:"13BFA418-1EDA-4C51-B769-BA86E5C693BD",variableType:8}
+ * @type {Number}
+ *
+ * @properties={typeid:35,uuid:"861D09C5-BE98-4152-8878-378A16E48333",variableType:4}
  */
-var CHECK_PREVIOUS_PASSWORDS = 1;
+//var CHECK_PREVIOUS_PASSWORDS = 1
 
 /**
  * @protected
@@ -1605,10 +1606,9 @@ function User(record) {
 
 		if (fs.getRecord(1).password_modification_date != null && application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS) != null) {
 			var days;
-			if(this.getTenant().getPasswordExpirationDays() != null){
+			if (this.getTenant().getPasswordExpirationDays() != null) {
 				days = parseInt(this.getTenant().getPasswordExpirationDays());
-			}
-			else{
+			} else {
 				days = parseInt(application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS));
 			}
 			var date = new Date(fs.getRecord(1).password_modification_date);
@@ -1643,11 +1643,15 @@ function User(record) {
 		if (application.getUserProperty(USER_PROPERTIES.ENABLE_LOGIN_HISTORY) == "true") {
 			if (utils.validatePBKDF2Hash(password, record.user_password)) {
 				throw 'Please use a different password, this one is the same with your last password!';
-			} else if (checkLoginHistory(this, password, CHECK_PREVIOUS_PASSWORDS) && CHECK_PREVIOUS_PASSWORDS > 1) {
+			}
+			
+			
+			//For checking/adding login history
+			/*else if (checkLoginHistory(this, password, CHECK_PREVIOUS_PASSWORDS) && CHECK_PREVIOUS_PASSWORDS > 1) {
 				throw 'The password is very similar with your previous passwords!';
 			}
 
-			this.addLoginHistory(record.user_password);
+			this.addLoginHistory(record.user_password);*/
 		}
          
         // no change
