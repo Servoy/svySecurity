@@ -1,0 +1,74 @@
+customProperties:"formComponent:true,\
+useCssPosition:true",
+encapsulation:108,
+items:[
+{
+cssPosition:"100,10,-1,10,200,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"10",
+right:"10",
+top:"100",
+width:"200"
+},
+styleClass:"text-center text-center-vertical"
+},
+name:"cardName",
+styleClass:"text-center text-center-vertical",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"13DADA18-436D-4795-8492-5F34F3E689B8"
+},
+{
+height:140,
+partType:5,
+typeid:19,
+uuid:"D9355AFF-59ED-4A3C-8916-C8D62F136A51"
+},
+{
+cssPosition:"10,10,10,10,200,120",
+json:{
+cssPosition:{
+bottom:"10",
+height:"120",
+left:"10",
+right:"10",
+top:"10",
+width:"200"
+},
+styleClass:"default-align border border-radius"
+},
+name:"card",
+styleClass:"default-align border border-radius",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"E7787A23-8D13-418F-9A22-5FC645F41220"
+},
+{
+cssPosition:"10,10,-1,10,200,90",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"90",
+left:"10",
+right:"10",
+top:"10",
+width:"200"
+},
+styleClass:"h1 font-weight-bold text-center text-center-vertical"
+},
+name:"cardCount",
+styleClass:"h1 font-weight-bold text-center text-center-vertical",
+typeName:"bootstrapcomponents-datalabel",
+typeid:47,
+uuid:"E7CA3B5D-7CA7-498A-82D4-3530444CAD36"
+}
+],
+name:"svySecurityConsoleUXDashboardCard",
+navigatorID:"-1",
+showInMenu:true,
+size:"220,120",
+typeid:3,
+uuid:"3089107E-E765-48CD-A79D-552DD8357F55"
