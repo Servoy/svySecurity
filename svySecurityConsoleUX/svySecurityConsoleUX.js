@@ -1,3 +1,37 @@
+
+
+
+/**
+ * @param {JSRecord<db:/svy_security/tenants>} [recordMaster]
+ * @param {Boolean} [makeSubTenant]
+ * @public
+ *
+ * @properties={typeid:24,uuid:"B587CEB8-C51B-4160-A588-99FA9203C698"}
+ */
+function addNewTenant(recordMaster, makeSubTenant) {
+    var name = plugins.dialogs.showInputDialog('Add New Tenant', 'Enter a name for the new tenant:');
+    if(!name){
+        return;
+    }
+    if(scopes.svySecurity.getTenant(name)){
+        plugins.dialogs.showErrorDialog('Could Not Create Tenant', utils.stringFormat('The specified tenant name "%1$s" is already in use.', [name]));
+        return;
+    }
+    var tenant;
+    if (recordMaster) {
+    	var masterTenant = scopes.svySecurity.getTenant(recordMaster.tenant_name);
+    	tenant = scopes.svySecurity.cloneTenant(masterTenant, name, makeSubTenant ? true : false);
+    } else {    	
+	    tenant = scopes.svySecurity.createTenant(name);
+    }
+    if(!tenant){
+        plugins.dialogs.showErrorDialog('Could not create tenant', 'There was an unknown error. Please check server logs.');
+        return;
+    }
+   // forms.tenantDetail.show(name);
+}
+
+
 /**
  * TODO generated, please specify type and doc for the params
  * @param chart

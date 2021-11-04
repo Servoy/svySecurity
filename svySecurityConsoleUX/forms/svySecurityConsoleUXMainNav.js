@@ -21,11 +21,21 @@ function onLoad(event) {
 	var menuItems = [];
 	menuItems.push({itemId: '0', text: 'Menu', position: 'RIGHT', subMenuItems:[
 	{itemId: 'svySecurityConsoleUXHome', text: 'Home'},
-	{itemId: 'svySecurityConsoleUXTenants', text: 'Tenants'},
+	{itemId: 'svySecurityConsoleUXMainTenants', text: 'Tenants'},
 	{isDivider: true},
 	{itemId: 'logout', text: 'Log Out'}]});
 
 	elements.navbar.setMenuItems(menuItems);
+}
+
+/**
+ * TODO generated, please specify type and doc for the params
+ * @param form
+ *
+ * @properties={typeid:24,uuid:"04FEA9D3-B860-449E-8F9E-6CD329B513F9"}
+ */
+function navigate(form){
+	elements.mainContainer.containedForm = form;
 }
 
 /**
@@ -40,7 +50,7 @@ function onMenuItemClicked(event, menuItem) {
 	switch (menuItem.itemId){
 		case 'svySecurityConsoleUXHome': elements.mainContainer.containedForm = menuItem.itemId;
 		break;
-		case 'svySecurityConsoleUXTenants': elements.mainContainer.containedForm = menuItem.itemId;
+		case 'svySecurityConsoleUXMainTenants': elements.mainContainer.containedForm = menuItem.itemId;
 		break;
 		case 'logout': security.logout();
 	}
