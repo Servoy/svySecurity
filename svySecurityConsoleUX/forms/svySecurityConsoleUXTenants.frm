@@ -64,6 +64,7 @@ right:"0",
 top:"50",
 width:"200"
 },
+onCellDoubleClick:"11DD8978-AA54-4159-9D31-F30871F2329A",
 styleClass:"ag-theme-servoy",
 toolPanelConfig:{
 suppressColumnExpandAll:true,

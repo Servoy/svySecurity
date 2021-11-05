@@ -32,3 +32,18 @@ function cloneTenant(event) {
 		scopes.svySecurityConsoleUX.addNewTenant(foundset.getSelectedRecord(), false);
 	}
 }
+
+/**
+ * Called when the mouse is clicked on a row/cell (foundset and column indexes are given).
+ * the foundsetindex is always -1 when there are grouped rows
+ *
+ * @param {number} foundsetindex
+ * @param {number} [columnindex]
+ * @param {JSRecord} [record]
+ * @param {JSEvent} [event]
+ *
+ * @properties={typeid:24,uuid:"11DD8978-AA54-4159-9D31-F30871F2329A"}
+ */
+function onCellDoubleClick(foundsetindex, columnindex, record, event) {
+	forms.svySecurityConsoleUXMainNav.navigate(forms.svySecurityUXTenant);
+}
