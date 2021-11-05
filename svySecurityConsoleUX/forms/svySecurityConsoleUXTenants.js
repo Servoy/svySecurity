@@ -52,7 +52,6 @@ function cloneTenant(event) {
  */
 function onCellDoubleClick(foundsetindex, columnindex, record, event) {
 	selectedTenant();
-	var item = new scopes.svyNavigation.NavigationItem('svySecurityUXTenant');
+	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.TENANT);
 	scopes.svyNavigation.open(item);
-	
 }

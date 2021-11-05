@@ -1,3 +1,5 @@
+// TODO extend svyNavigationUX$NavbarMobile instead
+
 /**
  * @properties={typeid:35,uuid:"32F53266-465C-405C-9017-E0525ADBAF32",variableType:-4}
  */
