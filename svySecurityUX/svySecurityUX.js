@@ -1,4 +1,11 @@
 /**
+ * @type {String}
+ *
+ * @properties={typeid:35,uuid:"AED93D9E-EDB6-4CBF-8942-F83A425A589B"}
+ */
+var selectedTenant = null;
+
+/**
  * @protected 
  * @type {String}
  *

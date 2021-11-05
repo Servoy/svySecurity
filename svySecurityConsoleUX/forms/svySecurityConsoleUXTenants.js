@@ -1,4 +1,10 @@
 /**
+ * @properties={typeid:24,uuid:"46F848EA-EC7E-4DD3-9189-9FC4FB305B7A"}
+ */
+function selectedTenant(){
+	return scopes.svySecurityUX.selectedTenant = foundset.tenant_name;
+}
+/**
  * @param {JSEvent} event
  * @param {string} dataTarget
  * @private
@@ -45,6 +51,7 @@ function cloneTenant(event) {
  * @properties={typeid:24,uuid:"11DD8978-AA54-4159-9D31-F30871F2329A"}
  */
 function onCellDoubleClick(foundsetindex, columnindex, record, event) {
+	selectedTenant();
 	var item = new scopes.svyNavigation.NavigationItem('svySecurityUXTenant');
 	scopes.svyNavigation.open(item);
 	

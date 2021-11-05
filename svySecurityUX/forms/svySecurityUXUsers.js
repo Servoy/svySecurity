@@ -96,7 +96,10 @@ function onDataChangeUser(oldValue, newValue, event) {
 function createUser() {
 
 	if (newUserName) {
-		var tenant = scopes.svySecurity.getTenant();
+		var tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
+		if (!tenant) {
+			// check the selected tenant in svySecurityConsoleUX: how ?
+		}
 		try {
 
 			var user = tenant.createUser(newUserName)
@@ -173,7 +176,7 @@ function onActionDeleteUser() {
 
 	var answer = plugins.dialogs.showQuestionDialog("Do you wish to delete the User " + user_name, msg, "Yes", "No");
 	if (answer == "Yes") {
-		var tenant = scopes.svySecurity.getTenant();
+		var tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
 		tenant.deleteUser(foundset.user_name);
 	}
 }

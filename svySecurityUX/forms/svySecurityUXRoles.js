@@ -87,7 +87,7 @@ function onDataChangeRole(oldValue, newValue, event) {
 function createRole() {
 
 	if (newRoleName) {
-		var tenant = scopes.svySecurity.getTenant();
+		var tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
 		try {
 
 			if (!tenant.createRole(newRoleName)) {
@@ -153,7 +153,7 @@ function onActionDeleteRole() {
 
 	var answer = plugins.dialogs.showQuestionDialog("Do you wish to delete the Role " + role_name, msg, "Yes", "No");
 	if (answer == "Yes") {
-		var tenant = scopes.svySecurity.getTenant()
+		var tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant)
 		tenant.deleteRole(foundset.role_name);
 	}
 	
