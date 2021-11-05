@@ -45,5 +45,7 @@ function cloneTenant(event) {
  * @properties={typeid:24,uuid:"11DD8978-AA54-4159-9D31-F30871F2329A"}
  */
 function onCellDoubleClick(foundsetindex, columnindex, record, event) {
-	forms.svySecurityConsoleUXMainNav.navigate(forms.svySecurityUXTenant);
+	var item = new scopes.svyNavigation.NavigationItem('svySecurityUXTenant');
+	scopes.svyNavigation.open(item);
+	
 }
