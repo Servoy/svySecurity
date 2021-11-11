@@ -96,9 +96,11 @@ function onDataChangeUser(oldValue, newValue, event) {
 function createUser() {
 
 	if (newUserName) {
-		var tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
+		// will be null if the user is not logged in
+		var tenant = scopes.svySecurity.getTenant();
 		if (!tenant) {
 			// check the selected tenant in svySecurityConsoleUX: how ?
+			tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
 		}
 		try {
 

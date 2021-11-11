@@ -16,7 +16,7 @@ function onCellClick(foundsetindex, columnindex, record, event) {
 	var column = elements.table.getColumn(columnindex);
 
 	if (column.id === "granted") {
-		var role = scopes.svySecurity.getRole(foundset.role_name);
+		var role = scopes.svySecurity.getRole(foundset.role_name, foundset.tenant_name);
 		if (role) {
 			var permissionName = record.permission_name;
 			

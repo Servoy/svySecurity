@@ -1,6 +1,5 @@
 allowCreationRelatedRecords:true,
 deleteRelatedRecords:true,
-encapsulation:2,
 foreignDataSource:"db:/svy_security/users",
 items:[
 {foreignColumnName:"tenant_name",primaryDataProviderID:"tenant_name",typeid:23,uuid:"504A9C31-2388-40C4-8E9D-EE472DFBB5E4"}

@@ -42,7 +42,6 @@ right:"30",
 top:"30",
 width:"calc( 50% - 45px)"
 },
-relationName:"tenants_to_users_ux",
 styleClass:"box"
 },
 name:"tabPermissions",

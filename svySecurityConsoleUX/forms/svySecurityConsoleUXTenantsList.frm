@@ -14,7 +14,7 @@ headerTitle:"Name",
 svyUUID:"13607DB9-E788-42DC-9BBE-E7A9B2337F41"
 },
 {
-dataprovider:"userCount",
+dataprovider:"tenants_to_users_ux.userCount",
 headerTitle:"Users",
 svyUUID:"1BF0016F-1F6B-440F-A3F8-A89E83C03FEE"
 }

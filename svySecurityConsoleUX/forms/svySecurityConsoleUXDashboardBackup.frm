@@ -231,7 +231,7 @@ cardCount:{
 dataProviderID:"sessionCount"
 },
 cardName:{
-text:"Activ Sessions"
+text:"Active Sessions"
 },
 datalabel_3:{
 

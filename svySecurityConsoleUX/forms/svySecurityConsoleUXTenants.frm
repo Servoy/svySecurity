@@ -46,7 +46,7 @@ headerTitle:"Display Name",
 svyUUID:"88A37B22-2823-4193-8943-6205D14D8382"
 },
 {
-dataprovider:"userCount",
+dataprovider:"tenants_to_users_ux.userCount",
 headerTitle:"Users",
 svyUUID:"D8583454-FFB4-45EB-B54E-AAD243802617"
 },
