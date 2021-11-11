@@ -1,4 +1,4 @@
-customProperties:"formComponent:false,\
+customProperties:"formComponent:true,\
 useCssPosition:true",
 dataSource:"db:/svy_security/tenants",
 encapsulation:108,
@@ -7,11 +7,11 @@ items:[
 height:480,
 partType:5,
 typeid:19,
-uuid:"0AEA466A-7775-4AB2-AAD9-224338EEF9AD"
+uuid:"7637415A-973B-4A21-B824-E1B1C1EFA15C"
 }
 ],
-name:"svySecurityConsoleUXDashboard",
+name:"svySecurityConsoleUXDashboardNewCard",
 navigatorID:"-1",
 showInMenu:true,
 typeid:3,
-uuid:"2A60C927-A0DB-4B32-9AB9-D44D51C88035"
+uuid:"DDF05AFF-56B3-4210-8F13-FB30DE419613"
