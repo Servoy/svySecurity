@@ -1,4 +1,5 @@
 /**
+ * @return
  * @properties={typeid:24,uuid:"46F848EA-EC7E-4DD3-9189-9FC4FB305B7A"}
  */
 function selectedTenant(){

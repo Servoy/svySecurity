@@ -37,6 +37,7 @@ json:{
 columns:[
 {
 dataprovider:"tenant_name",
+filterType:"TEXT",
 headerTitle:"Name",
 svyUUID:"4F6B027D-E9CF-4EE9-8A7A-BE4EEB970196"
 },
@@ -63,6 +64,10 @@ left:"0",
 right:"0",
 top:"50",
 width:"200"
+},
+gridOptions:{
+floatingFilter:"true",
+floatingFiltersHeight:"40"
 },
 onCellDoubleClick:"11DD8978-AA54-4159-9D31-F30871F2329A",
 styleClass:"ag-theme-servoy",
