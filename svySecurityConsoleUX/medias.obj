@@ -1,6 +1,13 @@
 [
 {
 encapsulation:0,
+mimeType:"image/png",
+name:"brandlogo.png",
+typeid:37,
+uuid:"DEBF1E38-A456-4115-9533-FB5B2CB0BA0D"
+},
+{
+encapsulation:0,
 mimeType:"text/css",
 name:"custom_servoy_theme_properties.less",
 typeid:37,
