@@ -64,10 +64,10 @@ function createChartTenantsWithMostUsers(chart){
     };
     
     var options = {
-        title: {
-            display: true,
-            text: utils.stringFormat('Top %1$s tenants with most users', [ds.getMaxRowIndex()])
-        },
+//        title: {
+//            display: true,
+//            text: utils.stringFormat('Top %1$s tenants with most users', [ds.getMaxRowIndex()])
+//        },
         legend: {
             display: true,
             position: 'left'
@@ -164,10 +164,10 @@ function createChartTotalUsageOverTimeMonths(chart){
     };
     
     var options = {
-        title: {
-            display: true,
-            text: utils.stringFormat('Total usage for last %1$.0f months', [monthsWindow])
-        },
+//        title: {
+//            display: true,
+//            text: utils.stringFormat('Total usage for last %1$.0f months', [monthsWindow])
+//        },
         legend: {
             display: false,
             position: 'bottom'
