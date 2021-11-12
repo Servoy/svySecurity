@@ -236,7 +236,7 @@ specname:\"row\"\
 items:[
 {
 customProperties:"attributes:{\
-class:\"col-lg-5\"\
+class:\"col-lg-12\"\
 },\
 properties:{\
 packagename:\"12grid\",\
@@ -285,7 +285,7 @@ specname:\"row\"\
 items:[
 {
 customProperties:"attributes:{\
-class:\"col-lg-6\"\
+class:\"col-lg-12\"\
 },\
 properties:{\
 packagename:\"12grid\",\
@@ -323,11 +323,13 @@ size:{
 height:100,
 width:200
 },
+styleClass:"chart_dimensions",
 type:"bar"
 },
 location:"1,1",
 name:"rigthChart",
 size:"200,100",
+styleClass:"chart_dimensions",
 typeName:"svychartjs-chart",
 typeid:47,
 uuid:"97EAFB7E-ED0F-45D0-94B2-B89809B8DBB2"

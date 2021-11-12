@@ -1,4 +1,9 @@
-
+/**
+ * @properties={typeid:35,uuid:"C8914B56-C545-407C-B50E-B5AD081C7179",variableType:-4}
+ */
+var SVY_SECURITY_CONSOLE_UX = {
+	HOME: 'svySecurityConsoleUXHome'
+}
 
 
 /**

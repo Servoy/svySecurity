@@ -220,6 +220,7 @@ function onCellClick(foundsetindex, columnindex, record, event) {
  * @properties={typeid:24,uuid:"14220F72-32A9-4B7B-8E31-D13524C768E4"}
  */
 function onActionBack(event, dataTarget) {
-	scopes.svyNavigationHistory.back();
+	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.TENANT);
+	scopes.svyNavigation.open(item);
 
 }

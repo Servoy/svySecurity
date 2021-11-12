@@ -242,6 +242,7 @@ function onActionEditDisplayName(event, dataTarget) {
  * @properties={typeid:24,uuid:"D5555824-E8C6-480A-8BA4-7934D4BD490A"}
  */
 function onActionBack(event, dataTarget) {
-	scopes.svyNavigationHistory.back();
+	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_CONSOLE_UX.TENANTS);
+	scopes.svyNavigation.open(item);
 
 }

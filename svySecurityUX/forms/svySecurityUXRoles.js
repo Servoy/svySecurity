@@ -180,6 +180,7 @@ function onActionDeleteRole() {
  * @properties={typeid:24,uuid:"20213EBD-317C-4F11-AF97-6F1C6A45F4B6"}
  */
 function onActionBack(event, dataTarget) {
-	scopes.svyNavigationHistory.back();
+	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.TENANT);
+	scopes.svyNavigation.open(item);
 
 }
