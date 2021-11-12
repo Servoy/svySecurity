@@ -24,6 +24,13 @@ var newUserName = '';
  */
 function onShow(firstShow, event) {
 	scopes.svySecurityUX.setSelectedUser(foundset.user_name);
+	if(scopes.svySecurityUX.selectedTenant){
+		elements.backBtnIcon.visible = true;
+		elements.backBtnLabel.visible = true;
+	}else{
+		elements.backBtnIcon.visible = false;
+		elements.backBtnLabel.visible = false;
+	}
 }
 
 /**

@@ -72,6 +72,13 @@ var m_LockReasonText = '';
 function onShow(firstShow, event) {
 	var tenant = scopes.svySecurity.getTenant(foundset.tenant_name);
 	activeSessions = tenant.getActiveSessions().length;
+	if(scopes.svySecurityUX.selectedTenant){
+		elements.backBtnIcon.visible = true;
+		elements.backBtnLabel.visible = true;
+	}else{
+		elements.backBtnIcon.visible = false;
+		elements.backBtnLabel.visible = false;
+	}
 	updateUI();
 }
 

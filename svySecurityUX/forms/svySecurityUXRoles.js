@@ -18,7 +18,7 @@ var newRoleName;
 function onShow(firstShow, event) {
 	scopes.svySecurityUX.setSelectedRole(foundset.role_name);
 	var tenant = scopes.svySecurity.getTenant();
-	if (!tenant) {
+	if (scopes.svySecurityUX.selectedTenant) {
 		elements.backBtnLabel.visible = true;
 		elements.backBtnIcon.visible = true;
 	}else{
