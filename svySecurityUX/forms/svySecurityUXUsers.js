@@ -205,3 +205,14 @@ function onCellClick(foundsetindex, columnindex, record, event) {
 		scopes.svyNavigation.open(item, foundset.getSelectedRecord(), scopes.svyNavigation.NAVIGATION_SELECTION_TYPE.LOAD_RECORDS);
 	}
 }
+
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"14220F72-32A9-4B7B-8E31-D13524C768E4"}
+ */
+function onActionBack(event, dataTarget) {
+	scopes.svyNavigationHistory.back();
+
+}

@@ -17,6 +17,14 @@ var newRoleName;
  */
 function onShow(firstShow, event) {
 	scopes.svySecurityUX.setSelectedRole(foundset.role_name);
+	var tenant = scopes.svySecurity.getTenant();
+	if (!tenant) {
+		elements.backBtnLabel.visible = true;
+		elements.backBtnIcon.visible = true;
+	}else{
+		elements.backBtnLabel.visible = false;
+		elements.backBtnIcon.visible = false;
+	}
 }
 
 /**
@@ -162,5 +170,16 @@ function onActionDeleteRole() {
 		tenant.deleteRole(foundset.role_name);
 	}
 	
+
+}
+
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"20213EBD-317C-4F11-AF97-6F1C6A45F4B6"}
+ */
+function onActionBack(event, dataTarget) {
+	scopes.svyNavigationHistory.back();
 
 }

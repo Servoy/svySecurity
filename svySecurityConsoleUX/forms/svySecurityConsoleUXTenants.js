@@ -55,3 +55,14 @@ function onCellDoubleClick(foundsetindex, columnindex, record, event) {
 	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.TENANT);
 	scopes.svyNavigation.open(item);
 }
+
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"0D66AB2F-F838-47BD-9094-47D9D9E4FE2B"}
+ */
+function onActionBack(event, dataTarget) {
+	scopes.svyNavigationHistory.back();
+
+}

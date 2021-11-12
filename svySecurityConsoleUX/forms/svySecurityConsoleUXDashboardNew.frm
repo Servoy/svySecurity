@@ -227,7 +227,7 @@ uuid:"332A7783-1A84-417C-BFC4-34F45C086A1C"
 },
 {
 customProperties:"attributes:{\
-class:\"row\"\
+class:\"row justify-content-center\"\
 },\
 properties:{\
 packagename:\"12grid\",\

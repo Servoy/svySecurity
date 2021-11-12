@@ -25,6 +25,27 @@ typeid:47,
 uuid:"10BD6E6A-E680-4C25-BE98-53268A174F56"
 },
 {
+cssPosition:"18,15,-1,-1,36,20",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"20",
+left:"-1",
+right:"15",
+top:"18",
+width:"36"
+},
+onActionMethodID:"14220F72-32A9-4B7B-8E31-D13524C768E4",
+styleClass:"text-tertiary clickable",
+text:"Back"
+},
+name:"label_1",
+styleClass:"text-tertiary clickable",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"1AA4DCD9-1213-425E-B931-F6DF2E14DF4F"
+},
+{
 cssPosition:"-1,-1,10,278,25,40",
 json:{
 alignment:"center",
@@ -255,6 +276,27 @@ height:200,
 partType:5,
 typeid:19,
 uuid:"DEBF1A30-9FC0-4531-A503-7B28C5E43427"
+},
+{
+cssPosition:"16,54,-1,-1,25,25",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"25",
+left:"-1",
+right:"54",
+top:"16",
+width:"25"
+},
+imageStyleClass:"fas fa-long-arrow-alt-left fa-lg text-tertiary",
+onActionMethodID:"14220F72-32A9-4B7B-8E31-D13524C768E4",
+styleClass:"default-align clickable"
+},
+name:"label_2",
+styleClass:"default-align clickable",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"EC5DD96D-2141-4180-A480-BCEAC4F3BA77"
 },
 {
 cssPosition:"-1,-1,10,110,25,40",

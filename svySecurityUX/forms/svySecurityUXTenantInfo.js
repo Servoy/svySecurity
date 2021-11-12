@@ -227,3 +227,14 @@ function onActionEditDisplayName(event, dataTarget) {
         }
     }
 }
+
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"D5555824-E8C6-480A-8BA4-7934D4BD490A"}
+ */
+function onActionBack(event, dataTarget) {
+	scopes.svyNavigationHistory.back();
+
+}
