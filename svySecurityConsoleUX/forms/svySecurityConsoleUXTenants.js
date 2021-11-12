@@ -67,3 +67,30 @@ function onActionBack(event, dataTarget) {
 	scopes.svyNavigation.open(item);
 
 }
+
+/**
+ * TODO generated, please specify type and doc for the params
+ * @param event
+ * @private 
+ * @properties={typeid:24,uuid:"45CBA536-1044-4A20-8A80-637189DF43D8"}
+ */
+function onActionDelete(event) {
+    if (!tenant_name) {
+        return;
+    }
+    var tenant = scopes.svySecurity.getTenant(tenant_name);
+    if (!tenant) {
+        return;
+    }
+    var btnDelete = 'Delete';
+    var btnCancel = 'Cancel';
+    var res = plugins.dialogs.showWarningDialog('Confirm Delete', utils.stringFormat('You are about to delete the account for tenant <b>"%1$s"</b> and all users associated with it.<br>There is no undo for this operation.<br>Do you want to continue?', [tenant_name]), btnCancel, btnDelete);
+    if (res == btnDelete) {
+        res = scopes.svySecurity.deleteTenant(tenant);
+        if (res) {
+        	plugins.dialogs.showInfoDialog('Delete Successful', 'The tenant has been deleted.');
+        } else {
+            plugins.dialogs.showWarningDialog('Delete Not Successful', 'Could not delete tenant.');
+        }
+    }
+}

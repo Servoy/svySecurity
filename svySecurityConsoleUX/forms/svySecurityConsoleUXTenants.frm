@@ -88,6 +88,34 @@ typeid:19,
 uuid:"553EABC5-896D-40E2-9BC0-AD866201DEE1"
 },
 {
+cssPosition:"-1,-1,0,633,171,60",
+json:{
+containedForm:{
+label_1:{
+onActionMethodID:"45CBA536-1044-4A20-8A80-637189DF43D8",
+text:"Delete Tenant"
+},
+manageBtnIcon:{
+imageStyleClass:"fas fa-trash text-tertiary fa-lg clickable",
+onActionMethodID:"45CBA536-1044-4A20-8A80-637189DF43D8"
+},
+svy_form:"0A55A829-0234-4867-8E20-2285E134B3AC"
+},
+cssPosition:{
+bottom:"0",
+height:"60",
+left:"633",
+right:"-1",
+top:"-1",
+width:"171"
+}
+},
+name:"formcomponent_4",
+typeName:"servoycore-formcomponent",
+typeid:47,
+uuid:"6E794DBE-1F2C-4ED9-8CE1-53BB6B0020D0"
+},
+{
 cssPosition:"-1,-1,0,231,171,60",
 json:{
 containedForm:{
@@ -193,5 +221,6 @@ uuid:"F18CCE06-92AF-47CB-9455-15D61EADDC08"
 name:"svySecurityConsoleUXTenants",
 navigatorID:"-1",
 showInMenu:true,
+size:"800,480",
 typeid:3,
 uuid:"68E20280-4444-412E-B390-DA9065EACF9B"
