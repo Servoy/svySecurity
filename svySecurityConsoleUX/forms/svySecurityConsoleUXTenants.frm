@@ -226,13 +226,14 @@ width:"125"
 },
 dataProviderID:"labelAction",
 styleClass:"text-success text-center-vertical",
-visible:true
+visible:false
 },
 name:"labelAction",
 styleClass:"text-success text-center-vertical",
 typeName:"bootstrapcomponents-datalabel",
 typeid:47,
-uuid:"D24C33A9-0D91-476D-ABAB-9F4F145BC3C7"
+uuid:"D24C33A9-0D91-476D-ABAB-9F4F145BC3C7",
+visible:false
 },
 {
 cssPosition:"10,10,-1,-1,85,45",
