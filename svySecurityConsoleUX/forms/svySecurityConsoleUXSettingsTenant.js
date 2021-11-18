@@ -10,3 +10,13 @@ function onActionBack(event, dataTarget) {
 	scopes.svyNavigation.open(item);
 
 }
+
+/**
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"79B5B70F-1935-4EF9-8FFA-975DD7E2FB83"}
+ */
+function setPasswordExpiration(event) {
+	var tenant = foundset.getSelectedRecord().tenant_name;
+	scopes.svySecurity.getTenant(tenant).setMaxLoginAttempts(3);
+}

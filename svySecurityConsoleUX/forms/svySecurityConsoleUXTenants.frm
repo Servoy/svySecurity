@@ -102,7 +102,7 @@ suppressSideButtons:true,
 svyUUID:"11FE8109-DCFE-4BEE-B548-2612F319C2C2"
 }
 },
-name:"groupingtable_1",
+name:"gridTenants",
 styleClass:"ag-theme-servoy",
 typeName:"aggrid-groupingtable",
 typeid:47,
@@ -272,7 +272,8 @@ BtnText:{
 onActionMethodID:"0D66AB2F-F838-47BD-9094-47D9D9E4FE2B"
 },
 btnIcon:{
-onActionMethodID:"0D66AB2F-F838-47BD-9094-47D9D9E4FE2B"
+onActionMethodID:"0D66AB2F-F838-47BD-9094-47D9D9E4FE2B",
+styleClass:"fas fa-long-arrow-alt-left fa-lg clickable text-tertiary text-center text-center-vertical"
 },
 svy_form:"2C08C73F-7A94-4E8B-82A7-4CF64F88B355"
 },

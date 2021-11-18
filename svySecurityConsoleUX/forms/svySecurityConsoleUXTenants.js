@@ -155,6 +155,7 @@ function showHideElements() {
 	elements.cloneTenant.visible = false;
 	elements.subTenant.visible = false;
 	elements.deleteTenant.visible = false;
+	elements.settingsTenant.visible = false;
 
 }
 /**
@@ -198,6 +199,7 @@ function resetFields() {
 	elements.cloneTenant.visible = true;
 	elements.subTenant.visible = true;
 	elements.deleteTenant.visible = true;
+	elements.settingsTenant.visible = true;
 }
 /**
  * @param {JSEvent} event
