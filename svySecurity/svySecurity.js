@@ -4,6 +4,24 @@
  * 
  */
 
+/*/**
+ * @private
+ * *
+ * @type {Number}
+ *
+ * @properties={typeid:35,uuid:"861D09C5-BE98-4152-8878-378A16E48333",variableType:4}
+ */
+//var CHECK_PREVIOUS_PASSWORDS = 1
+
+/**
+ * @private  
+ * @enum
+ * @type {Number}
+ *
+ * @properties={typeid:35,uuid:"8332C209-34EA-4027-B234-81705BF52AF9",variableType:4}
+ */
+var DEFAULT_MINUTES_DEVICE_LOCKED = 30;
+
 /**
  * @protected
  * @type {String}
@@ -153,7 +171,19 @@ var USER_PROPERTIES = {
 	 * When set to true it will create sampledata. Default true
 	 * @example  user.svy.security.create-sample-data=true
 	 * */
-	CREATE_SAMPLE_DATA: "svy.security.create-sample-data"
+	CREATE_SAMPLE_DATA: "svy.security.create-sample-data",
+
+	/** When this is set, will block a device after n attempts */
+	MAX_LOGIN_ATTEMPTS: "svy.security.max-login-attempts",
+	
+	/** When set to true ENABLE_LOGIN_HISTORY will be used to check previous passwords before setting the new one */
+	ENABLE_LOGIN_HISTORY: "svy.security.enable-login-history",
+	
+	/** When this is set, will check password expiration */
+	PASSWORD_EXPIRATION_DAYS: "svy.security.password-expiration-days",
+	
+	/** When this is set, will block a device for n minutes */
+	LOGIN_LOCK_DURATION: "svy.security.login-lock-duration"
 }
 
 /**
@@ -190,12 +220,14 @@ function login(user, userUid, permissionsToApply) {
 
     // check for lock
     if (user.isLocked()) {
+    	user.addLoginAttempts(utils.stringFormat('User "%1$s" is locked and cannot logged in.', [user.getUserName()]), false);
         logInfo(utils.stringFormat('User "%1$s" is locked and cannot logged in.', [user.getUserName()]));
         return false;
     }
 
     // check for tenant lock
     if (user.getTenant().isLocked()) {
+    	user.addLoginAttempts(utils.stringFormat('Tenant "%1$s" is locked and users associated with it cannot logged in.', [user.getTenant().getName()]), false);
         logInfo(utils.stringFormat('Tenant "%1$s" is locked and users associated with it cannot logged in.', [user.getTenant().getName()]));
         return false;
     }
@@ -219,6 +251,7 @@ function login(user, userUid, permissionsToApply) {
     	function(groupName) {
     		var groupIdx = servoyGroups.indexOf(groupName);
     		if (groupIdx === -1) {
+    			user.addLoginAttempts(utils.stringFormat('Permission "%1$s" is no longer found within internal security settings and cannot be assigned to user "%2$s".', [groupName, user.getUserName()]), false);
     			logWarning(utils.stringFormat('Permission "%1$s" is no longer found within internal security settings and cannot be assigned to user "%2$s".', [groupName, user.getUserName()]));
     		}
     		return groupIdx >= 0;
@@ -227,6 +260,7 @@ function login(user, userUid, permissionsToApply) {
 
     // no groups
     if (!groups.length) {
+    	user.addLoginAttempts('No Permissions. Cannot login', false);
         logWarning('No Permissions. Cannot login');
         return false;
     }
@@ -246,6 +280,7 @@ function login(user, userUid, permissionsToApply) {
     
     // login
     if (!security.login(user.getUserName(), loginUserUid, groups)) {
+    	user.addLoginAttempts(utils.stringFormat('Servoy security.login failed for user: "%1$s" with groups: "%2$s"', [user.getUserName(), groups]), false);
         logWarning(utils.stringFormat('Servoy security.login failed for user: "%1$s" with groups: "%2$s"', [user.getUserName(), groups]));
         return false;
     }
@@ -255,6 +290,9 @@ function login(user, userUid, permissionsToApply) {
     
     // create session
     initSession(user);
+    
+    // login attempts
+    user.addLoginAttempts('Success', true);
 
     // filter security tables
     filterSecurityTables();
@@ -875,6 +913,93 @@ function Tenant(record) {
         }
         return user;
     }
+    
+	/**
+	 * @public
+	 * @param {Number} days
+	 * */
+	this.setPasswordExpirationDays = function(days) {
+		scopes.svyProperties.setProperty('password_expiration_days', 'enum', days.toString(), null, this.getName());
+	}
+
+	/**
+	 * @public
+	 *
+	 * @return
+	 * */
+	this.getPasswordExpirationDays = function() {
+		var days = 0;
+		if (scopes.svyProperties.getProperty('password_expiration_days', 'enum', this.getName(), null) != null) {
+			/**
+			 * @type {scopes.svyProperties.Property}
+			 * */
+			var prop = scopes.svyProperties.getProperty('password_expiration_days', 'enum', this.getName(), null);
+			days = parseInt(prop.getPropertyValue());
+		} else if (application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS) != null) {
+			days = parseInt(application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS));
+		}
+
+		return days;
+	}
+
+	/**
+	 * @public
+	 * @param {Number} maxAttempts
+	 * */
+	this.setMaxLoginAttempts = function(maxAttempts) {
+		scopes.svyProperties.setProperty('max_login_attempts', 'enum', maxAttempts.toString(), null, this.getName());
+	}
+
+	/**
+	 * @public
+	 *
+	 * @return
+	 * */
+	this.getMaxLoginAttempts = function() {
+		var maxAttempts = 0;
+		if (scopes.svyProperties.getProperty('max_login_attempts', 'enum', this.getName(), null) != null) {
+			/**
+			 * @type {scopes.svyProperties.Property}
+			 * */
+			var prop = scopes.svyProperties.getProperty('max_login_attempts', 'enum', this.getName(), null);
+			maxAttempts = parseInt(prop.getPropertyValue());
+		} else if (application.getUserProperty(USER_PROPERTIES.MAX_LOGIN_ATTEMPTS) != null) {
+			maxAttempts = parseInt(application.getUserProperty(USER_PROPERTIES.MAX_LOGIN_ATTEMPTS));
+		}
+
+		return maxAttempts;
+	}
+
+	/**
+	 * @public
+	 * @param {Number} minutes
+	 * */
+	this.setMinutesDeviceLocked = function(minutes) {
+		scopes.svyProperties.setProperty('minutes_device_locked', 'enum', minutes.toString(), null, this.getName());
+	}
+
+	/**
+	 * @public
+	 *
+	 * @return
+	 * */
+	this.getMinutesDeviceLocked = function() {
+		var minutes;
+		if (scopes.svyProperties.getProperty('minutes_device_locked', 'enum', this.getName(), null) != null) {
+			/**
+			 * @type {scopes.svyProperties.Property}
+			 * */
+			var prop = scopes.svyProperties.getProperty('minutes_device_locked', 'enum', this.getName(), null);
+			application.output(prop)
+			minutes = parseInt(prop.getPropertyValue());
+		} else if (application.getUserProperty(USER_PROPERTIES.LOGIN_LOCK_DURATION) != null) {
+			minutes = parseInt(application.getUserProperty(USER_PROPERTIES.LOGIN_LOCK_DURATION));
+		} else {
+			minutes = DEFAULT_MINUTES_DEVICE_LOCKED;
+		}
+
+		return minutes;
+	}
 
     /**
      * Gets all users for this tenant.
@@ -1415,6 +1540,59 @@ function User(record) {
     }
     
     /**
+     * @public
+     * 
+     * @return {Boolean}
+     * */
+	this.isDeviceLocked = function() {
+		if (application.getUserProperty(USER_PROPERTIES.MAX_LOGIN_ATTEMPTS) != null) {
+			return checkLoginAttempts(this, this.getTenant().getMinutesDeviceLocked(), this.getTenant().getMaxLoginAttempts());
+		} else {
+			return true;
+		}
+	}
+    
+    /**
+     * @public 
+     * @param {String} reason
+     * @param {Boolean} success
+     * */
+	this.addLoginAttempts = function(reason, success) {
+		var code = success ? 1 : 0;
+
+		var fs = datasources.db.svy_security.users_login_attempts.getFoundSet();
+		var loginAttemptsRec = fs.getRecord(fs.newRecord(false, false));
+		loginAttemptsRec.user_name = this.getUserName();
+		loginAttemptsRec.tenant_name = this.getTenant().getName();
+		loginAttemptsRec.fail_reason = reason;
+		loginAttemptsRec.login_success = code;
+		loginAttemptsRec.creation_datetime = new Date();
+		loginAttemptsRec.ip_address = application.getIPAddress();
+		loginAttemptsRec.solution_name = application.getSolutionName();
+		if (application.getApplicationType() == APPLICATION_TYPES.NG_CLIENT) {
+			loginAttemptsRec.user_agent_string = plugins.ngclientutils.getUserAgent();
+		}
+
+		saveRecord(loginAttemptsRec);
+	}
+	
+	/**
+	 * @public
+	 * @param {String} password
+	 * */
+
+	this.addLoginHistory = function(password) {
+		var fs = datasources.db.svy_security.users_history.getFoundSet();
+		var loginHistoryRec = fs.getRecord(fs.newRecord(false, false));
+		loginHistoryRec.user_name = this.getUserName();
+		loginHistoryRec.tenant_name = this.getTenant().getName();
+		loginHistoryRec.previous_password = password;
+		loginHistoryRec.creation_datetime = new Date();
+
+		saveRecord(loginHistoryRec);
+	}
+	
+    /**
      * Gets the username and the tenant of this user.
      *
      * @public
@@ -1507,8 +1685,33 @@ function User(record) {
         if (!password) {
             throw 'Password must be non-null, non-empty string';
         }
+		
         return utils.validatePBKDF2Hash(password, record.user_password);
     }
+    
+    /**
+     * @public
+     * 
+     * @return {Boolean}
+     * */
+	this.checkPasswordExpiration = function() {		
+		record.modification_datetime;
+
+		if (record.password_modification_date != null && application.getUserProperty(USER_PROPERTIES.PASSWORD_EXPIRATION_DAYS) != null) {
+			var days = this.getTenant().getPasswordExpirationDays();
+			var date = new Date(record.password_modification_date);
+			var expDate = new Date(date);
+			expDate.setDate(expDate.getDate() + days)
+			var currentDate = new Date();
+			if (expDate < currentDate) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
     /**
      * Sets the users password.
@@ -1525,12 +1728,27 @@ function User(record) {
             throw 'Password must be non-null, non-empty string';
         }
 
+		if (application.getUserProperty(USER_PROPERTIES.ENABLE_LOGIN_HISTORY) == "true") {
+			if (utils.validatePBKDF2Hash(password, record.user_password)) {
+				throw 'Please use a different password, this one is the same with your last password!';
+			}
+			
+			
+			//For checking/adding login history
+			/*else if (checkLoginHistory(this, password, CHECK_PREVIOUS_PASSWORDS) && CHECK_PREVIOUS_PASSWORDS > 1) {
+				throw 'The password is very similar with your previous passwords!';
+			}
+
+			this.addLoginHistory(record.user_password);*/
+		}
+         
         // no change
         if (utils.validatePBKDF2Hash(password, record.user_password)) {
             return this;
         }
 
         record.user_password = utils.stringPBKDF2Hash(password, 10000);
+        record.password_modification_date = new Date();
         saveRecord(record);
         return this;
     }
@@ -2779,6 +2997,97 @@ function initSession(user) {
 }
 
 /**
+ * @private
+ * @param {User} user
+ * @param {String} currentPassword
+ * @param {Number} nPreviousPasswords
+ * 
+ * @return {Boolean}
+ * *
+ * @properties={typeid:24,uuid:"4BAF0993-BF7D-408C-B5FD-862BD8EA8F7F"}
+ */
+function checkLoginHistory(user, currentPassword, nPreviousPasswords) {
+	var count = 0;
+
+	var fs = datasources.db.svy_security.users_history.getFoundSet();
+	var query = datasources.db.svy_security.users_history.createSelect();
+	query.where.add(query.columns.user_name.eq(user.getUserName()));
+	query.where.add(query.columns.tenant_name.eq(user.getTenant().getName()));
+	fs.loadRecords(query);
+	fs.sort(function(a, b) {
+		return new Date(b.creation_datetime) - new Date(a.creation_datetime);
+	});
+	for (var i = 1; i <= nPreviousPasswords; i++) {
+		if (fs.getRecord(i)) {
+			if (utils.validatePBKDF2Hash(currentPassword, fs.getRecord(i).previous_password)) {
+				count++
+			}
+		}
+	}
+
+	if (count > 0) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
+ * @private
+ * @param {Number} maxattempts
+ * @param {Number} minutes
+ * @param {User} user
+ * 
+ * @return {Boolean}
+ * @properties={typeid:24,uuid:"E88C5EB4-028A-47F3-978C-8ABB326F1763"}
+ */
+function checkLoginAttempts(user, minutes, maxattempts) {
+	var count = 1;
+	/**
+	 * @type {Date}
+	 * */
+	var date = null;
+
+	var fs = datasources.db.svy_security.users_login_attempts.getFoundSet();
+	var query = datasources.db.svy_security.users_login_attempts.createSelect();
+	query.where.add(query.columns.user_name.eq(user.getUserName()));
+	query.where.add(query.columns.tenant_name.eq(user.getTenant().getName()));
+	query.where.add(query.columns.ip_address.eq(application.getIPAddress()));
+	query.where.add(query.columns.solution_name.eq(application.getSolutionName()));
+	if (application.getApplicationType() == APPLICATION_TYPES.NG_CLIENT) {
+		query.where.add(query.columns.user_agent_string.eq(plugins.ngclientutils.getUserAgent()));
+	}
+	fs.loadRecords(query);
+	fs.sort(function(a, b) {
+		return new Date(a.creation_datetime) - new Date(b.creation_datetime);
+	});
+	for (var i = 1; i < fs.getSize(); i++) {
+		if (fs.getRecord(i).login_success == 0) {
+			count++
+		} else {
+			count = 1;
+		}
+
+		if (i == fs.getSize() - 1) {
+			date = fs.getRecord(i).creation_datetime;
+		}
+	}
+
+	if (date != null) {
+		/**
+		 * @type {Date}
+		 * */
+		var checkDate = new Date(date);
+		checkDate.setMinutes(date.getMinutes() + minutes);
+		if (count >= maxattempts && checkDate > new Date()) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
  * Sends the current session going to DB. For internal use only with initSession() which schedules it
  *
  * @private
@@ -3379,7 +3688,7 @@ function setTokenBasedAuth(namespace, expiresIn, resources){
 /**
  * Called after login
  * @private   
- * @param {scopes.svySecurity.User} user
+ * @param {User} user
  * 
  * @properties={typeid:24,uuid:"E2D3BD33-9A85-4407-8B0E-008F1B71F1CE"}
  */

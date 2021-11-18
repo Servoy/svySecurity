@@ -107,10 +107,25 @@ function login() {
 		onLoginError(ERROR_CODES.USER_NOT_FOUND);
 		return false;
 	}
-	if(!user.checkPassword(password)){
-		onLoginError(ERROR_CODES.PASSWORD_MISMATCH);
+	
+	if (!user.isDeviceLocked()) {
+		onLoginError("This device is locked, please try again in " + tenant.getMinutesDeviceLocked() + " minutes!");
 		return false;
 	}
+	
+	if(!user.checkPassword(password)){
+		onLoginError(ERROR_CODES.PASSWORD_MISMATCH);		
+		user.addLoginAttempts('Wrong password', false);
+		return false;
+	}
+	
+	if (user.checkPasswordExpiration()) {
+		onLoginError("Your password expired!");		
+		user.addLoginAttempts('Expired password', false);
+		return false;
+	}
+	
+	
 	if(user.isLocked()){
 		onLoginError(ERROR_CODES.LOCKED_USER);
 		return false;
