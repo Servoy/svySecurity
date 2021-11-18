@@ -209,3 +209,16 @@ function onActionCancel(event, dataTarget) {
 	resetFields();
 
 }
+
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"2CAF741D-B1F9-4824-9021-BF469AC7A1EF"}
+ */
+function settingsTenant(event, dataTarget) {
+	selectedTenant();
+	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_CONSOLE_UX.SETTINGS_TENANTS);
+	scopes.svyNavigation.open(item);
+
+}

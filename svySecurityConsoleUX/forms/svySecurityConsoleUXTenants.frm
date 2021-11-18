@@ -173,6 +173,35 @@ typeid:47,
 uuid:"75568C77-D10B-49C9-8A1F-5FF20C77B1B8"
 },
 {
+cssPosition:"-1,-1,0,834,171,60",
+json:{
+containedForm:{
+label_1:{
+onActionMethodID:"2CAF741D-B1F9-4824-9021-BF469AC7A1EF",
+styleClass:"text-success clickable text-center-vertical",
+text:"Settings Tenant"
+},
+manageBtnIcon:{
+imageStyleClass:"fas fa-cog text-success fa-lg clickable",
+onActionMethodID:"2CAF741D-B1F9-4824-9021-BF469AC7A1EF"
+},
+svy_form:"0A55A829-0234-4867-8E20-2285E134B3AC"
+},
+cssPosition:{
+bottom:"0",
+height:"60",
+left:"834",
+right:"-1",
+top:"-1",
+width:"171"
+}
+},
+name:"settingsTenant",
+typeName:"servoycore-formcomponent",
+typeid:47,
+uuid:"75F82BC9-FCC2-4F7D-8A3D-E0D5719B7C35"
+},
+{
 cssPosition:"10,100,-1,0,0,50",
 json:{
 cssPosition:{
@@ -322,6 +351,6 @@ visible:false
 name:"svySecurityConsoleUXTenants",
 navigatorID:"-1",
 showInMenu:true,
-size:"800,480",
+size:"1020,480",
 typeid:3,
 uuid:"68E20280-4444-412E-B390-DA9065EACF9B"

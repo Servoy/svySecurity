@@ -38,7 +38,8 @@ var SVY_SECURITY_UX = {
  */
 var SVY_SECURITY_CONSOLE_UX = {
 	HOME: 'svySecurityConsoleUXHome',
-	TENANTS: 'svySecurityConsoleUXTenants'
+	TENANTS: 'svySecurityConsoleUXTenants',
+	SETTINGS_TENANTS: 'svySecurityConsoleUXSettingsTenantContainer'
 }
 
 /**
