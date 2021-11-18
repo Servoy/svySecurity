@@ -1,8 +1,48 @@
 /**
+ * @type {String}
+ *
+ * @properties={typeid:35,uuid:"5B8CB37B-C12E-4D35-ACDC-8928CE0DCEDD"}
+ */
+var name = null;
+
+/**
+ * @properties={typeid:35,uuid:"D4D9C299-E596-49DC-BAE1-22CB4D17DD23",variableType:-4}
+ */
+var target = null;
+/**
+ * @param {JSRecord<db:/svy_security/tenants>} [recordMaster]
+ * @param {Boolean} [makeSubTenant]
+ * @public
+ *
+ * @properties={typeid:24,uuid:"004C04AF-B84A-42A6-84E9-43059185FC12"}
+ */
+function addNewTenant(recordMaster, makeSubTenant) {
+	if (!name) {
+		return;
+	}
+	if (scopes.svySecurity.getTenant(name)) {
+		plugins.dialogs.showErrorDialog('Could Not Create Tenant', utils.stringFormat('The specified tenant name "%1$s" is already in use.', [name]));
+		return;
+	}
+	var tenant;
+	if (recordMaster) {
+		var masterTenant = scopes.svySecurity.getTenant(recordMaster.tenant_name);
+		tenant = scopes.svySecurity.cloneTenant(masterTenant, name, makeSubTenant ? true : false);
+	} else {
+		tenant = scopes.svySecurity.createTenant(name);
+	}
+	if (!tenant) {
+		plugins.dialogs.showErrorDialog('Could not create tenant', 'There was an unknown error. Please check server logs.');
+		return;
+	}
+
+}
+
+/**
  * @return
  * @properties={typeid:24,uuid:"46F848EA-EC7E-4DD3-9189-9FC4FB305B7A"}
  */
-function selectedTenant(){
+function selectedTenant() {
 	return scopes.svySecurityUX.selectedTenant = foundset.tenant_name;
 }
 /**
@@ -12,32 +52,30 @@ function selectedTenant(){
  * @properties={typeid:24,uuid:"50EED977-E37A-4AD7-B42A-0A5F73C3DBC7"}
  */
 function createTenant(event, dataTarget) {
-	scopes.svySecurityConsoleUX.addNewTenant();
-
+	showHideElements();
+	target = 'new';
 }
 
 /**
- * TODO generated, please specify type and doc for the params
  * @param {JSEvent} event the event that triggered the action
  *@private
  * @properties={typeid:24,uuid:"4412EE02-8E6C-4238-B912-D0E609CD5DA3"}
  */
 function createSubTenant(event) {
-	if (utils.hasRecords(foundset)) {
-		scopes.svySecurityConsoleUX.addNewTenant(foundset.getSelectedRecord(), true);
-	}
+	showHideElements();
+	target = 'sub';
+	
 }
 
 /**
- * TODO generated, please specify type and doc for the params
  * @param {JSEvent} event the event that triggered the action
  * @private
  * @properties={typeid:24,uuid:"4DCFB776-3D83-4D4D-B1A4-3AEF91C962AB"}
  */
 function cloneTenant(event) {
-	if (utils.hasRecords(foundset)) {
-		scopes.svySecurityConsoleUX.addNewTenant(foundset.getSelectedRecord(), false);
-	}
+	showHideElements();
+	target = 'clone';
+
 }
 
 /**
@@ -66,32 +104,95 @@ function onCellDoubleClick(foundsetindex, columnindex, record, event) {
 function onActionBack(event, dataTarget) {
 	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityConsoleUX.SVY_SECURITY_CONSOLE_UX.HOME);
 	scopes.svyNavigation.open(item);
+}
+
+/**
+ * @param event
+ * @private
+ * @properties={typeid:24,uuid:"45CBA536-1044-4A20-8A80-637189DF43D8"}
+ */
+function onActionDelete(event) {
+	if (!tenant_name) {
+		return;
+	}
+	var tenant = scopes.svySecurity.getTenant(tenant_name);
+	if (!tenant) {
+		return;
+	}
+	var btnDelete = 'Delete';
+	var btnCancel = 'Cancel';
+	var res = plugins.dialogs.showWarningDialog('Confirm Delete', utils.stringFormat('You are about to delete the account for tenant <b>"%1$s"</b> and all users associated with it.<br>There is no undo for this operation.<br>Do you want to continue?', [tenant_name]), btnCancel, btnDelete);
+	if (res == btnDelete) {
+		res = scopes.svySecurity.deleteTenant(tenant);
+		if (res) {
+			plugins.dialogs.showInfoDialog('Delete Successful', 'The tenant has been deleted.');
+		} else {
+			plugins.dialogs.showWarningDialog('Delete Not Successful', 'Could not delete tenant.');
+		}
+	}
+}
+
+/**
+ * @properties={typeid:24,uuid:"DC8B783D-D468-4B20-86FE-C2154678BD3D"}
+ */
+function showHideElements() {
+	elements.name.visible = true;
+	elements.iconConfirme.visible = true;
+	elements.iconCancel.visible = true;
+
+	elements.newTenant.visible = false;
+	elements.cloneTenant.visible = false;
+	elements.subTenant.visible = false;
+	elements.deleteTenant.visible = false;
+
+}
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"E50A2561-C4AE-47A7-A4BB-C7196D2D0547"}
+ */
+function onActionSave(event, dataTarget) {
+	if (target == 'new') {
+		addNewTenant();
+	}
+	if (target == 'clone') {
+		if (utils.hasRecords(foundset)) {
+			addNewTenant(foundset.getSelectedRecord(), false);
+		}
+	}
+	if (target == 'sub') {
+		if (utils.hasRecords(foundset)) {
+				addNewTenant(foundset.getSelectedRecord(), true);
+			}
+	}
+
+	resetFields();
 
 }
 
 /**
- * TODO generated, please specify type and doc for the params
- * @param event
- * @private 
- * @properties={typeid:24,uuid:"45CBA536-1044-4A20-8A80-637189DF43D8"}
+ * @properties={typeid:24,uuid:"8CCC5EF4-6F92-4468-B071-39E2192F9D4A"}
  */
-function onActionDelete(event) {
-    if (!tenant_name) {
-        return;
-    }
-    var tenant = scopes.svySecurity.getTenant(tenant_name);
-    if (!tenant) {
-        return;
-    }
-    var btnDelete = 'Delete';
-    var btnCancel = 'Cancel';
-    var res = plugins.dialogs.showWarningDialog('Confirm Delete', utils.stringFormat('You are about to delete the account for tenant <b>"%1$s"</b> and all users associated with it.<br>There is no undo for this operation.<br>Do you want to continue?', [tenant_name]), btnCancel, btnDelete);
-    if (res == btnDelete) {
-        res = scopes.svySecurity.deleteTenant(tenant);
-        if (res) {
-        	plugins.dialogs.showInfoDialog('Delete Successful', 'The tenant has been deleted.');
-        } else {
-            plugins.dialogs.showWarningDialog('Delete Not Successful', 'Could not delete tenant.');
-        }
-    }
+function resetFields() {
+	name = null;
+	target = null;
+	elements.name.visible = false;
+	elements.iconConfirme.visible = false;
+	elements.iconCancel.visible = false;
+
+	elements.newTenant.visible = true;
+	elements.cloneTenant.visible = true;
+	elements.subTenant.visible = true;
+	elements.deleteTenant.visible = true;
+}
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"837B15B7-4552-40F7-B04C-427E28E84B0F"}
+ */
+function onActionCancel(event, dataTarget) {
+	resetFields();
+
 }

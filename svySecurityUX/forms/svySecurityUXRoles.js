@@ -95,7 +95,7 @@ function onDataChangeRole(oldValue, newValue, event) {
 function createRole() {
 
 	if (newRoleName) {
-		//TODO fix like users
+		
 		var tenant = scopes.svySecurity.getTenant();
 		if (!tenant) {
 			// check the selected tenant in svySecurityConsoleUX: how ?
