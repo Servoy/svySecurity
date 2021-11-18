@@ -1,6 +1,13 @@
 /**
  * @type {String}
  *
+ * @properties={typeid:35,uuid:"B31D85C3-2CBE-40EE-927A-E193E35E862F"}
+ */
+var labelAction = null;
+
+/**
+ * @type {String}
+ *
  * @properties={typeid:35,uuid:"5B8CB37B-C12E-4D35-ACDC-8928CE0DCEDD"}
  */
 var name = null;
@@ -54,6 +61,7 @@ function selectedTenant() {
 function createTenant(event, dataTarget) {
 	showHideElements();
 	target = 'new';
+	labelAction = 'Tenant Name';
 }
 
 /**
@@ -64,7 +72,7 @@ function createTenant(event, dataTarget) {
 function createSubTenant(event) {
 	showHideElements();
 	target = 'sub';
-	
+	labelAction = 'SubTenant Name';
 }
 
 /**
@@ -73,6 +81,7 @@ function createSubTenant(event) {
  * @properties={typeid:24,uuid:"4DCFB776-3D83-4D4D-B1A4-3AEF91C962AB"}
  */
 function cloneTenant(event) {
+	labelAction = 'Clone Name';
 	showHideElements();
 	target = 'clone';
 
@@ -136,6 +145,7 @@ function onActionDelete(event) {
  * @properties={typeid:24,uuid:"DC8B783D-D468-4B20-86FE-C2154678BD3D"}
  */
 function showHideElements() {
+	elements.labelAction.visible = true;
 	elements.name.visible = true;
 	elements.iconConfirme.visible = true;
 	elements.iconCancel.visible = true;
@@ -163,8 +173,8 @@ function onActionSave(event, dataTarget) {
 	}
 	if (target == 'sub') {
 		if (utils.hasRecords(foundset)) {
-				addNewTenant(foundset.getSelectedRecord(), true);
-			}
+			addNewTenant(foundset.getSelectedRecord(), true);
+		}
 	}
 
 	resetFields();
@@ -177,6 +187,8 @@ function onActionSave(event, dataTarget) {
 function resetFields() {
 	name = null;
 	target = null;
+	labelAction = null;
+	elements.labelAction.visible = false;
 	elements.name.visible = false;
 	elements.iconConfirme.visible = false;
 	elements.iconCancel.visible = false;

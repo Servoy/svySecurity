@@ -65,7 +65,9 @@ function onActionSignIn(event) {
 	if (rememberMe) {
 		//TODO: fix remember me
 		scopes.svySecurityConsoleUXHelper.setLoginCookie(userName);
-	}
+	}else{
+		scopes.svySecurityConsoleUXHelper.clearLoginCookie();
+		}
 
 	security.login(userName, userUID, ['Administrators']);
 }

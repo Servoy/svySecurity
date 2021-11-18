@@ -240,6 +240,7 @@ uuid:"AAB38727-497D-4DB1-950B-ADC358661B99"
 ],
 name:"svySecurityConsoleUXLogin",
 navigatorID:"-1",
+onShowMethodID:"AE3027A9-000C-4826-90AB-E264B097BD96",
 showInMenu:true,
 typeid:3,
 uuid:"0C822251-1E05-43C2-96DD-2E1E4C33896B"
