@@ -134,7 +134,8 @@ function onActionDelete(event) {
 	if (res == btnDelete) {
 		res = scopes.svySecurity.deleteTenant(tenant);
 		if (res) {
-			plugins.dialogs.showInfoDialog('Delete Successful', 'The tenant has been deleted.');
+			plugins.webnotificationsToastr.success('Delete Successful', 'The tenant has been deleted.');
+
 		} else {
 			plugins.dialogs.showWarningDialog('Delete Not Successful', 'Could not delete tenant.');
 		}
