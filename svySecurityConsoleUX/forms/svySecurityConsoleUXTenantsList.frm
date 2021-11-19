@@ -103,7 +103,6 @@ uuid:"926EA8E4-CFAD-4028-A804-0A5C0EFD8E35"
 }
 ],
 name:"svySecurityConsoleUXTenantsList",
-namedFoundSet:"separate",
 navigatorID:"-1",
 showInMenu:true,
 size:"293,480",
