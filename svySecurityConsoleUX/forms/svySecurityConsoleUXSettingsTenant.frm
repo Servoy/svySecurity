@@ -36,13 +36,55 @@ right:"-1",
 top:"170",
 width:"200"
 },
+dataProviderID:"passwordExpirationDays",
 formIndex:0,
+format:"000|#(3)",
 visible:false
 },
 name:"tbpwdExpirationDays",
 typeName:"bootstrapcomponents-textbox",
 typeid:47,
 uuid:"0639EC51-2816-4419-907D-9E192E49D235",
+visible:false
+},
+{
+cssPosition:"170,-1,-1,5,25,40",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"40",
+left:"5",
+right:"-1",
+top:"170",
+width:"25"
+},
+imageStyleClass:"fa fa-check text-success fa-lg clickable",
+visible:false
+},
+name:"checkPwdExpDays",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"15A2F727-2277-4286-8CDD-75B57F7AE7DD",
+visible:false
+},
+{
+cssPosition:"100,-1,-1,5,25,40",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"40",
+left:"5",
+right:"-1",
+top:"100",
+width:"25"
+},
+imageStyleClass:"fa fa-check text-success fa-lg clickable",
+visible:false
+},
+name:"checkAttempts",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"15AC520B-C1C7-4CC5-B1F8-E18A07ED1365",
 visible:false
 },
 {
@@ -128,12 +170,32 @@ width:"200"
 },
 formIndex:1,
 onActionMethodID:"7897162A-5FC8-4BC3-8A38-EE2E2748B9DF",
+styleClass:"text-success clickable text-center-vertical",
 text:"Password Expiration Days"
 },
 name:"lblpwdExpirationDays",
+styleClass:"text-success clickable text-center-vertical",
 typeName:"bootstrapcomponents-label",
 typeid:47,
 uuid:"6C53C1B8-7E15-4BE4-A61F-0C09D11CBEDC"
+},
+{
+cssPosition:"100,-1,-1,5,25,40",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"40",
+left:"5",
+right:"-1",
+top:"100",
+width:"25"
+},
+imageStyleClass:"fas fa-times text-danger fa-lg clickable"
+},
+name:"xAttempts",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"8C8EB9E5-49D0-446B-8DC2-A8BAE45CB34A"
 },
 {
 cssPosition:"100,-1,-1,30,200,40",
@@ -148,6 +210,7 @@ width:"200"
 },
 dataProviderID:"maxLoginAttempts",
 formIndex:0,
+format:"000|#(3)",
 visible:false
 },
 name:"tbMaxLoginAttempts",
@@ -178,6 +241,24 @@ uuid:"D2C27E3F-45E7-4686-889C-2C9B9DB3FD1D",
 visible:false
 },
 {
+cssPosition:"170,-1,-1,5,25,40",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"40",
+left:"5",
+right:"-1",
+top:"170",
+width:"25"
+},
+imageStyleClass:"fas fa-times text-danger fa-lg clickable"
+},
+name:"xPwdExpDays",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"E299FFEB-421D-4676-819F-49C089AC9571"
+},
+{
 cssPosition:"100,-1,-1,30,200,40",
 formIndex:1,
 json:{
@@ -191,9 +272,11 @@ width:"200"
 },
 formIndex:1,
 onActionMethodID:"7897162A-5FC8-4BC3-8A38-EE2E2748B9DF",
+styleClass:"text-success clickable text-center-vertical",
 text:"Max Login Attempts"
 },
 name:"lblAttempts",
+styleClass:"text-success clickable text-center-vertical",
 typeName:"bootstrapcomponents-label",
 typeid:47,
 uuid:"E67DD370-4B8E-4C8C-8E6F-E3A05A2FAAA7"
@@ -249,6 +332,7 @@ uuid:"F0DD2F0D-83F3-49C0-9E68-5E87FC84920F"
 ],
 name:"svySecurityConsoleUXSettingsTenant",
 navigatorID:"-1",
+onShowMethodID:"157C6765-1CE1-4EE7-A908-B81F9DE08F56",
 showInMenu:true,
 typeid:3,
 uuid:"0F21BC95-D023-463F-9E94-6B70E09F0781"

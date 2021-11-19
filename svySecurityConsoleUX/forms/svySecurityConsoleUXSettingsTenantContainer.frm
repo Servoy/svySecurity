@@ -33,5 +33,6 @@ uuid:"C2B7D999-C5D0-4E01-9393-7B66D3E8E713"
 name:"svySecurityConsoleUXSettingsTenantContainer",
 navigatorID:"-1",
 showInMenu:true,
+styleClass:"bg-tertiary",
 typeid:3,
 uuid:"3B2F28AD-9B52-4515-A1F3-E349DCA97A08"

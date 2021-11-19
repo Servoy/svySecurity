@@ -122,6 +122,7 @@ function save(event, dataTarget) {
 	switch(selectedElement) {
 	  case 'iconConfirme':
 	  	setMaxLoginAttempts();
+	  	 checkProperty()
 	    break;
 	  case 'confirmPwdExpirationDates':
 	  	setPasswordExpirationDays();
@@ -130,4 +131,39 @@ function save(event, dataTarget) {
 
 	resetFields(selectedElement);
 
+}
+
+/**
+ * @properties={typeid:24,uuid:"1B173A37-7128-43CB-BE33-0FC85A8D3B8E"}
+ */
+function checkProperty(){
+	var tenant = foundset.getSelectedRecord().tenant_name;
+	
+	if(scopes.svySecurity.getTenant(tenant).getMaxLoginAttempts()){
+		elements.checkAttempts.visible = true;
+	  	elements.xAttempts.visible = false;
+	}else{
+		elements.checkAttempts.visible = false;
+	  	elements.xAttempts.visible = true;
+	}
+	
+	if(scopes.svySecurity.getTenant(tenant).getPasswordExpirationDays()){
+		elements.checkPwdExpDays.visible = true;
+	  	elements.xPwdExpDays.visible = false;
+	}else{
+		elements.checkPwdExpDays.visible = false;
+	  	elements.xPwdExpDays.visible = true;
+	}
+	
+}
+/**
+ * Callback method for when form is shown.
+ *
+ * @param {Boolean} firstShow form is shown first time after load
+ * @param {JSEvent} event the event that triggered the action
+ *
+ * @properties={typeid:24,uuid:"157C6765-1CE1-4EE7-A908-B81F9DE08F56"}
+ */
+function onShow(firstShow, event) {
+	checkProperty();
 }
