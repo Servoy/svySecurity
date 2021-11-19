@@ -39,7 +39,7 @@ cardContainer:{
 styleClass:"default-align border bg-primary"
 },
 cardCount:{
-dataProviderID:"tenants_to_users_ux.userCount"
+dataProviderID:"userCountTotal"
 },
 cardIcon:{
 imageStyleClass:"fas fa-users fa-2x"

@@ -10,7 +10,7 @@ var tenantsCount = 0;
  *
  * @properties={typeid:35,uuid:"97932255-E9E2-4A23-9134-1805FDFFABB2",variableType:4}
  */
-var userCount = 0;
+var userCountTotal = 0;
 
 /**
  * @type {Number}
@@ -36,7 +36,7 @@ function updateTenantCount(){
 function updateUserCount(){
 	var q = datasources.db.svy_security.users.createSelect();
 	q.result.add(q.columns.user_name.count);
-	userCount = databaseManager.getDataSetByQuery(q,1).getValue(1,1);
+	userCountTotal = databaseManager.getDataSetByQuery(q,1).getValue(1,1);
 }
 
 /**
