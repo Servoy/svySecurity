@@ -122,10 +122,11 @@ function save(event, dataTarget) {
 	switch(selectedElement) {
 	  case 'iconConfirme':
 	  	setMaxLoginAttempts();
-	  	 checkProperty()
+	  	 checkProperty();
 	    break;
 	  case 'confirmPwdExpirationDates':
 	  	setPasswordExpirationDays();
+	  	checkProperty();
 	    break;
 	}
 
