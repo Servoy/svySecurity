@@ -1,6 +1,15 @@
 /**
  * @type {Number}
  *
+ * @properties={typeid:35,uuid:"9ABAC48F-7A38-4A68-8070-ABD37F3FF08F",variableType:8}
+ */
+var lockTime = null;
+
+
+
+/**
+ * @type {Number}
+ *
  * @properties={typeid:35,uuid:"9D8EC45E-9A77-4767-8D33-A021F7E05914",variableType:8}
  */
 var maxLoginAttempts = null;
@@ -45,7 +54,13 @@ function setPasswordExpirationDays(){
 	scopes.svySecurity.getTenant(tenant).setPasswordExpirationDays(passwordExpirationDays);
 }
 
-
+/**
+ * @properties={typeid:24,uuid:"C5374CFC-5234-423E-8435-FEABC20EF434"}
+ */
+function setMinutesDeviceLocked(){
+	var tenant = foundset.getSelectedRecord().tenant_name;
+	scopes.svySecurity.getTenant(tenant).setMinutesDeviceLocked(lockTime);
+}
 
 /**
  * @param {JSEvent} event
@@ -67,6 +82,12 @@ function selectedItem(event, dataTarget) {
 		elements.confirmPwdExpirationDates.visible = true;
 		elements.cancelPwdExpirationDates.visible = true;
 		elements.lblpwdExpirationDays.visible = false;
+	    break;
+	  case 'lblLockTime':
+		elements.tbLockTime.visible = true;
+		elements.confirmLockTime.visible = true;
+		elements.cancelLockTime.visible = true;
+		elements.lblLockTime.visible = false;
 	    break;
 	}
 	
@@ -107,6 +128,14 @@ function resetFields(selectedElement) {
 		elements.cancelPwdExpirationDates.visible = false;
 		elements.lblpwdExpirationDays.visible = true;
 	    break;
+	  case 'cancelLockTime':
+	  case 'confirmLockTime':
+	  	lockTime = null;
+		elements.tbLockTime.visible = false;
+		elements.confirmLockTime.visible = false;
+		elements.cancelLockTime.visible = false;
+		elements.lblLockTime.visible = true;
+	    break;
 	}
 
 }
@@ -128,10 +157,13 @@ function save(event, dataTarget) {
 	  	setPasswordExpirationDays();
 	  	checkProperty();
 	    break;
+	  case 'confirmLockTime':
+	    setMinutesDeviceLocked();
+	    break;
 	}
-
+	
 	resetFields(selectedElement);
-
+	forms.svySecurityConsoleUXSettingsTenantDisplay.updateDisplay();
 }
 
 /**
@@ -168,3 +200,13 @@ function checkProperty(){
 function onShow(firstShow, event) {
 	checkProperty();
 }
+
+///**
+// * @properties={typeid:24,uuid:"437CAB48-3A2D-4F7B-A152-5CADB375D2EB"}
+// */
+//function updateDisplay(){
+//	var tenant = foundset.getSelectedRecord().tenant_name;
+//	displayMaxLoginAttempts = scopes.svySecurity.getTenant(tenant).getMaxLoginAttempts();
+//	displayPwdExpirationDays = scopes.svySecurity.getTenant(tenant).getPasswordExpirationDays();
+//	return 1;
+//}

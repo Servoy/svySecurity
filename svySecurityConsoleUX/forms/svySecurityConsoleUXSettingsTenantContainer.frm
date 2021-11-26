@@ -4,16 +4,36 @@ dataSource:"db:/svy_security/tenants",
 encapsulation:108,
 items:[
 {
-cssPosition:"30,30,30,30,200,100",
+cssPosition:"30,30,30,-1,calc( 50% - 45px),30",
+json:{
+containedForm:"23D5EC8B-B485-46B8-89C9-4369DA91DF99",
+cssPosition:{
+bottom:"30",
+height:"30",
+left:"-1",
+right:"30",
+top:"30",
+width:"calc( 50% - 45px)"
+},
+styleClass:"box"
+},
+name:"formcontainer_2",
+styleClass:"box",
+typeName:"servoycore-formcontainer",
+typeid:47,
+uuid:"2CDC7D1A-3A08-4CDA-8B2B-D0F7C8825517"
+},
+{
+cssPosition:"30,-1,30,30,calc( 50% - 45px),30",
 json:{
 containedForm:"0F21BC95-D023-463F-9E94-6B70E09F0781",
 cssPosition:{
 bottom:"30",
-height:"100",
+height:"30",
 left:"30",
-right:"30",
+right:"-1",
 top:"30",
-width:"200"
+width:"calc( 50% - 45px)"
 },
 styleClass:"box"
 },
