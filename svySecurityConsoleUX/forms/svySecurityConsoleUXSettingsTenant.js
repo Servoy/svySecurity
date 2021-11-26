@@ -71,26 +71,35 @@ function setMinutesDeviceLocked(){
 function selectedItem(event, dataTarget) {
 	var selectedElement = event.getElementName();
 	switch(selectedElement) {
-	  case 'lblAttempts':
-		elements.tbMaxLoginAttempts.visible = true;
-		elements.iconConfirme.visible = true;
-		elements.iconCancel.visible = true;
-		elements.lblAttempts.visible = false;
+		
+	  case 'loginAttempts$containedForm$cardContainer':	
+	  case 'loginAttempts$containedForm$cardName':	
+	  case 'loginAttempts$containedForm$cardCheckMark':	
+		elements.loginAttempts.containedForm.confirmIcon.visible = true;
+		elements.loginAttempts.containedForm.cancelIcon.visible = true;
+		elements.loginAttempts.containedForm.cardTextbox.visible = true;
+		elements.loginAttempts.containedForm.cardCheckMark.visible = false;
+		elements.loginAttempts.containedForm.cardTextbox.requestFocus()
 	    break;
-	  case 'lblpwdExpirationDays':
-		elements.tbpwdExpirationDays.visible = true;
-		elements.confirmPwdExpirationDates.visible = true;
-		elements.cancelPwdExpirationDates.visible = true;
-		elements.lblpwdExpirationDays.visible = false;
+	  case 'lockMinutes$containedForm$cardContainer':	
+	  case 'lockMinutes$containedForm$cardName':
+	  case 'lockMinutes$containedForm$cardCheckMark':
+		elements.lockMinutes.containedForm.confirmIcon.visible = true;
+		elements.lockMinutes.containedForm.cancelIcon.visible = true;
+		elements.lockMinutes.containedForm.cardTextbox.visible = true;
+		elements.lockMinutes.containedForm.cardCheckMark.visible = false;
+		elements.lockMinutes.containedForm.cardTextbox.requestFocus()
 	    break;
-	  case 'lblLockTime':
-		elements.tbLockTime.visible = true;
-		elements.confirmLockTime.visible = true;
-		elements.cancelLockTime.visible = true;
-		elements.lblLockTime.visible = false;
+	  case 'pwdExpirationDays$containedForm$cardContainer':	
+	  case 'pwdExpirationDays$containedForm$cardName':	
+	  case 'pwdExpirationDays$containedForm$cardCheckMark':
+		elements.pwdExpirationDays.containedForm.confirmIcon.visible = true;
+		elements.pwdExpirationDays.containedForm.cancelIcon.visible = true;
+		elements.pwdExpirationDays.containedForm.cardTextbox.visible = true;
+		elements.pwdExpirationDays.containedForm.cardCheckMark.visible = false;
+		elements.pwdExpirationDays.containedForm.cardTextbox.requestFocus()
 	    break;
 	}
-	
 }
 
 /**
@@ -112,29 +121,30 @@ function cancel(event, dataTarget) {
 function resetFields(selectedElement) {
 	
 	switch(selectedElement) {
-	  case 'iconCancel':
-	  case 'iconConfirme':
-	    maxLoginAttempts = null;
-		elements.tbMaxLoginAttempts.visible = false;
-		elements.iconConfirme.visible = false;
-		elements.iconCancel.visible = false;
-		elements.lblAttempts.visible = true;
+
+	  case 'loginAttempts$containedForm$cancelIcon':
+	  case 'loginAttempts$containedForm$confirmIcon':
+	  	maxLoginAttempts = null;
+	  	elements.loginAttempts.containedForm.confirmIcon.visible = false;
+		elements.loginAttempts.containedForm.cancelIcon.visible = false;
+		elements.loginAttempts.containedForm.cardTextbox.visible = false;
+		elements.loginAttempts.containedForm.cardCheckMark.visible = true;
 	    break;
-	  case 'cancelPwdExpirationDates':
-	  case 'confirmPwdExpirationDates':
-	  	passwordExpirationDays = null;
-		elements.tbpwdExpirationDays.visible = false;
-		elements.confirmPwdExpirationDates.visible = false;
-		elements.cancelPwdExpirationDates.visible = false;
-		elements.lblpwdExpirationDays.visible = true;
-	    break;
-	  case 'cancelLockTime':
-	  case 'confirmLockTime':
+	  case 'lockMinutes$containedForm$cancelIcon':
+	  case 'lockMinutes$containedForm$confirmIcon':
 	  	lockTime = null;
-		elements.tbLockTime.visible = false;
-		elements.confirmLockTime.visible = false;
-		elements.cancelLockTime.visible = false;
-		elements.lblLockTime.visible = true;
+	  	elements.lockMinutes.containedForm.confirmIcon.visible = false;
+		elements.lockMinutes.containedForm.cancelIcon.visible = false;
+		elements.lockMinutes.containedForm.cardTextbox.visible = false;
+		elements.lockMinutes.containedForm.cardCheckMark.visible = true;
+	    break;
+	  case 'pwdExpirationDays$containedForm$cancelIcon':
+	  case 'pwdExpirationDays$containedForm$confirmIcon':
+	  	passwordExpirationDays = null;
+	  	elements.pwdExpirationDays.containedForm.confirmIcon.visible = false;
+		elements.pwdExpirationDays.containedForm.cancelIcon.visible = false;
+		elements.pwdExpirationDays.containedForm.cardTextbox.visible = false;
+		elements.pwdExpirationDays.containedForm.cardCheckMark.visible = true;
 	    break;
 	}
 
@@ -149,16 +159,18 @@ function resetFields(selectedElement) {
 function save(event, dataTarget) {
 	var selectedElement = event.getElementName();
 	switch(selectedElement) {
-	  case 'iconConfirme':
+
+	  case 'loginAttempts$containedForm$confirmIcon':
 	  	setMaxLoginAttempts();
-	  	 checkProperty();
-	    break;
-	  case 'confirmPwdExpirationDates':
-	  	setPasswordExpirationDays();
 	  	checkProperty();
 	    break;
-	  case 'confirmLockTime':
-	    setMinutesDeviceLocked();
+	  case 'lockMinutes$containedForm$confirmIcon':
+	  	setMinutesDeviceLocked();
+	  	checkProperty();
+	    break;    
+	  case 'pwdExpirationDays$containedForm$confirmIcon':
+	  	setPasswordExpirationDays()
+	  	checkProperty();
 	    break;
 	}
 	
@@ -173,20 +185,22 @@ function checkProperty(){
 	var tenant = foundset.getSelectedRecord().tenant_name;
 	
 	if(scopes.svySecurity.getTenant(tenant).getMaxLoginAttempts()){
-		elements.checkAttempts.visible = true;
-	  	elements.xAttempts.visible = false;
+		elements.loginAttempts.containedForm.cardCheckMark.imageStyleClass = 'fas fa-check fa-2x fa-lg text-success';
 	}else{
-		elements.checkAttempts.visible = false;
-	  	elements.xAttempts.visible = true;
+		elements.loginAttempts.containedForm.cardCheckMark.imageStyleClass = 'fas fa-times fa-2x fa-lg text-danger';
 	}
 	
 	if(scopes.svySecurity.getTenant(tenant).getPasswordExpirationDays()){
-		elements.checkPwdExpDays.visible = true;
-	  	elements.xPwdExpDays.visible = false;
+		elements.pwdExpirationDays.containedForm.cardCheckMark.imageStyleClass = 'fas fa-check fa-2x fa-lg text-success';
 	}else{
-		elements.checkPwdExpDays.visible = false;
-	  	elements.xPwdExpDays.visible = true;
+		elements.pwdExpirationDays.containedForm.cardCheckMark.imageStyleClass = 'fas fa-times fa-2x fa-lg text-danger';
 	}
+	if(scopes.svySecurity.getTenant(tenant).getMinutesDeviceLocked()){
+		elements.lockMinutes.containedForm.cardCheckMark.imageStyleClass = 'fas fa-check fa-2x fa-lg text-success';
+	}else{
+		elements.lockMinutes.containedForm.cardCheckMark.imageStyleClass = 'fas fa-times fa-2x fa-lg text-danger';
+	}
+	
 	
 }
 /**
@@ -200,13 +214,3 @@ function checkProperty(){
 function onShow(firstShow, event) {
 	checkProperty();
 }
-
-///**
-// * @properties={typeid:24,uuid:"437CAB48-3A2D-4F7B-A152-5CADB375D2EB"}
-// */
-//function updateDisplay(){
-//	var tenant = foundset.getSelectedRecord().tenant_name;
-//	displayMaxLoginAttempts = scopes.svySecurity.getTenant(tenant).getMaxLoginAttempts();
-//	displayPwdExpirationDays = scopes.svySecurity.getTenant(tenant).getPasswordExpirationDays();
-//	return 1;
-//}

@@ -3,14 +3,14 @@ useCssPosition:true",
 encapsulation:108,
 items:[
 {
-cssPosition:"100,10,-1,10,200,30",
+cssPosition:"74,10,-1,10,200,30",
 json:{
 cssPosition:{
 bottom:"-1",
 height:"30",
 left:"10",
 right:"10",
-top:"100",
+top:"74",
 width:"200"
 },
 styleClass:"text-center text-center-vertical"
@@ -47,14 +47,14 @@ typeid:47,
 uuid:"E7787A23-8D13-418F-9A22-5FC645F41220"
 },
 {
-cssPosition:"10,10,-1,10,200,90",
+cssPosition:"20,10,-1,10,200,50",
 json:{
 cssPosition:{
 bottom:"-1",
-height:"90",
+height:"50",
 left:"10",
 right:"10",
-top:"10",
+top:"20",
 width:"200"
 },
 styleClass:"h1 font-weight-bold text-center text-center-vertical"
