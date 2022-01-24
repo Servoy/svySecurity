@@ -1,4 +1,5 @@
 /**
+ * @protected 
  * @type {String}
  *
  * @properties={typeid:35,uuid:"B31D85C3-2CBE-40EE-927A-E193E35E862F"}
@@ -6,6 +7,7 @@
 var labelAction = null;
 
 /**
+ * @protected
  * @type {String}
  *
  * @properties={typeid:35,uuid:"5B8CB37B-C12E-4D35-ACDC-8928CE0DCEDD"}
@@ -13,9 +15,12 @@ var labelAction = null;
 var name = null;
 
 /**
- * @properties={typeid:35,uuid:"D4D9C299-E596-49DC-BAE1-22CB4D17DD23",variableType:-4}
+ * @protected
+ * @type {String}
+ * @properties={typeid:35,uuid:"D4D9C299-E596-49DC-BAE1-22CB4D17DD23"}
  */
 var target = null;
+
 /**
  * @param {JSRecord<db:/svy_security/tenants>} [recordMaster]
  * @param {Boolean} [makeSubTenant]
@@ -42,16 +47,17 @@ function addNewTenant(recordMaster, makeSubTenant) {
 		plugins.dialogs.showErrorDialog('Could not create tenant', 'There was an unknown error. Please check server logs.');
 		return;
 	}
-
 }
 
 /**
+ * @protected 
  * @return
  * @properties={typeid:24,uuid:"46F848EA-EC7E-4DD3-9189-9FC4FB305B7A"}
  */
 function selectedTenant() {
 	return scopes.svySecurityUX.selectedTenant = foundset.tenant_name;
 }
+
 /**
  * @param {JSEvent} event
  * @param {string} dataTarget
@@ -84,10 +90,10 @@ function cloneTenant(event) {
 	labelAction = 'Clone Name';
 	showHideElements();
 	target = 'clone';
-
 }
 
 /**
+ * @protected 
  * Called when the mouse is clicked on a row/cell (foundset and column indexes are given).
  * the foundsetindex is always -1 when there are grouped rows
  *
@@ -105,6 +111,7 @@ function onCellDoubleClick(foundsetindex, columnindex, record, event) {
 }
 
 /**
+ * @protected 
  * @param {JSEvent} event
  * @param {string} dataTarget
  *
@@ -143,6 +150,7 @@ function onActionDelete(event) {
 }
 
 /**
+ * @protected 
  * @properties={typeid:24,uuid:"DC8B783D-D468-4B20-86FE-C2154678BD3D"}
  */
 function showHideElements() {
@@ -151,13 +159,19 @@ function showHideElements() {
 	elements.iconConfirme.visible = true;
 	elements.iconCancel.visible = true;
 
-	elements.newTenant.visible = false;
-	elements.cloneTenant.visible = false;
-	elements.subTenant.visible = false;
-	elements.deleteTenant.visible = false;
-
+	elements.btnNewTenant.visible = false;
+	elements.btnCloneTenant.visible = false;
+	elements.btnNewSubTenant.visible = false;
+	elements.btnDeleteTenant.visible = false;
+	
+	elements.iconNewTenant.visible = false;
+	elements.iconCloneTenant.visible = false;
+	elements.iconNewSubTenant.visible = false;
+	elements.iconDeleteTenant.visible = false;
 }
+
 /**
+ * @protected 
  * @param {JSEvent} event
  * @param {string} dataTarget
  *
@@ -179,10 +193,10 @@ function onActionSave(event, dataTarget) {
 	}
 
 	resetFields();
-
 }
 
 /**
+ * @protected 
  * @properties={typeid:24,uuid:"8CCC5EF4-6F92-4468-B071-39E2192F9D4A"}
  */
 function resetFields() {
@@ -194,12 +208,19 @@ function resetFields() {
 	elements.iconConfirme.visible = false;
 	elements.iconCancel.visible = false;
 
-	elements.newTenant.visible = true;
-	elements.cloneTenant.visible = true;
-	elements.subTenant.visible = true;
-	elements.deleteTenant.visible = true;
+	elements.btnNewTenant.visible = true;
+	elements.btnCloneTenant.visible = true;
+	elements.btnNewSubTenant.visible = true;
+	elements.btnDeleteTenant.visible = true;
+	
+	elements.iconNewTenant.visible = true;
+	elements.iconCloneTenant.visible = true;
+	elements.iconNewSubTenant.visible = true;
+	elements.iconDeleteTenant.visible = true;
 }
+
 /**
+ * @protected 
  * @param {JSEvent} event
  * @param {string} dataTarget
  *
@@ -207,5 +228,4 @@ function resetFields() {
  */
 function onActionCancel(event, dataTarget) {
 	resetFields();
-
 }

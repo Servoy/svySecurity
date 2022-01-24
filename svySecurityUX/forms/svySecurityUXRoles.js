@@ -16,8 +16,9 @@ var newRoleName;
  * @properties={typeid:24,uuid:"1F50744B-2663-4CE4-97CD-D72738894D7B"}
  */
 function onShow(firstShow, event) {
+
 	scopes.svySecurityUX.setSelectedRole(foundset.role_name);
-	var tenant = scopes.svySecurity.getTenant();
+	
 	if (scopes.svySecurityUX.selectedTenant) {
 		elements.backBtnLabel.visible = true;
 		elements.backBtnIcon.visible = true;

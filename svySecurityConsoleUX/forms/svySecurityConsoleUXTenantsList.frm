@@ -4,7 +4,7 @@ dataSource:"db:/svy_security/tenants",
 encapsulation:108,
 items:[
 {
-cssPosition:"50,0,60,0,200,100",
+cssPosition:"50,0,60,0,0,50",
 json:{
 columns:[
 {
@@ -21,11 +21,11 @@ svyUUID:"1BF0016F-1F6B-440F-A3F8-A89E83C03FEE"
 ],
 cssPosition:{
 bottom:"60",
-height:"100",
+height:"50",
 left:"0",
 right:"0",
 top:"50",
-width:"200"
+width:"0"
 },
 gridOptions:{
 floatingFilter:"true",
@@ -42,11 +42,32 @@ suppressSideButtons:true,
 svyUUID:"B043F192-E0EA-4EF3-8F12-86E17979AC57"
 }
 },
-name:"groupingtable_1",
+name:"table",
 styleClass:"ag-theme-servoy",
 typeName:"aggrid-groupingtable",
 typeid:47,
 uuid:"2A3E08BD-21A2-4D68-8396-C27B56BF8C4F"
+},
+{
+cssPosition:"-1,30,10,-1,150,40",
+json:{
+cssPosition:{
+bottom:"10",
+height:"40",
+left:"-1",
+right:"30",
+top:"-1",
+width:"150"
+},
+onActionMethodID:"A588F60D-9BEC-4845-880A-FE719A0DEC5F",
+styleClass:"text-tertiary clickable text-center-vertical",
+text:"MANAGE TENANTS"
+},
+name:"btnViewTenants",
+styleClass:"text-tertiary clickable text-center-vertical",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"2F837DD7-B1BE-4C07-9F20-7B7A36EDC337"
 },
 {
 cssPosition:"10,0,-1,0,0,50",
@@ -62,7 +83,7 @@ width:"0"
 styleClass:"padding-left-10 text-primary border-primary h2",
 text:"Tenants List"
 },
-name:"label_1",
+name:"labelTitle",
 styleClass:"padding-left-10 text-primary border-primary h2",
 typeName:"bootstrapcomponents-label",
 typeid:47,
@@ -75,31 +96,28 @@ typeid:19,
 uuid:"746412A8-00B9-4608-95B2-AD71E1562157"
 },
 {
-cssPosition:"-1,30,0,-1,171,60",
+cssPosition:"-1,30,10,-1,25,40",
 json:{
-containedForm:{
-label_1:{
-onActionMethodID:"A588F60D-9BEC-4845-880A-FE719A0DEC5F",
-text:"Manage Tenants"
-},
-manageBtnIcon:{
-onActionMethodID:"A588F60D-9BEC-4845-880A-FE719A0DEC5F"
-},
-svy_form:"0A55A829-0234-4867-8E20-2285E134B3AC"
-},
+alignment:"center",
 cssPosition:{
-bottom:"0",
-height:"60",
+bottom:"10",
+height:"40",
 left:"-1",
 right:"30",
 top:"-1",
-width:"171"
+width:"25"
+},
+imageStyleClass:"fas fa-long-arrow-alt-right text-tertiary fa-lg clickable",
+onActionMethodID:"A588F60D-9BEC-4845-880A-FE719A0DEC5F",
+size:{
+height:25,
+width:25
 }
 },
-name:"formcomponent_4",
-typeName:"servoycore-formcomponent",
+name:"iconViewTenants",
+typeName:"bootstrapcomponents-label",
 typeid:47,
-uuid:"926EA8E4-CFAD-4028-A804-0A5C0EFD8E35"
+uuid:"D42DD291-EBC1-43EF-9286-195C0EF684A7"
 }
 ],
 name:"svySecurityConsoleUXTenantsList",

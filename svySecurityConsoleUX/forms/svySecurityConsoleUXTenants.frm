@@ -4,12 +4,12 @@ dataSource:"db:/svy_security/tenants",
 encapsulation:108,
 items:[
 {
-cssPosition:"-1,-1,10,838,25,40",
+cssPosition:"-1,-1,10,730,25,40",
 json:{
 cssPosition:{
 bottom:"10",
 height:"40",
-left:"838",
+left:"730",
 right:"-1",
 top:"-1",
 width:"25"
@@ -25,33 +25,49 @@ uuid:"03E34780-079A-4396-A5B4-BFCE0C00DFA7",
 visible:false
 },
 {
-cssPosition:"-1,-1,0,432,171,60",
+cssPosition:"-1,-1,10,210,135,40",
 json:{
-containedForm:{
-label_1:{
-onActionMethodID:"4412EE02-8E6C-4238-B912-D0E609CD5DA3",
-styleClass:"text-success clickable text-center-vertical",
-text:"Create SubTenanat"
-},
-manageBtnIcon:{
-imageStyleClass:"fas fa-layer-group text-success fa-lg clickable",
-onActionMethodID:"4412EE02-8E6C-4238-B912-D0E609CD5DA3"
-},
-svy_form:"0A55A829-0234-4867-8E20-2285E134B3AC"
-},
 cssPosition:{
-bottom:"0",
-height:"60",
-left:"432",
+bottom:"10",
+height:"40",
+left:"210",
 right:"-1",
 top:"-1",
-width:"171"
+width:"135"
+},
+onActionMethodID:"4DCFB776-3D83-4D4D-B1A4-3AEF91C962AB",
+styleClass:"text-success clickable text-center-vertical",
+text:"CLONE TENANT"
+},
+name:"btnCloneTenant",
+styleClass:"text-success clickable text-center-vertical",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"1619C512-DA03-4CA0-9F72-E664AD1A5429"
+},
+{
+cssPosition:"-1,-1,10,530,25,40",
+json:{
+alignment:"center",
+cssPosition:{
+bottom:"10",
+height:"40",
+left:"530",
+right:"-1",
+top:"-1",
+width:"25"
+},
+imageStyleClass:"fas fa-layer-group text-success fa-lg clickable",
+onActionMethodID:"4412EE02-8E6C-4238-B912-D0E609CD5DA3",
+size:{
+height:25,
+width:25
 }
 },
-name:"subTenant",
-typeName:"servoycore-formcomponent",
+name:"iconNewSubTenant",
+typeName:"bootstrapcomponents-label",
 typeid:47,
-uuid:"245E4571-42D8-45F8-835A-D4CC02BF510E"
+uuid:"383BFF56-06D4-4A48-A386-EA73F934A819"
 },
 {
 cssPosition:"50,0,60,0,200,100",
@@ -102,7 +118,7 @@ suppressSideButtons:true,
 svyUUID:"11FE8109-DCFE-4BEE-B548-2612F319C2C2"
 }
 },
-name:"groupingtable_1",
+name:"table",
 styleClass:"ag-theme-servoy",
 typeName:"aggrid-groupingtable",
 typeid:47,
@@ -115,62 +131,49 @@ typeid:19,
 uuid:"553EABC5-896D-40E2-9BC0-AD866201DEE1"
 },
 {
-cssPosition:"-1,-1,0,633,171,60",
+cssPosition:"-1,-1,10,140,25,40",
 json:{
-containedForm:{
-label_1:{
-onActionMethodID:"45CBA536-1044-4A20-8A80-637189DF43D8",
-styleClass:"text-danger clickable text-center-vertical",
-text:"Delete Tenant"
-},
-manageBtnIcon:{
-imageStyleClass:"fas fa-trash text-danger fa-lg clickable",
-onActionMethodID:"45CBA536-1044-4A20-8A80-637189DF43D8"
-},
-svy_form:"0A55A829-0234-4867-8E20-2285E134B3AC"
-},
+alignment:"center",
 cssPosition:{
-bottom:"0",
-height:"60",
-left:"633",
+bottom:"10",
+height:"40",
+left:"140",
 right:"-1",
 top:"-1",
-width:"171"
+width:"25"
+},
+imageStyleClass:"fas fa-plus text-success fa-lg clickable",
+onActionMethodID:"50EED977-E37A-4AD7-B42A-0A5F73C3DBC7",
+size:{
+height:25,
+width:25
 }
 },
-name:"deleteTenant",
-typeName:"servoycore-formcomponent",
+name:"iconNewTenant",
+typeName:"bootstrapcomponents-label",
 typeid:47,
-uuid:"6E794DBE-1F2C-4ED9-8CE1-53BB6B0020D0"
+uuid:"5B48F12A-E385-4E76-BEF4-1A923998755C"
 },
 {
-cssPosition:"-1,-1,0,231,171,60",
+cssPosition:"-1,-1,10,600,135,40",
 json:{
-containedForm:{
-label_1:{
-onActionMethodID:"4DCFB776-3D83-4D4D-B1A4-3AEF91C962AB",
-styleClass:"text-success clickable text-center-vertical",
-text:"Clone Tenant"
-},
-manageBtnIcon:{
-imageStyleClass:"fas fa-clone text-success fa-lg clickable",
-onActionMethodID:"4DCFB776-3D83-4D4D-B1A4-3AEF91C962AB"
-},
-svy_form:"0A55A829-0234-4867-8E20-2285E134B3AC"
-},
 cssPosition:{
-bottom:"0",
-height:"60",
-left:"231",
+bottom:"10",
+height:"40",
+left:"600",
 right:"-1",
 top:"-1",
-width:"171"
-}
+width:"135"
 },
-name:"cloneTenant",
-typeName:"servoycore-formcomponent",
+onActionMethodID:"45CBA536-1044-4A20-8A80-637189DF43D8",
+styleClass:"text-danger clickable text-center-vertical",
+text:"DELETE TENANT"
+},
+name:"btnDeleteTenant",
+styleClass:"text-danger clickable text-center-vertical",
+typeName:"bootstrapcomponents-label",
 typeid:47,
-uuid:"75568C77-D10B-49C9-8A1F-5FF20C77B1B8"
+uuid:"7628BBB5-91AD-4F6C-98C9-F1C7237FB0C0"
 },
 {
 cssPosition:"10,100,-1,0,0,50",
@@ -193,12 +196,57 @@ typeid:47,
 uuid:"850BDED5-85A2-4B0D-A101-157F391F9163"
 },
 {
-cssPosition:"-1,-1,10,803,25,40",
+cssPosition:"-1,-1,10,710,25,40",
+json:{
+alignment:"center",
+cssPosition:{
+bottom:"10",
+height:"40",
+left:"710",
+right:"-1",
+top:"-1",
+width:"25"
+},
+imageStyleClass:"fas fa-trash text-danger fa-lg clickable",
+onActionMethodID:"45CBA536-1044-4A20-8A80-637189DF43D8",
+size:{
+height:25,
+width:25
+}
+},
+name:"iconDeleteTenant",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"98E38466-4A3E-4509-9E01-6FF54AE541AB"
+},
+{
+cssPosition:"-1,-1,10,30,135,40",
 json:{
 cssPosition:{
 bottom:"10",
 height:"40",
-left:"803",
+left:"30",
+right:"-1",
+top:"-1",
+width:"135"
+},
+onActionMethodID:"50EED977-E37A-4AD7-B42A-0A5F73C3DBC7",
+styleClass:"text-success clickable text-center-vertical",
+text:"NEW TENANT"
+},
+name:"btnNewTenant",
+styleClass:"text-success clickable text-center-vertical",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"AED63001-CC23-46E8-B147-D6537346336A"
+},
+{
+cssPosition:"-1,-1,10,700,25,40",
+json:{
+cssPosition:{
+bottom:"10",
+height:"40",
+left:"700",
 right:"-1",
 top:"-1",
 width:"25"
@@ -236,6 +284,51 @@ uuid:"D24C33A9-0D91-476D-ABAB-9F4F145BC3C7",
 visible:false
 },
 {
+cssPosition:"-1,-1,10,390,165,40",
+json:{
+cssPosition:{
+bottom:"10",
+height:"40",
+left:"390",
+right:"-1",
+top:"-1",
+width:"165"
+},
+onActionMethodID:"4412EE02-8E6C-4238-B912-D0E609CD5DA3",
+styleClass:"text-success clickable text-center-vertical",
+text:"CREATE SUB TENANT"
+},
+name:"btnNewSubTenant",
+styleClass:"text-success clickable text-center-vertical",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"D4339A0F-C35B-4F1B-BCE6-7B4A2BF4FF2D"
+},
+{
+cssPosition:"-1,-1,10,320,25,40",
+json:{
+alignment:"center",
+cssPosition:{
+bottom:"10",
+height:"40",
+left:"320",
+right:"-1",
+top:"-1",
+width:"25"
+},
+imageStyleClass:"fas fa-clone text-success fa-lg clickable",
+onActionMethodID:"4DCFB776-3D83-4D4D-B1A4-3AEF91C962AB",
+size:{
+height:25,
+width:25
+}
+},
+name:"iconCloneTenant",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"DC6FA015-A376-4979-8949-37443DF982CA"
+},
+{
 cssPosition:"10,10,-1,-1,85,45",
 json:{
 containedForm:{
@@ -262,52 +355,15 @@ typeid:47,
 uuid:"DEF79F1A-88DD-45F5-8801-CCFE7BB866C0"
 },
 {
-cssPosition:"-1,-1,0,30,171,60",
-json:{
-containedForm:{
-label_1:{
-cssPosition:{
-bottom:"-1",
-height:"40",
-left:"10",
-right:"-1",
-top:"10",
-width:"125"
-},
-onActionMethodID:"50EED977-E37A-4AD7-B42A-0A5F73C3DBC7",
-styleClass:"text-success clickable text-center-vertical",
-text:"New Tenant"
-},
-manageBtnIcon:{
-imageStyleClass:"fas fa-plus text-success fa-lg clickable",
-onActionMethodID:"50EED977-E37A-4AD7-B42A-0A5F73C3DBC7"
-},
-svy_form:"0A55A829-0234-4867-8E20-2285E134B3AC"
-},
-cssPosition:{
-bottom:"0",
-height:"60",
-left:"30",
-right:"-1",
-top:"-1",
-width:"171"
-}
-},
-name:"newTenant",
-typeName:"servoycore-formcomponent",
-typeid:47,
-uuid:"F18CCE06-92AF-47CB-9455-15D61EADDC08"
-},
-{
-cssPosition:"-1,-1,10,155,633,40",
+cssPosition:"-1,-1,10,30,650,40",
 json:{
 cssPosition:{
 bottom:"10",
 height:"40",
-left:"155",
+left:"30",
 right:"-1",
 top:"-1",
-width:"633"
+width:"650"
 },
 dataProviderID:"name",
 visible:false

@@ -92,7 +92,8 @@ dataProviderID:"userName",
 location:{
 x:96,
 y:239
-}
+},
+onActionMethodID:"C676D9BA-4FB8-4153-AB46-D5CDF2C68EEC"
 },
 location:"96,239",
 name:"fldUsername",
@@ -168,7 +169,7 @@ y:22
 media:"E9AD00C6-6156-40C2-B034-231892E1292D"
 },
 location:"167,22",
-name:"imagelabel_1",
+name:"imgLogo",
 typeName:"servoyextra-imagelabel",
 typeid:47,
 uuid:"3DA73A0F-5326-4005-97F0-ADD2D07A2477"
@@ -213,7 +214,8 @@ inputType:"password",
 location:{
 x:94,
 y:310
-}
+},
+onActionMethodID:"C43392EF-04E4-44B5-93C7-B269EBD9C19B"
 },
 location:"94,310",
 name:"fldPassword",

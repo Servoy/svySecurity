@@ -20,7 +20,6 @@ var password = '';
 var userName = '';
 
 /**
- * TODO generated, please specify type and doc for the params
  * @param event
  *
  * @properties={typeid:24,uuid:"C6FEC7CD-59ED-47CD-8B07-98CAEB3D2816"}
@@ -127,7 +126,6 @@ function onActionUsername(event) {
 }
 
 /**
- * TODO generated, please specify type and doc for the params
  * @param event
  *
  * @properties={typeid:24,uuid:"C43392EF-04E4-44B5-93C7-B269EBD9C19B"}
