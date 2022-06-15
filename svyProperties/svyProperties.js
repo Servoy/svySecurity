@@ -938,7 +938,7 @@ function deleteRecord(record) {
             throw new Error('Failed to delete record.');
         }
         if (startedLocalTransaction) {
-            if (!databaseManager.commitTransaction(true, true)) {
+            if (!databaseManager.commitTransaction(false, false)) {
                 throw new Error('Failed to commit database transaction.');
             }
         }
