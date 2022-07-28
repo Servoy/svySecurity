@@ -60,7 +60,7 @@ width:320
 styleClass:"svy-formcomponent full-width"
 },
 location:"377,127",
-name:"formcomponent_2",
+name:"frmUser",
 size:"320,200",
 styleClass:"svy-formcomponent full-width",
 typeName:"servoycore-formcomponent",
@@ -110,7 +110,7 @@ width:280
 styleClass:"svy-formcomponent full-width"
 },
 location:"82,269",
-name:"formcomponent_5",
+name:"frmTenant",
 size:"280,180",
 styleClass:"svy-formcomponent full-width",
 typeName:"servoycore-formcomponent",
@@ -159,7 +159,7 @@ width:320
 styleClass:"svy-formcomponent full-width"
 },
 location:"616,135",
-name:"formcomponent_3",
+name:"frmActiveSession",
 size:"320,200",
 styleClass:"svy-formcomponent full-width",
 typeName:"servoycore-formcomponent",
@@ -482,7 +482,7 @@ typeid:46,
 uuid:"B8E2F01F-186B-4247-B418-E43574F24992"
 }
 ],
-name:"svySecurityConsoleUXDashboardNew",
+name:"svySecurityConsoleUXDashboard",
 navigatorID:"-1",
 onShowMethodID:"EAF7A234-6C6C-42E1-96A7-8CE67E66CB41",
 showInMenu:true,

@@ -49,7 +49,7 @@ typeid:47,
 uuid:"2A3E08BD-21A2-4D68-8396-C27B56BF8C4F"
 },
 {
-cssPosition:"-1,30,10,-1,150,40",
+cssPosition:"-1,30,10,-1,160,40",
 json:{
 cssPosition:{
 bottom:"10",
@@ -57,7 +57,7 @@ height:"40",
 left:"-1",
 right:"30",
 top:"-1",
-width:"150"
+width:"160"
 },
 onActionMethodID:"A588F60D-9BEC-4845-880A-FE719A0DEC5F",
 styleClass:"text-tertiary clickable text-center-vertical",

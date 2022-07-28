@@ -185,3 +185,19 @@ function onActionBack(event, dataTarget) {
 	scopes.svyNavigation.open(item);
 
 }
+
+/**
+ * Handle hide window.
+ *
+ * @param {JSEvent} event the event that triggered the action
+ *
+ * @return {Boolean}
+ *
+ * @private
+ *
+ * @properties={typeid:24,uuid:"96E03AA6-1CF0-421D-9599-933CEC4F87EB"}
+ */
+function onHide(event) {
+	resetNewRoleFields();
+	return true
+}

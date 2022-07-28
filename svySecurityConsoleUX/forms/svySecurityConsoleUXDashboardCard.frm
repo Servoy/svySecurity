@@ -1,74 +1,101 @@
 customProperties:"formComponent:true,\
 useCssPosition:true",
+dataSource:"db:/svy_security/tenants",
 encapsulation:108,
 items:[
 {
-cssPosition:"100,10,-1,10,200,30",
+cssPosition:"56%,10,-1,10,0,30",
+formIndex:3,
 json:{
 cssPosition:{
 bottom:"-1",
 height:"30",
 left:"10",
 right:"10",
-top:"100",
-width:"200"
+top:"56%",
+width:"0"
 },
-styleClass:"text-center text-center-vertical"
+formIndex:3,
+styleClass:"text-center cardText_color"
 },
 name:"cardName",
-styleClass:"text-center text-center-vertical",
+styleClass:"text-center cardText_color",
 typeName:"bootstrapcomponents-label",
 typeid:47,
-uuid:"13DADA18-436D-4795-8492-5F34F3E689B8"
+uuid:"1B72C487-E54D-45D8-A517-42F601C25EA8"
 },
 {
-height:140,
+height:180,
 partType:5,
 typeid:19,
-uuid:"D9355AFF-59ED-4A3C-8916-C8D62F136A51"
+uuid:"7637415A-973B-4A21-B824-E1B1C1EFA15C"
 },
 {
-cssPosition:"10,10,10,10,200,120",
-json:{
-cssPosition:{
-bottom:"10",
-height:"120",
-left:"10",
-right:"10",
-top:"10",
-width:"200"
-},
-styleClass:"default-align border border-radius"
-},
-name:"card",
-styleClass:"default-align border border-radius",
-typeName:"bootstrapcomponents-label",
-typeid:47,
-uuid:"E7787A23-8D13-418F-9A22-5FC645F41220"
-},
-{
-cssPosition:"10,10,-1,10,200,90",
+cssPosition:"20,-1,-1,20,40,40",
+formIndex:2,
 json:{
 cssPosition:{
 bottom:"-1",
-height:"90",
+height:"40",
+left:"20",
+right:"-1",
+top:"20",
+width:"40"
+},
+formIndex:2,
+styleClass:"default-align cardText_color"
+},
+name:"cardIcon",
+styleClass:"default-align cardText_color",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"8353CFDF-1132-4384-8EE2-6CAAC1B016FD"
+},
+{
+cssPosition:"-1,10,50%,10,0,30",
+formIndex:1,
+json:{
+cssPosition:{
+bottom:"50%",
+height:"30",
+left:"10",
+right:"10",
+top:"-1",
+width:"0"
+},
+formIndex:1,
+styleClass:"text-center h1 cardText_color"
+},
+name:"cardCount",
+styleClass:"text-center h1 cardText_color",
+typeName:"bootstrapcomponents-datalabel",
+typeid:47,
+uuid:"90AB40E7-DB2C-4183-B05A-D54905781233"
+},
+{
+cssPosition:"10,10,10,10,-1,-1",
+json:{
+cssPosition:{
+bottom:"10",
+height:"-1",
 left:"10",
 right:"10",
 top:"10",
-width:"200"
+width:"-1"
 },
-styleClass:"h1 font-weight-bold text-center text-center-vertical"
+formIndex:0,
+styleClass:"default-align border"
 },
-name:"cardCount",
-styleClass:"h1 font-weight-bold text-center text-center-vertical",
-typeName:"bootstrapcomponents-datalabel",
+name:"cardContainer",
+styleClass:"default-align border",
+typeName:"bootstrapcomponents-label",
 typeid:47,
-uuid:"E7CA3B5D-7CA7-498A-82D4-3530444CAD36"
+uuid:"E393A090-EAC8-4C1C-B085-61AB8B0080C4"
 }
 ],
 name:"svySecurityConsoleUXDashboardCard",
 navigatorID:"-1",
 showInMenu:true,
-size:"220,120",
+size:"150,180",
 typeid:3,
-uuid:"3089107E-E765-48CD-A79D-552DD8357F55"
+uuid:"DDF05AFF-56B3-4210-8F13-FB30DE419613"

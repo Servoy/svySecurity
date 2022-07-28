@@ -87,9 +87,9 @@ function createSubTenant(event) {
  * @properties={typeid:24,uuid:"4DCFB776-3D83-4D4D-B1A4-3AEF91C962AB"}
  */
 function cloneTenant(event) {
-	labelAction = 'Clone Name';
 	showHideElements();
 	target = 'clone';
+	labelAction = 'Clone Name';
 }
 
 /**
@@ -142,7 +142,6 @@ function onActionDelete(event) {
 		res = scopes.svySecurity.deleteTenant(tenant);
 		if (res) {
 			plugins.webnotificationsToastr.success('Delete Successful', 'The tenant has been deleted.');
-
 		} else {
 			plugins.dialogs.showWarningDialog('Delete Not Successful', 'Could not delete tenant.');
 		}
@@ -180,13 +179,11 @@ function showHideElements() {
 function onActionSave(event, dataTarget) {
 	if (target == 'new') {
 		addNewTenant();
-	}
-	if (target == 'clone') {
+	} else if (target == 'clone') {
 		if (utils.hasRecords(foundset)) {
 			addNewTenant(foundset.getSelectedRecord(), false);
 		}
-	}
-	if (target == 'sub') {
+	}else if (target == 'sub') {
 		if (utils.hasRecords(foundset)) {
 			addNewTenant(foundset.getSelectedRecord(), true);
 		}
@@ -228,4 +225,20 @@ function resetFields() {
  */
 function onActionCancel(event, dataTarget) {
 	resetFields();
+}
+
+/**
+ * Handle hide window.
+ *
+ * @param {JSEvent} event the event that triggered the action
+ *
+ * @return {Boolean}
+ *
+ * @private
+ *
+ * @properties={typeid:24,uuid:"2C29774C-4DB6-4C60-B209-0B1FD1C3C180"}
+ */
+function onHide(event) {
+	resetFields();
+	return true;
 }
