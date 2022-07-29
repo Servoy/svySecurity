@@ -24,10 +24,10 @@ var newUserName = '';
  */
 function onShow(firstShow, event) {
 	scopes.svySecurityUX.setSelectedUser(foundset.user_name);
-	if(scopes.svySecurityUX.selectedTenant){
+	if (scopes.svySecurityUX.selectedTenant) {
 		elements.backBtnIcon.visible = true;
 		elements.backBtnLabel.visible = true;
-	}else{
+	} else {
 		elements.backBtnIcon.visible = false;
 		elements.backBtnLabel.visible = false;
 	}
@@ -47,7 +47,7 @@ function onRecordSelection(event) {
 }
 
 /**
- * @protected 
+ * @protected
  * @param {JSEvent} event
  *
  * @properties={typeid:24,uuid:"6C10F510-A289-4DDA-9D24-4666F08E6F9D"}
@@ -55,7 +55,7 @@ function onRecordSelection(event) {
 function onActionNewUser(event) {
 	newUserName = null;
 	newUserEmail = null;
-	
+
 	// hide role
 	elements.fldNewUser.visible = true;
 	elements.fldNewEmail.visible = true;
@@ -115,11 +115,11 @@ function createUser() {
 			if (!user) {
 				throw "Ops something went wrong";
 			}
-			
+
 			if (newUserEmail) {
 				user.setEmail(newUserEmail)
 			}
-			
+
 			// trigger event: user created
 			scopes.svySecurityUX.triggerAfterUserCreate(user.getUserName(), user.getTenant().getName())
 
@@ -150,20 +150,20 @@ function onActionCancelNewUser() {
 }
 
 /**
- * @protected 
+ * @protected
  * @properties={typeid:24,uuid:"223A86A2-93E0-446C-889F-79104AFE5500"}
  */
 function resetNewUserFields() {
 	newUserName = null;
 	newUserEmail = null;
-	
+
 	// hide role
 	elements.fldNewUser.visible = false;
 	elements.fldNewUser.removeStyleClass("form-invalid");
 	elements.fldNewEmail.visible = false;
 	elements.iconConfirmNew.visible = false;
 	elements.iconCancelNew.visible = false;
-	
+
 	//elements.errorNewRole.text = null;
 	//elements.errorNewRole.visible = false;
 
@@ -179,13 +179,16 @@ function resetNewUserFields() {
  * @properties={typeid:24,uuid:"5671D9E4-2485-4788-AAD6-F5744DC20D11"}
  */
 function onActionDeleteUser() {
-	
+
 	var msg = "Immediately and permanently deletes the specified user and all security-related settings associated with it"
 	msg += "The user will not be deleted if it has active sessions."
 
 	var answer = plugins.dialogs.showQuestionDialog("Do you wish to delete the User " + user_name, msg, "Yes", "No");
 	if (answer == "Yes") {
-		var tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
+		var tenant = scopes.svySecurity.getTenant();
+		if (!tenant) {
+			tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
+		}
 		tenant.deleteUser(foundset.user_name);
 	}
 }

@@ -18,11 +18,11 @@ var newRoleName;
 function onShow(firstShow, event) {
 
 	scopes.svySecurityUX.setSelectedRole(foundset.role_name);
-	
+
 	if (scopes.svySecurityUX.selectedTenant) {
 		elements.backBtnLabel.visible = true;
 		elements.backBtnIcon.visible = true;
-	}else{
+	} else {
 		elements.backBtnLabel.visible = false;
 		elements.backBtnIcon.visible = false;
 	}
@@ -42,14 +42,14 @@ function onRecordSelection(event) {
 }
 
 /**
- * @protected 
+ * @protected
  * @param {JSEvent} event
  *
  * @properties={typeid:24,uuid:"313704AB-9377-4BC7-BDE9-DD9A017E29C7"}
  */
 function onActionNewRole(event) {
 	newRoleName = null;
-	
+
 	// hide role
 	elements.fldNewRole.visible = true;
 	elements.iconConfirmNew.visible = true;
@@ -96,12 +96,13 @@ function onDataChangeRole(oldValue, newValue, event) {
 function createRole() {
 
 	if (newRoleName) {
-		
+
 		var tenant = scopes.svySecurity.getTenant();
 		if (!tenant) {
-			// check the selected tenant in svySecurityConsoleUX: how ?
+			// get the selected tenant in svySecurityConsoleUX
 			tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
 		}
+		
 		try {
 
 			if (!tenant.createRole(newRoleName)) {
@@ -134,12 +135,12 @@ function onActionCancelNewRole() {
 }
 
 /**
- * @protected 
+ * @protected
  * @properties={typeid:24,uuid:"56F6D2C9-C3AD-4380-B373-FF7D28474270"}
  */
 function resetNewRoleFields() {
 	newRoleName = null;
-	
+
 	// hide role
 	elements.fldNewRole.visible = false;
 	elements.fldNewRole.removeStyleClass("form-invalid");
@@ -154,23 +155,25 @@ function resetNewRoleFields() {
 	elements.iconDeleteRole.visible = true;
 }
 
-
 /**
  * @protected
  *
  * @properties={typeid:24,uuid:"0818F08B-71A3-40D8-A97C-D4FC572771DD"}
  */
 function onActionDeleteRole() {
-	
+
 	var msg = "Deletes the specified role from this tenant."
 	msg += "All associated permissions and grants to users are removed immediately. Users with active sessions will be partially affected, will be fully affected at next log-in."
 
 	var answer = plugins.dialogs.showQuestionDialog("Do you wish to delete the Role " + role_name, msg, "Yes", "No");
 	if (answer == "Yes") {
-		var tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant)
+		var tenant = scopes.svySecurity.getTenant();
+		if (!tenant) {
+			// get the selected tenant in svySecurityConsoleUX
+			tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
+		}
 		tenant.deleteRole(foundset.role_name);
 	}
-	
 
 }
 

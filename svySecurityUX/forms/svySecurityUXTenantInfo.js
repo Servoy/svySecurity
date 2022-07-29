@@ -72,10 +72,10 @@ var m_LockReasonText = '';
 function onShow(firstShow, event) {
 	var tenant = scopes.svySecurity.getTenant(foundset.tenant_name);
 	activeSessions = tenant.getActiveSessions().length;
-	if(scopes.svySecurityUX.selectedTenant){
+	if (scopes.svySecurityUX.selectedTenant) {
 		elements.backBtnIcon.visible = true;
 		elements.backBtnLabel.visible = true;
-	}else{
+	} else {
 		elements.backBtnIcon.visible = false;
 		elements.backBtnLabel.visible = false;
 	}
@@ -136,19 +136,19 @@ function updateUI() {
 		m_TenantUserCount = tenant.getUsers().length;
 		m_ActiveSessionsCount = tenant.getActiveSessions().length;
 		m_TotalSessionsCount = tenant.getSessionCount();
-		
+
 		var isLocked = tenant.isLocked();
 		if (isLocked) {
 			elements.faLocked.visible = true;
 			elements.faUnlocked.visible = false;
-			
+
 			elements.labelStatus.removeStyleClass('text-success');
 			elements.labelStatus.removeStyleClass('border-success');
 			elements.labelStatus.addStyleClass('text-warning border-warning');
 		} else {
 			elements.faLocked.visible = false;
 			elements.faUnlocked.visible = true;
-			
+
 			elements.labelStatus.removeStyleClass('text-warning');
 			elements.labelStatus.removeStyleClass('border-warning');
 			elements.labelStatus.addStyleClass('text-success border-success');
@@ -180,28 +180,28 @@ function updateUI() {
 			elements.labelMaster.text = null;
 		}
 
-        if (isLocked) {
-            var m_LockExp = tenant.getLockExpiration();
-            m_LockReasonText = '';
-            if (m_LockExp) {
-            	m_LockReasonText = utils.stringFormat('<b>Locked</b> - the lock expires on %1$tc ', [m_LockExp]);
-            } else {
-                m_LockStausText = 'Locked';
-            }
-            m_LockReasonText += tenant.getLockReason() ? tenant.getLockReason() : '';
-        } else {
-            m_LockStausText = 'Active';
-            m_LockReasonText = null;
-        }
+		if (isLocked) {
+			var m_LockExp = tenant.getLockExpiration();
+			m_LockReasonText = '';
+			if (m_LockExp) {
+				m_LockReasonText = utils.stringFormat('<b>Locked</b> - the lock expires on %1$tc ', [m_LockExp]);
+			} else {
+				m_LockStausText = 'Locked';
+			}
+			m_LockReasonText += tenant.getLockReason() ? tenant.getLockReason() : '';
+		} else {
+			m_LockStausText = 'Active';
+			m_LockReasonText = null;
+		}
 
-        // cannot lock the logged tenant
-        var loggedTenant = scopes.svySecurity.getTenant(foundset.tenant_name);
-        if (loggedTenant && loggedTenant.getName() == foundset.tenant_name) {
-        	elements.faUnlocked.enabled = false;
-        } else {
-        	elements.faUnlocked.enabled = true;
-        }
-        
+		// cannot lock the logged tenant
+		var loggedTenant = scopes.svySecurity.getTenant(foundset.tenant_name);
+		if (loggedTenant && loggedTenant.getName() == foundset.tenant_name) {
+			elements.faUnlocked.enabled = false;
+		} else {
+			elements.faUnlocked.enabled = true;
+		}
+
 		scopes.svySecurityUXCharts.createChartTotalTenantUsageOverTimeMonths(foundset.tenant_name, elements.chart);
 	} else {
 		m_TenantUserCount = 0;
@@ -210,7 +210,6 @@ function updateUI() {
 		m_LockStausText = 'no tenant';
 		m_LockReasonText = null;
 	}
-
 
 }
 
@@ -223,16 +222,16 @@ function updateUI() {
  * @properties={typeid:24,uuid:"C5E5D835-BB76-4DB3-8175-36CF2472012E"}
  */
 function onActionEditDisplayName(event, dataTarget) {
-    if (tenant_name) {
-        var displName = plugins.dialogs.showInputDialog('Edit Tenant', utils.stringFormat('Enter display name for tenant "%1$s"', [tenant_name]), display_name);
-        if (displName) {
-            var tenant = scopes.svySecurity.getTenant(tenant_name);
-            if (tenant) {
-                tenant.setDisplayName(displName);
-                //the data broadcast will update the UI
-            }
-        }
-    }
+	if (tenant_name) {
+		var displName = plugins.dialogs.showInputDialog('Edit Tenant', utils.stringFormat('Enter display name for tenant "%1$s"', [tenant_name]), display_name);
+		if (displName) {
+			var tenant = scopes.svySecurity.getTenant(tenant_name);
+			if (tenant) {
+				tenant.setDisplayName(displName);
+				//the data broadcast will update the UI
+			}
+		}
+	}
 }
 
 /**
