@@ -1,4 +1,13 @@
 /**
+ * TODO set encapsulation protected
+ * use same naming convetion of UX_SELECTED_USER
+ * @type {String}
+ *
+ * @properties={typeid:35,uuid:"AED93D9E-EDB6-4CBF-8942-F83A425A589B"}
+ */
+var selectedTenant = null;
+
+/**
  * @protected 
  * @type {String}
  *
@@ -22,9 +31,10 @@ var SVY_SECURITY_UX = {
 	TENANT: "svySecurityUXTenant",
 	TENANT_ROLES: "svySecurityUXTenantRolesContainer",
 	TENANT_USERS: "svySecurityUXTenantUsersContainer",
-	USER: "svySecurityUXUser"
+	USER: "svySecurityUXUser",
+	HOME: 'svySecurityUXHome',
+	TENANTS: 'svySecurityUXMainTenants'
 }
-
 
 /**
  * @protected  

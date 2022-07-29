@@ -161,6 +161,29 @@ typeid:47,
 uuid:"3874D9F8-BDDA-4D99-AD92-A20B23A29845"
 },
 {
+cssPosition:"18,15,-1,-1,36,20",
+formIndex:1,
+json:{
+cssPosition:{
+bottom:"-1",
+height:"20",
+left:"-1",
+right:"15",
+top:"18",
+width:"36"
+},
+formIndex:1,
+onActionMethodID:"D5555824-E8C6-480A-8BA4-7934D4BD490A",
+styleClass:"text-tertiary clickable",
+text:"Back"
+},
+name:"backBtnLabel",
+styleClass:"text-tertiary clickable",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"4359ACD5-7AD2-4E79-91C6-87E2DCB5DC10"
+},
+{
 cssPosition:"-1,-1,30,calc(50% - 25px),50,50",
 json:{
 cssPosition:{
@@ -353,6 +376,7 @@ right:"10",
 top:"10",
 width:"0"
 },
+formIndex:0,
 styleClass:"h2 text-primary",
 text:"Tenant"
 },
@@ -433,6 +457,29 @@ styleClass:"default-align clickable",
 typeName:"bootstrapcomponents-label",
 typeid:47,
 uuid:"FC1C03E5-8369-49B7-A15F-8CC7683D1690"
+},
+{
+cssPosition:"16,54,-1,-1,25,25",
+formIndex:2,
+json:{
+cssPosition:{
+bottom:"-1",
+height:"25",
+left:"-1",
+right:"54",
+top:"16",
+width:"25"
+},
+formIndex:2,
+imageStyleClass:"fas fa-long-arrow-alt-left fa-lg text-tertiary",
+onActionMethodID:"D5555824-E8C6-480A-8BA4-7934D4BD490A",
+styleClass:"default-align clickable"
+},
+name:"backBtnIcon",
+styleClass:"default-align clickable",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"FC6A0C9D-88EC-4583-A33B-4764AC134C46"
 }
 ],
 name:"svySecurityUXTenantInfo",

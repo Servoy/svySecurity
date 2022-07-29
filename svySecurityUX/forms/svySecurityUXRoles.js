@@ -16,7 +16,16 @@ var newRoleName;
  * @properties={typeid:24,uuid:"1F50744B-2663-4CE4-97CD-D72738894D7B"}
  */
 function onShow(firstShow, event) {
+
 	scopes.svySecurityUX.setSelectedRole(foundset.role_name);
+	
+	if (scopes.svySecurityUX.selectedTenant) {
+		elements.backBtnLabel.visible = true;
+		elements.backBtnIcon.visible = true;
+	}else{
+		elements.backBtnLabel.visible = false;
+		elements.backBtnIcon.visible = false;
+	}
 }
 
 /**
@@ -87,7 +96,12 @@ function onDataChangeRole(oldValue, newValue, event) {
 function createRole() {
 
 	if (newRoleName) {
+		
 		var tenant = scopes.svySecurity.getTenant();
+		if (!tenant) {
+			// check the selected tenant in svySecurityConsoleUX: how ?
+			tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
+		}
 		try {
 
 			if (!tenant.createRole(newRoleName)) {
@@ -153,9 +167,37 @@ function onActionDeleteRole() {
 
 	var answer = plugins.dialogs.showQuestionDialog("Do you wish to delete the Role " + role_name, msg, "Yes", "No");
 	if (answer == "Yes") {
-		var tenant = scopes.svySecurity.getTenant()
+		var tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant)
 		tenant.deleteRole(foundset.role_name);
 	}
 	
 
+}
+
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"20213EBD-317C-4F11-AF97-6F1C6A45F4B6"}
+ */
+function onActionBack(event, dataTarget) {
+	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.TENANT);
+	scopes.svyNavigation.open(item);
+
+}
+
+/**
+ * Handle hide window.
+ *
+ * @param {JSEvent} event the event that triggered the action
+ *
+ * @return {Boolean}
+ *
+ * @private
+ *
+ * @properties={typeid:24,uuid:"96E03AA6-1CF0-421D-9599-933CEC4F87EB"}
+ */
+function onHide(event) {
+	resetNewRoleFields();
+	return true
 }

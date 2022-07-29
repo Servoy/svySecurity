@@ -1,0 +1,11 @@
+dataSource:"db:/svy_security/tenants",
+items:[
+{
+dataProviderIDToAggregate:"tenant_name",
+name:"tenantsCount",
+typeid:40,
+uuid:"2253F9F5-9137-47DB-BDAA-373D67916D61"
+}
+],
+typeid:39,
+uuid:"A17E577A-9698-4388-AABA-DD27D071896C"

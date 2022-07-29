@@ -70,8 +70,15 @@ var m_LockReasonText = '';
  * @properties={typeid:24,uuid:"BFFEFFCE-6ABE-4572-B308-BA93FD0851B9"}
  */
 function onShow(firstShow, event) {
-	var tenant = scopes.svySecurity.getTenant();
+	var tenant = scopes.svySecurity.getTenant(foundset.tenant_name);
 	activeSessions = tenant.getActiveSessions().length;
+	if(scopes.svySecurityUX.selectedTenant){
+		elements.backBtnIcon.visible = true;
+		elements.backBtnLabel.visible = true;
+	}else{
+		elements.backBtnIcon.visible = false;
+		elements.backBtnLabel.visible = false;
+	}
 	updateUI();
 }
 
@@ -98,7 +105,7 @@ function onActionLock(event) {
 	var msg = "Locks the tenant account preventing its users from logging in.\n"
 	msg += "The lock will remain in place until it is removed. Users with active sessions will be unaffected until subsequent login attempts."
 
-	var tenant = scopes.svySecurity.getTenant();
+	var tenant = scopes.svySecurity.getTenant(foundset.tenant_name);
 	var answer = plugins.dialogs.showQuestionDialog("Do you wish to lock the Tenant " + tenant.getDisplayName(), msg, "Yes", "No");
 	if (answer == "Yes") {
 		tenant.lock();
@@ -114,7 +121,7 @@ function onActionLock(event) {
  * @properties={typeid:24,uuid:"AB106273-1B8B-4BF5-A343-7E148F1F7A38"}
  */
 function onActionUnlock(event) {
-	var tenant = scopes.svySecurity.getTenant();
+	var tenant = scopes.svySecurity.getTenant(foundset.tenant_name);
 	tenant.unlock()
 	updateUI();
 }
@@ -124,7 +131,7 @@ function onActionUnlock(event) {
  * @properties={typeid:24,uuid:"FDB4C889-7BB5-415F-A4C3-A878F8AADED4"}
  */
 function updateUI() {
-	var tenant = scopes.svySecurity.getTenant();
+	var tenant = scopes.svySecurity.getTenant(foundset.tenant_name);
 	if (tenant) {
 		m_TenantUserCount = tenant.getUsers().length;
 		m_ActiveSessionsCount = tenant.getActiveSessions().length;
@@ -188,7 +195,7 @@ function updateUI() {
         }
 
         // cannot lock the logged tenant
-        var loggedTenant = scopes.svySecurity.getTenant();
+        var loggedTenant = scopes.svySecurity.getTenant(foundset.tenant_name);
         if (loggedTenant && loggedTenant.getName() == foundset.tenant_name) {
         	elements.faUnlocked.enabled = false;
         } else {
@@ -226,4 +233,16 @@ function onActionEditDisplayName(event, dataTarget) {
             }
         }
     }
+}
+
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"D5555824-E8C6-480A-8BA4-7934D4BD490A"}
+ */
+function onActionBack(event, dataTarget) {
+	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.TENANTS);
+	scopes.svyNavigation.open(item);
+
 }

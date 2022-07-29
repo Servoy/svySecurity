@@ -24,6 +24,13 @@ var newUserName = '';
  */
 function onShow(firstShow, event) {
 	scopes.svySecurityUX.setSelectedUser(foundset.user_name);
+	if(scopes.svySecurityUX.selectedTenant){
+		elements.backBtnIcon.visible = true;
+		elements.backBtnLabel.visible = true;
+	}else{
+		elements.backBtnIcon.visible = false;
+		elements.backBtnLabel.visible = false;
+	}
 }
 
 /**
@@ -96,7 +103,12 @@ function onDataChangeUser(oldValue, newValue, event) {
 function createUser() {
 
 	if (newUserName) {
+		// will be null if the user is not logged in
 		var tenant = scopes.svySecurity.getTenant();
+		if (!tenant) {
+			// check the selected tenant in svySecurityConsoleUX: how ?
+			tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
+		}
 		try {
 
 			var user = tenant.createUser(newUserName)
@@ -173,7 +185,7 @@ function onActionDeleteUser() {
 
 	var answer = plugins.dialogs.showQuestionDialog("Do you wish to delete the User " + user_name, msg, "Yes", "No");
 	if (answer == "Yes") {
-		var tenant = scopes.svySecurity.getTenant();
+		var tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
 		tenant.deleteUser(foundset.user_name);
 	}
 }
@@ -199,4 +211,32 @@ function onCellClick(foundsetindex, columnindex, record, event) {
 		var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.USER);
 		scopes.svyNavigation.open(item, foundset.getSelectedRecord(), scopes.svyNavigation.NAVIGATION_SELECTION_TYPE.LOAD_RECORDS);
 	}
+}
+
+/**
+ * @param {JSEvent} event
+ * @param {string} dataTarget
+ *
+ * @properties={typeid:24,uuid:"14220F72-32A9-4B7B-8E31-D13524C768E4"}
+ */
+function onActionBack(event, dataTarget) {
+	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.TENANT);
+	scopes.svyNavigation.open(item);
+
+}
+
+/**
+ * Handle hide window.
+ *
+ * @param {JSEvent} event the event that triggered the action
+ *
+ * @return {Boolean}
+ *
+ * @private
+ *
+ * @properties={typeid:24,uuid:"1CA1D7E3-0F84-4BF7-822C-28390E08BF19"}
+ */
+function onHide(event) {
+	resetNewUserFields();
+	return true
 }

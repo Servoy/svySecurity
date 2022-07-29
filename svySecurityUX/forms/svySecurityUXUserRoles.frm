@@ -1,6 +1,6 @@
 customProperties:"formComponent:false,\
 useCssPosition:true",
-dataSource:"db:/svy_security/users",
+dataSource:"db:/svy_security/tenants",
 encapsulation:60,
 items:[
 {
@@ -39,10 +39,7 @@ floatingFilter:"true",
 floatingFiltersHeight:"40",
 headerHeight:"10"
 },
-myFoundset:{
-foundsetSelector:"db:/svy_security/roles",
-loadAllRecords:"true"
-},
+myFoundset:{"foundsetSelector":"tenants_to_roles_ux"},
 onCellClick:"225DBC59-1682-4542-BEB9-28234B40D4D1",
 responsiveHeight:0,
 rowHeight:35,

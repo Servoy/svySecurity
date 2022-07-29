@@ -234,6 +234,48 @@ uuid:"C887D41A-C961-4DCC-AF16-E3C40E7A5DAE",
 visible:false
 },
 {
+cssPosition:"18,15,-1,-1,36,20",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"20",
+left:"-1",
+right:"15",
+top:"18",
+width:"36"
+},
+onActionMethodID:"20213EBD-317C-4F11-AF97-6F1C6A45F4B6",
+styleClass:"text-tertiary clickable",
+text:"Back"
+},
+name:"backBtnLabel",
+styleClass:"text-tertiary clickable",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"D635F440-3A2C-4C9F-8205-07C59D7C06F9"
+},
+{
+cssPosition:"16,54,-1,-1,25,25",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"25",
+left:"-1",
+right:"54",
+top:"16",
+width:"25"
+},
+imageStyleClass:"fas fa-long-arrow-alt-left fa-lg text-tertiary",
+onActionMethodID:"20213EBD-317C-4F11-AF97-6F1C6A45F4B6",
+styleClass:"default-align clickable"
+},
+name:"backBtnIcon",
+styleClass:"default-align clickable",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"F3645DE7-6D17-440C-8FD2-A00B2723EB9C"
+},
+{
 height:200,
 partType:5,
 typeid:19,
@@ -242,6 +284,7 @@ uuid:"F92C7689-81E3-491F-9677-E649F92A11AB"
 ],
 name:"svySecurityUXRoles",
 navigatorID:"-1",
+onHideMethodID:"96E03AA6-1CF0-421D-9599-933CEC4F87EB",
 onRecordSelectionMethodID:"4FE15ED6-28AD-40DE-9CDD-63C5ED8D6310",
 onShowMethodID:"1F50744B-2663-4CE4-97CD-D72738894D7B",
 showInMenu:true,

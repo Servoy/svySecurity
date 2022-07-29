@@ -25,6 +25,29 @@ typeid:47,
 uuid:"10BD6E6A-E680-4C25-BE98-53268A174F56"
 },
 {
+cssPosition:"18,15,-1,-1,36,20",
+formIndex:2,
+json:{
+cssPosition:{
+bottom:"-1",
+height:"20",
+left:"-1",
+right:"15",
+top:"18",
+width:"36"
+},
+formIndex:2,
+onActionMethodID:"14220F72-32A9-4B7B-8E31-D13524C768E4",
+styleClass:"text-tertiary clickable",
+text:"Back"
+},
+name:"backBtnLabel",
+styleClass:"text-tertiary clickable",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"1AA4DCD9-1213-425E-B931-F6DF2E14DF4F"
+},
+{
 cssPosition:"-1,-1,10,278,25,40",
 json:{
 alignment:"center",
@@ -95,6 +118,7 @@ visible:false
 },
 {
 cssPosition:"10,0,-1,0,0,50",
+formIndex:1,
 json:{
 cssPosition:{
 bottom:"-1",
@@ -104,6 +128,7 @@ right:"0",
 top:"10",
 width:"0"
 },
+formIndex:1,
 styleClass:"padding-left-10  text-primary border-primary h2",
 text:"Users"
 },
@@ -172,6 +197,7 @@ right:"0",
 top:"50",
 width:"0"
 },
+formIndex:0,
 gridOptions:{
 floatingFilter:"true",
 floatingFiltersHeight:"40",
@@ -257,6 +283,29 @@ typeid:19,
 uuid:"DEBF1A30-9FC0-4531-A503-7B28C5E43427"
 },
 {
+cssPosition:"16,54,-1,-1,25,25",
+formIndex:3,
+json:{
+cssPosition:{
+bottom:"-1",
+height:"25",
+left:"-1",
+right:"54",
+top:"16",
+width:"25"
+},
+formIndex:3,
+imageStyleClass:"fas fa-long-arrow-alt-left fa-lg text-tertiary",
+onActionMethodID:"14220F72-32A9-4B7B-8E31-D13524C768E4",
+styleClass:"default-align clickable"
+},
+name:"backBtnIcon",
+styleClass:"default-align clickable",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"EC5DD96D-2141-4180-A480-BCEAC4F3BA77"
+},
+{
 cssPosition:"-1,-1,10,110,25,40",
 json:{
 alignment:"center",
@@ -284,6 +333,7 @@ uuid:"F592145F-C45F-46C6-A362-9151AEA30DBE"
 ],
 name:"svySecurityUXUsers",
 navigatorID:"-1",
+onHideMethodID:"1CA1D7E3-0F84-4BF7-822C-28390E08BF19",
 onRecordSelectionMethodID:"3A355438-1518-41B9-9DD7-C4816547FF2A",
 onShowMethodID:"20AF5EC1-DC87-45E4-96DD-00E2491C83EB",
 showInMenu:true,

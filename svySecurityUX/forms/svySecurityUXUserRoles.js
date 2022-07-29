@@ -9,7 +9,7 @@
  * @properties={typeid:24,uuid:"5CBEE7CC-44BC-4007-B15D-E3143593CADB"}
  */
 function onShow(firstShow, event) {
-	elements.table.myFoundset.foundset.loadRecords();
+	// elements.table.myFoundset.foundset.loadRecords();
 }
 
 
@@ -31,7 +31,7 @@ function onCellClick(foundsetindex, columnindex, record, event) {
 	var column = elements.table.getColumn(columnindex);
 
 	if (column.id === "granted") {
-		var user = scopes.svySecurity.getUser(foundset.user_name);
+		var user = scopes.svySecurity.getUser(foundset.tenants_to_users_ux.user_name, foundset.tenant_name);
 		if (user) {
 			var roleName = record.role_name;
 			
