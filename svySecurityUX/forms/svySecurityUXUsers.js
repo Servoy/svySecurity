@@ -91,7 +91,6 @@ function onActionSaveUser(event) {
  * @properties={typeid:24,uuid:"72F57EC5-B60D-4491-B4A1-86ABFAAE0639"}
  */
 function onDataChangeUser(oldValue, newValue, event) {
-	// TODO Auto-generated method stub
 	return true;
 }
 

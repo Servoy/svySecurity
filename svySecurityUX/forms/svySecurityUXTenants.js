@@ -54,8 +54,8 @@ function addNewTenant(recordMaster, makeSubTenant) {
  * @return
  * @properties={typeid:24,uuid:"56991A57-3607-4EA7-9CC0-3B04B89ADCC1"}
  */
-function selectedTenant() {
-	return scopes.svySecurityUX.selectedTenant = foundset.tenant_name;
+function setSelectedTenant() {
+	scopes.svySecurityUX.selectedTenant = foundset.tenant_name;
 }
 
 /**
@@ -105,7 +105,7 @@ function cloneTenant(event) {
  * @properties={typeid:24,uuid:"973B430C-259E-45BA-82D4-46C497E412E4"}
  */
 function onCellDoubleClick(foundsetindex, columnindex, record, event) {
-	selectedTenant();
+	setSelectedTenant();
 	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.TENANT);
 	scopes.svyNavigation.open(item);
 }
