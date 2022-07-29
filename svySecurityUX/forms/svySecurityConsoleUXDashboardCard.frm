@@ -4,22 +4,22 @@ dataSource:"db:/svy_security/tenants",
 encapsulation:108,
 items:[
 {
-cssPosition:"56%,10,-1,10,0,30",
+cssPosition:"56%,11,-1,11,0,30",
 formIndex:3,
 json:{
 cssPosition:{
 bottom:"-1",
 height:"30",
-left:"10",
-right:"10",
+left:"11",
+right:"11",
 top:"56%",
 width:"0"
 },
 formIndex:3,
-styleClass:"text-center cardText_color"
+styleClass:"text-center"
 },
 name:"cardName",
-styleClass:"text-center cardText_color",
+styleClass:"text-center",
 typeName:"bootstrapcomponents-label",
 typeid:47,
 uuid:"1B72C487-E54D-45D8-A517-42F601C25EA8"
@@ -42,32 +42,30 @@ right:"-1",
 top:"20",
 width:"40"
 },
-formIndex:2,
-styleClass:"default-align cardText_color"
+formIndex:2
 },
 name:"cardIcon",
-styleClass:"default-align cardText_color",
 typeName:"bootstrapcomponents-label",
 typeid:47,
 uuid:"8353CFDF-1132-4384-8EE2-6CAAC1B016FD"
 },
 {
-cssPosition:"-1,10,50%,10,0,30",
+cssPosition:"-1,11,50%,11,0,30",
 formIndex:1,
 json:{
 cssPosition:{
 bottom:"50%",
 height:"30",
-left:"10",
-right:"10",
+left:"11",
+right:"11",
 top:"-1",
 width:"0"
 },
 formIndex:1,
-styleClass:"text-center h1 cardText_color"
+styleClass:"text-center h1"
 },
 name:"cardCount",
-styleClass:"text-center h1 cardText_color",
+styleClass:"text-center h1",
 typeName:"bootstrapcomponents-datalabel",
 typeid:47,
 uuid:"90AB40E7-DB2C-4183-B05A-D54905781233"

@@ -39,12 +39,15 @@ cardContainer:{
 styleClass:"default-align border bg-primary"
 },
 cardCount:{
-dataProviderID:"userCountTotal"
+dataProviderID:"userCountTotal",
+styleClass:"text-center h1 bg-primary"
 },
 cardIcon:{
-imageStyleClass:"fas fa-users fa-2x"
+imageStyleClass:"fas fa-users fa-2x",
+styleClass:"default-align bg-primary"
 },
 cardName:{
+styleClass:"text-center bg-primary",
 text:"Users"
 },
 svy_form:"DDF05AFF-56B3-4210-8F13-FB30DE419613"
@@ -57,12 +60,12 @@ size:{
 height:200,
 width:320
 },
-styleClass:"svy-formcomponent full-width"
+styleClass:"svy-formcomponent svy-securityux-width-95"
 },
 location:"377,127",
 name:"frmUser",
 size:"320,200",
-styleClass:"svy-formcomponent full-width",
+styleClass:"svy-formcomponent svy-securityux-width-95",
 typeName:"servoycore-formcomponent",
 typeid:47,
 uuid:"076FC9D7-CA25-45E8-A45B-F5A2177E82D8"
@@ -88,13 +91,15 @@ cardContainer:{
 styleClass:"default-align border bg-danger"
 },
 cardCount:{
-dataProviderID:"tenantsCount"
+dataProviderID:"tenantsCount",
+styleClass:"text-center h1 bg-danger"
 },
 cardIcon:{
 imageStyleClass:"fas fa-house-user fa-2x",
-styleClass:"default-align text-center cardText_color"
+styleClass:"default-align text-center bg-danger"
 },
 cardName:{
+styleClass:"text-center bg-danger",
 text:"Tenants"
 },
 svy_form:"DDF05AFF-56B3-4210-8F13-FB30DE419613"
@@ -107,12 +112,12 @@ size:{
 height:180,
 width:280
 },
-styleClass:"svy-formcomponent full-width"
+styleClass:"svy-formcomponent svy-securityux-width-95"
 },
 location:"82,269",
 name:"frmTenant",
 size:"280,180",
-styleClass:"svy-formcomponent full-width",
+styleClass:"svy-formcomponent svy-securityux-width-95",
 typeName:"servoycore-formcomponent",
 typeid:47,
 uuid:"EE1D80F1-5010-40F0-8C89-C69AED00E14F"
@@ -138,12 +143,15 @@ cardContainer:{
 styleClass:"default-align border bg-success"
 },
 cardCount:{
-dataProviderID:"sessionCount"
+dataProviderID:"sessionCount",
+styleClass:"text-center h1 bg-success"
 },
 cardIcon:{
-imageStyleClass:"fas fa-user-clock fa-2x"
+imageStyleClass:"fas fa-user-clock fa-2x",
+styleClass:"default-align bg-success"
 },
 cardName:{
+styleClass:"text-center bg-success",
 text:"Active Sessions"
 },
 svy_form:"DDF05AFF-56B3-4210-8F13-FB30DE419613"
@@ -156,12 +164,12 @@ size:{
 height:200,
 width:320
 },
-styleClass:"svy-formcomponent full-width"
+styleClass:"svy-formcomponent svy-securityux-width-95"
 },
 location:"616,135",
 name:"frmActiveSession",
 size:"320,200",
-styleClass:"svy-formcomponent full-width",
+styleClass:"svy-formcomponent svy-securityux-width-95",
 typeName:"servoycore-formcomponent",
 typeid:47,
 uuid:"47E0CD2E-D702-4F52-A426-EB7D3985B107"
@@ -227,7 +235,7 @@ uuid:"332A7783-1A84-417C-BFC4-34F45C086A1C"
 },
 {
 customProperties:"attributes:{\
-class:\"row space_between_rows\"\
+class:\"row svy-securityux-margin-top-100\"\
 },\
 properties:{\
 packagename:\"12grid\",\
@@ -482,7 +490,7 @@ typeid:46,
 uuid:"B8E2F01F-186B-4247-B418-E43574F24992"
 }
 ],
-name:"svySecurityConsoleUXDashboard",
+name:"svySecurityUXDashboard",
 navigatorID:"-1",
 onShowMethodID:"EAF7A234-6C6C-42E1-96A7-8CE67E66CB41",
 showInMenu:true,

@@ -31,14 +31,9 @@ var SVY_SECURITY_UX = {
 	TENANT: "svySecurityUXTenant",
 	TENANT_ROLES: "svySecurityUXTenantRolesContainer",
 	TENANT_USERS: "svySecurityUXTenantUsersContainer",
-	USER: "svySecurityUXUser"
-}
-/**
- * @properties={typeid:35,uuid:"B5D58959-40F3-4F4E-BD0C-F1FAEA965F7E",variableType:-4}
- */
-var SVY_SECURITY_CONSOLE_UX = {
-	HOME: 'svySecurityConsoleUXHome',
-	TENANTS: 'svySecurityConsoleUXMainTenants'
+	USER: "svySecurityUXUser",
+	HOME: 'svySecurityUXHome',
+	TENANTS: 'svySecurityUXMainTenants'
 }
 
 /**

@@ -2,12 +2,13 @@
  * @properties={typeid:35,uuid:"74A4F192-BAA2-482F-82F1-DA4EBF89AB25",variableType:-4}
  */
 var NAVBAR_ACTIONS = {
-	HOME: "svySecurityConsoleUXHome",
+	HOME: "svySecurityUXHome"
 }
 
 /**
  * @properties={typeid:24,uuid:"35E41456-7B79-45A6-9BC8-56B4A4F85491"}
  * @override
+ * @return
  */
 function loadNavbarItems() {
 	var menuItems = [];

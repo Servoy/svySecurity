@@ -66,6 +66,6 @@ function onShow(firstShow, event) {
 	updateTenantCount();
 	updateUserCount();
 	updateSessionCount();
-	scopes.svySecurityConsoleUX.createChartTenantsWithMostUsers(elements.leftChart);
-	scopes.svySecurityConsoleUX.createChartTotalUsageOverTimeMonths(elements.rigthChart);
+	scopes.svySecurityUXCharts.createChartTenantsWithMostUsers(elements.leftChart);
+	scopes.svySecurityUXCharts.createChartTotalUsageOverTimeMonths(elements.rigthChart);
 }

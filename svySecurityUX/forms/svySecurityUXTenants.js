@@ -2,7 +2,7 @@
  * @protected 
  * @type {String}
  *
- * @properties={typeid:35,uuid:"B31D85C3-2CBE-40EE-927A-E193E35E862F"}
+ * @properties={typeid:35,uuid:"49AD6498-B0AF-458B-9779-7D8D28265A85"}
  */
 var labelAction = null;
 
@@ -10,14 +10,14 @@ var labelAction = null;
  * @protected
  * @type {String}
  *
- * @properties={typeid:35,uuid:"5B8CB37B-C12E-4D35-ACDC-8928CE0DCEDD"}
+ * @properties={typeid:35,uuid:"F33D39C5-87E2-421D-AEFC-715693FAA4BD"}
  */
 var name = null;
 
 /**
  * @protected
  * @type {String}
- * @properties={typeid:35,uuid:"D4D9C299-E596-49DC-BAE1-22CB4D17DD23"}
+ * @properties={typeid:35,uuid:"BE4CCAD6-3192-44B8-8C78-4193DFD29A0B"}
  */
 var target = null;
 
@@ -26,7 +26,7 @@ var target = null;
  * @param {Boolean} [makeSubTenant]
  * @public
  *
- * @properties={typeid:24,uuid:"004C04AF-B84A-42A6-84E9-43059185FC12"}
+ * @properties={typeid:24,uuid:"3426CF21-3FD2-4CE5-8659-1C38110EEC07"}
  */
 function addNewTenant(recordMaster, makeSubTenant) {
 	if (!name) {
@@ -52,7 +52,7 @@ function addNewTenant(recordMaster, makeSubTenant) {
 /**
  * @protected 
  * @return
- * @properties={typeid:24,uuid:"46F848EA-EC7E-4DD3-9189-9FC4FB305B7A"}
+ * @properties={typeid:24,uuid:"56991A57-3607-4EA7-9CC0-3B04B89ADCC1"}
  */
 function selectedTenant() {
 	return scopes.svySecurityUX.selectedTenant = foundset.tenant_name;
@@ -62,7 +62,7 @@ function selectedTenant() {
  * @param {JSEvent} event
  * @param {string} dataTarget
  * @private
- * @properties={typeid:24,uuid:"50EED977-E37A-4AD7-B42A-0A5F73C3DBC7"}
+ * @properties={typeid:24,uuid:"A22E3AB6-84EB-456A-9322-75C724A782BA"}
  */
 function createTenant(event, dataTarget) {
 	showHideElements();
@@ -73,7 +73,7 @@ function createTenant(event, dataTarget) {
 /**
  * @param {JSEvent} event the event that triggered the action
  *@private
- * @properties={typeid:24,uuid:"4412EE02-8E6C-4238-B912-D0E609CD5DA3"}
+ * @properties={typeid:24,uuid:"AE08DBFD-6B4F-47EB-8DAA-7C8EF92615FC"}
  */
 function createSubTenant(event) {
 	showHideElements();
@@ -84,7 +84,7 @@ function createSubTenant(event) {
 /**
  * @param {JSEvent} event the event that triggered the action
  * @private
- * @properties={typeid:24,uuid:"4DCFB776-3D83-4D4D-B1A4-3AEF91C962AB"}
+ * @properties={typeid:24,uuid:"18C5F305-6B43-46D8-9CAA-823B81C89FD9"}
  */
 function cloneTenant(event) {
 	showHideElements();
@@ -102,7 +102,7 @@ function cloneTenant(event) {
  * @param {JSRecord} [record]
  * @param {JSEvent} [event]
  *
- * @properties={typeid:24,uuid:"11DD8978-AA54-4159-9D31-F30871F2329A"}
+ * @properties={typeid:24,uuid:"973B430C-259E-45BA-82D4-46C497E412E4"}
  */
 function onCellDoubleClick(foundsetindex, columnindex, record, event) {
 	selectedTenant();
@@ -115,17 +115,17 @@ function onCellDoubleClick(foundsetindex, columnindex, record, event) {
  * @param {JSEvent} event
  * @param {string} dataTarget
  *
- * @properties={typeid:24,uuid:"0D66AB2F-F838-47BD-9094-47D9D9E4FE2B"}
+ * @properties={typeid:24,uuid:"0357891F-B55E-462B-94DC-4C057A85C32C"}
  */
 function onActionBack(event, dataTarget) {
-	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityConsoleUX.SVY_SECURITY_CONSOLE_UX.HOME);
+	var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.HOME);
 	scopes.svyNavigation.open(item);
 }
 
 /**
  * @param event
  * @private
- * @properties={typeid:24,uuid:"45CBA536-1044-4A20-8A80-637189DF43D8"}
+ * @properties={typeid:24,uuid:"239EA149-BB12-4F22-B824-CDC9FDC4F4DB"}
  */
 function onActionDelete(event) {
 	if (!tenant_name) {
@@ -150,7 +150,7 @@ function onActionDelete(event) {
 
 /**
  * @protected 
- * @properties={typeid:24,uuid:"DC8B783D-D468-4B20-86FE-C2154678BD3D"}
+ * @properties={typeid:24,uuid:"5D23A0C4-713E-4501-B528-4F7DDC0300BE"}
  */
 function showHideElements() {
 	elements.labelAction.visible = true;
@@ -174,7 +174,7 @@ function showHideElements() {
  * @param {JSEvent} event
  * @param {string} dataTarget
  *
- * @properties={typeid:24,uuid:"E50A2561-C4AE-47A7-A4BB-C7196D2D0547"}
+ * @properties={typeid:24,uuid:"89B7FA8C-A7C3-4DBF-9AF1-5E5440BE40BD"}
  */
 function onActionSave(event, dataTarget) {
 	if (target == 'new') {
@@ -194,7 +194,7 @@ function onActionSave(event, dataTarget) {
 
 /**
  * @protected 
- * @properties={typeid:24,uuid:"8CCC5EF4-6F92-4468-B071-39E2192F9D4A"}
+ * @properties={typeid:24,uuid:"6A246D19-1031-42D1-8D4E-8C848337A008"}
  */
 function resetFields() {
 	name = null;
@@ -221,7 +221,7 @@ function resetFields() {
  * @param {JSEvent} event
  * @param {string} dataTarget
  *
- * @properties={typeid:24,uuid:"837B15B7-4552-40F7-B04C-427E28E84B0F"}
+ * @properties={typeid:24,uuid:"F123AB71-00DA-4A17-8932-1AAE932472F3"}
  */
 function onActionCancel(event, dataTarget) {
 	resetFields();
@@ -236,7 +236,7 @@ function onActionCancel(event, dataTarget) {
  *
  * @private
  *
- * @properties={typeid:24,uuid:"2C29774C-4DB6-4C60-B209-0B1FD1C3C180"}
+ * @properties={typeid:24,uuid:"06280C18-EB29-497F-86B4-A4A71EB86F7F"}
  */
 function onHide(event) {
 	resetFields();
