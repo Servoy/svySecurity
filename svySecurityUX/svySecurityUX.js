@@ -33,7 +33,7 @@ var SVY_SECURITY_UX = {
 	TENANT_USERS: "svySecurityUXTenantUsersContainer",
 	USER: "svySecurityUXUser",
 	HOME: 'svySecurityUXHome',
-	TENANTS: 'svySecurityUXMainTenants'
+	TENANTS: 'svySecurityUXTenantsContainer'
 }
 
 /**

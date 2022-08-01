@@ -30,7 +30,7 @@ typeid:47,
 uuid:"CBDD0570-1A4E-416B-930C-7456494A6480"
 }
 ],
-name:"svySecurityUXMainTenants",
+name:"svySecurityUXTenantsContainer",
 navigatorID:"-1",
 showInMenu:true,
 styleClass:"bg-tertiary",
