@@ -84,7 +84,6 @@ function onActionSaveRole(event) {
  * @properties={typeid:24,uuid:"D7A22947-5F39-4B4E-9CCD-4034706A3F9A"}
  */
 function onDataChangeRole(oldValue, newValue, event) {
-	// TODO Auto-generated method stub
 	return true;
 }
 
