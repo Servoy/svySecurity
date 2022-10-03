@@ -6,6 +6,9 @@
  */
 function onSolutionOpen(arg, queryParams) {
 	
+	//
+	application.output("Logging into svySecurityConsoleUX version : " + scopes.svySecurity.getVersion(), LOGGINGLEVEL.DEBUG)
+	
 	// autosave false
 	databaseManager.setAutoSave(false);
 	
