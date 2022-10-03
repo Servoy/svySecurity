@@ -41,7 +41,20 @@ function onActionSignIn(event) {
 
 	var userUID = security.getUserUID(userName);
 	if (!userUID) {
-		showError('Please, check the username and password and try again.');
+		// check if there are users within the Security Group
+		if (security.getUsers().getMaxRowIndex() < 1) {
+			if (application.isInDeveloper()) {
+				plugins.dialogs.showWarningDialog("User register is empty", "Cannot login because there are no Users registered in the Resource project. You must create at least one User within the Administrators security group.");
+				showError('User registry is empty, check the <b>User and group Security</b> under the <b>Resources</b> node.');
+				application.showURL("https://wiki.servoy.com/display/DOCS/Defining+User+and+Group+Security", "_blank");
+			} else {
+				showError('User registry is empty, please contact the site administrator.');
+			}
+		} else {
+			
+			// User doesn't exists
+			showError('Please, check the username and password and try again.');
+		}
 		elements.fldUsername.requestFocus();
 		return;
 	}
