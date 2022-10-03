@@ -379,6 +379,7 @@ top:"-1",
 width:"650"
 },
 dataProviderID:"name",
+onActionMethodID:"89B7FA8C-A7C3-4DBF-9AF1-5E5440BE40BD",
 visible:false
 },
 name:"name",
