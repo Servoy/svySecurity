@@ -98,6 +98,19 @@ dataprovider:"master_tenant_name",
 headerTitle:"Master",
 id:"master",
 svyUUID:"1A5853F4-1E2B-4984-A249-01728130B421"
+},
+{
+autoResize:false,
+enableResize:false,
+enableRowGroup:false,
+enableSort:false,
+enableToolPanel:false,
+id:"edit",
+maxWidth:50,
+minWidth:50,
+styleClass:"fas fa-pencil-alt clickable",
+svyUUID:"35A3DF04-3A39-4B77-852A-86D531C7F164",
+width:50
 }
 ],
 cssPosition:{
@@ -112,6 +125,7 @@ gridOptions:{
 floatingFilter:"true",
 floatingFiltersHeight:"40"
 },
+onCellClick:"07EB8578-68FE-4AE0-8B82-1F1289AD908A",
 onCellDoubleClick:"973B430C-259E-45BA-82D4-46C497E412E4",
 styleClass:"ag-theme-servoy",
 toolPanelConfig:{

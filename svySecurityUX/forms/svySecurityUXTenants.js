@@ -92,6 +92,29 @@ function cloneTenant(event) {
 	labelAction = 'Clone Name';
 }
 
+
+/**
+ * Called when the mouse is clicked on a row/cell (foundset and column indexes are given).
+ * the foundsetindex is always -1 when there are grouped rows
+ *
+ * @param {number} foundsetindex
+ * @param {number} [columnindex]
+ * @param {JSRecord} [record]
+ * @param {JSEvent} [event]
+ *
+ * @protected
+ *
+ * @properties={typeid:24,uuid:"07EB8578-68FE-4AE0-8B82-1F1289AD908A"}
+ */
+function onCellClick(foundsetindex, columnindex, record, event) {
+	var column = elements.table.getColumn(columnindex);
+	if (column.id == "edit") {
+		setSelectedTenant();
+		var item = new scopes.svyNavigation.NavigationItem(scopes.svySecurityUX.SVY_SECURITY_UX.TENANT);
+		scopes.svyNavigation.open(item);
+	}
+}
+
 /**
  * @protected 
  * Called when the mouse is clicked on a row/cell (foundset and column indexes are given).
