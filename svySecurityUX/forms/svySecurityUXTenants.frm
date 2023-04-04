@@ -75,6 +75,9 @@ cssPosition:"50,0,60,0,200,100",
 json:{
 columns:[
 {
+columnDef:{
+floatingFilter:"true"
+},
 dataprovider:"tenant_name",
 filterType:"TEXT",
 headerTitle:"Name",

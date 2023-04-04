@@ -34,6 +34,9 @@ cssPosition:"50,0,60,0,0,50",
 json:{
 columns:[
 {
+columnDef:{
+floatingFilter:"true"
+},
 dataprovider:"display_name",
 filterType:"TEXT",
 id:"permission",

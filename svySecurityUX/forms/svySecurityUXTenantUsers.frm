@@ -49,6 +49,9 @@ cssPosition:"50,0,60,0,0,50",
 json:{
 columns:[
 {
+columnDef:{
+floatingFilter:"true"
+},
 dataprovider:"user_name",
 filterType:"TEXT",
 svyUUID:"2FD29696-090D-4A72-887B-7A763EBC27C9"

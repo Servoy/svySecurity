@@ -8,6 +8,9 @@ cssPosition:"50,0,60,0,0,50",
 json:{
 columns:[
 {
+columnDef:{
+floatingFilter:"true"
+},
 dataprovider:"display_name",
 filterType:"TEXT",
 id:"role",
@@ -39,7 +42,9 @@ floatingFilter:"true",
 floatingFiltersHeight:"40",
 headerHeight:"10"
 },
-myFoundset:{"foundsetSelector":"tenants_to_roles_ux"},
+myFoundset:{
+foundsetSelector:"tenants_to_roles_ux"
+},
 onCellClick:"225DBC59-1682-4542-BEB9-28234B40D4D1",
 responsiveHeight:0,
 rowHeight:35,

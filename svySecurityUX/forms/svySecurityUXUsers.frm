@@ -166,11 +166,17 @@ cssPosition:"50,0,60,0,0,50",
 json:{
 columns:[
 {
+columnDef:{
+floatingFilter:"true"
+},
 dataprovider:"user_name",
 filterType:"TEXT",
 svyUUID:"1EF61B9F-673D-4917-A0F1-793B8257FC97"
 },
 {
+columnDef:{
+floatingFilter:"true"
+},
 dataprovider:"email",
 filterType:"TEXT",
 svyUUID:"C1F40363-3074-439A-A7C9-10404A519C61"

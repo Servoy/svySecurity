@@ -174,6 +174,9 @@ cssPosition:"50,0,60,0,0,50",
 json:{
 columns:[
 {
+columnDef:{
+floatingFilter:"true"
+},
 dataprovider:"display_name",
 filterType:"TEXT",
 svyUUID:"15A31721-A9AA-49CE-87C4-12471BAA74B1"
