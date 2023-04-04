@@ -922,22 +922,34 @@ function Tenant(record) {
      * @return {Boolean} True if the user is deleted, otherwise false.
      */
     this.deleteUser = function(user) {
+    	/** @type {String} */
         var userName = null;
 
         if (user instanceof String) {
             userName = user;
+            user = this.getUser(userName);
         } else {
             userName = user.getUserName();
-
-            if (user.getActiveSessions().length) {
-                logWarning(utils.stringFormat('Could not delete user "%1$s". Has active sessions.', [userName]));
-                return false;
-            }
-
+            
+            // do not delete if user is associated with a different tenant
             if (user.getTenant().getName() != this.getName()) {
                 logWarning(utils.stringFormat('Could not delete user "%1$s". The provided user instance is associated with a different tenant.', [userName]));
                 return false;
             }
+        }
+        
+        // do not delete if user has any active session
+        if (user.getActiveSessions().length) {
+            logWarning(utils.stringFormat('Could not delete user "%1$s". Has active sessions.', [userName]));
+            return false;
+        }
+        
+        // do not allow to delete the logged user. 
+        // note it should never get here since there is already a check for active sessions
+        var loggedUser = getUser();
+        if (loggedUser && loggedUser.getUserName() === userName) {
+            logWarning(utils.stringFormat('Could not delete the logged user "%1$s". Is logged in this session.', [userName]));
+            return false;
         }
 
         var fs = datasources.db.svy_security.users.getFoundSet();

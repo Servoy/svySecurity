@@ -188,7 +188,15 @@ function onActionDeleteUser() {
 		if (!tenant) {
 			tenant = scopes.svySecurity.getTenant(scopes.svySecurityUX.selectedTenant);
 		}
-		tenant.deleteUser(foundset.user_name);
+		if (!tenant.deleteUser(foundset.user_name)) {
+			var user = tenant.getUser(foundset.user_name)
+			var loggedUser = scopes.svySecurity.getUser();
+			if (user && loggedUser && user.getUserName() === loggedUser.getUserName()) {
+				plugins.dialogs.showWarningDialog("Cannot delete the User","Cannot delete the logged User " + loggedUser.getUserName());
+			} else if (user.getActiveSessions().length) {
+				plugins.dialogs.showWarningDialog("Cannot delete the User", "User has active sessions");
+			}
+		}
 	}
 }
 
