@@ -6,7 +6,6 @@ items:[
 {
 cssPosition:"-1,30,10,-1,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",

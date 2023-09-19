@@ -50,7 +50,6 @@ uuid:"1AA4DCD9-1213-425E-B931-F6DF2E14DF4F"
 {
 cssPosition:"-1,-1,10,278,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",
@@ -231,7 +230,6 @@ uuid:"9A9387F2-9920-494D-9509-ADDD64DD3FD7"
 {
 cssPosition:"-1,40,10,-1,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",
@@ -258,7 +256,6 @@ visible:false
 {
 cssPosition:"-1,15,10,-1,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",
@@ -314,7 +311,6 @@ uuid:"EC5DD96D-2141-4180-A480-BCEAC4F3BA77"
 {
 cssPosition:"-1,-1,10,110,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",

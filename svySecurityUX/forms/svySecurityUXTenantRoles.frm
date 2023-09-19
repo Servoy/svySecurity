@@ -27,7 +27,6 @@ uuid:"213148F7-E128-44F5-8892-5B0C6E352AA7"
 {
 cssPosition:"-1,30,10,-1,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",

@@ -6,7 +6,6 @@ items:[
 {
 cssPosition:"-1,-1,10,140,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",
@@ -253,7 +252,6 @@ uuid:"822D97D7-89DB-452F-8752-B4DCE93722D5"
 {
 cssPosition:"-1,-1,10,710,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",
@@ -298,7 +296,6 @@ visible:false
 {
 cssPosition:"-1,-1,10,530,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",
@@ -322,7 +319,6 @@ uuid:"AB5E9BF2-1419-470B-8DD8-14D8B62849C7"
 {
 cssPosition:"-1,-1,10,320,25,40",
 json:{
-alignment:"center",
 cssPosition:{
 bottom:"10",
 height:"40",
