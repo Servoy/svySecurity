@@ -7,6 +7,7 @@
     "wikiUrl": "https://github.com/Servoy/svySecurity/wiki",
     "sourceUrl" : "https://github.com/Servoy/svySecurity",
     "releases" : [
+        {"version":"2024.3.0","url":"https://github.com/Servoy/svySecurity/releases/download/v2024.3.0/svySecurityConsoleUX.servoy", "servoy-version":"2024.3.0", "dependency":"svyNavigationUX#>=2022.3.0,svySecurityUX#>=2024.3.0,bootstrapextracomponents#>=2024.3.0,aggrid#>=2024.3.0,aggridservice#>=1.3.5,webnotifications#>=2023.6.0,fontawesome#>=5.7.2,svychartjs#>=2024.3.0"},
         {"version":"2022.3.0","url":"https://github.com/Servoy/svySecurity/releases/download/v2022.3.0/svySecurityConsoleUX.servoy", "servoy-version":"2022.3.0", "dependency":"svyNavigationUX#>=2022.3.0,svySecurityUX#>=2022.3.0,bootstrapextracomponents#>=2022.3.0,aggrid#>=2022.3.0,aggridservice#>=1.3.2,webnotifications#>=2022.3.0,fontawesome#>=5.7.2,svychartjs#>=2022.3.0"}
     ]
 }
