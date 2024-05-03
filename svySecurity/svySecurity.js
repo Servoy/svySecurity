@@ -201,7 +201,7 @@ function login(user, userUid, permissionsToApply) {
     }
 
     // get internal groups
-    var servoyGroups = security.getGroups().getColumnAsArray(2);
+    var servoyGroups = security.getPermissions().getColumnAsArray(2);
     var groups = [];
     var permissions = user.getPermissions();
     for (var i in permissions) {
@@ -2707,7 +2707,7 @@ function deleteRecord(record) {
  */
 function syncPermissions(forcePermissionRemoval) {
     var permissionFS = datasources.db.svy_security.permissions.getFoundSet();
-    var groups = security.getGroups().getColumnAsArray(2);
+    var groups = security.getPermissions().getColumnAsArray(2);
     for (var i in groups) {
         if (!getPermission(groups[i])) {
             var permissionRec = permissionFS.getRecord(permissionFS.newRecord(false, false));

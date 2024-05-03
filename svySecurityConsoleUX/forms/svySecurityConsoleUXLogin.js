@@ -66,7 +66,7 @@ function onActionSignIn(event) {
 		return;
 	}
 
-	ok = security.isUserMemberOfGroup('Administrators', userUID);
+	ok = security.hasPermission('Administrators', userUID);
 	if (!ok) {
 		password = null;
 		showError('The specified user does not have permission to access the application.');
