@@ -115,6 +115,11 @@ svyUUID:"35A3DF04-3A39-4B77-852A-86D531C7F164",
 width:50
 }
 ],
+columnsAutoSizingOn:{
+columnResize:false,
+svyUUID:"A11BDD58-7C0C-4E7E-A6DB-E052DCC9CC70",
+toolPanelVisibleChange:false
+},
 cssPosition:{
 bottom:"60",
 height:"100",
@@ -402,7 +407,7 @@ uuid:"FACCB19D-1AD4-4669-88D1-FAC1E92FA8FC",
 visible:false
 },
 {
-height:480,
+height:300,
 partType:5,
 typeid:19,
 uuid:"FD067C1A-FB81-42C5-AB45-4B147A386C01"

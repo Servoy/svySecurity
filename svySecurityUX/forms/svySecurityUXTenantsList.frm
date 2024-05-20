@@ -45,6 +45,11 @@ headerTitle:"Users",
 svyUUID:"2E6EE566-4B56-4F46-81A6-1A5063745C1E"
 }
 ],
+columnsAutoSizingOn:{
+columnResize:false,
+svyUUID:"E14B870F-DDAC-4F40-840B-8A1223F1F477",
+toolPanelVisibleChange:false
+},
 cssPosition:{
 bottom:"60",
 height:"50",

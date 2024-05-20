@@ -87,6 +87,11 @@ filterType:"TEXT",
 svyUUID:"EB63BD50-0A7A-4C34-BA93-8C51288A6892"
 }
 ],
+columnsAutoSizingOn:{
+columnResize:false,
+svyUUID:"186504C0-2A09-49ED-BCCD-C2DC2555E46B",
+toolPanelVisibleChange:false
+},
 cssPosition:{
 bottom:"60",
 height:"50",

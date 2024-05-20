@@ -487,5 +487,6 @@ navigatorID:"-1",
 onRecordSelectionMethodID:"B121EB61-8408-4012-BFF3-ADAA71C4B737",
 onShowMethodID:"BFFEFFCE-6ABE-4572-B308-BA93FD0851B9",
 showInMenu:true,
+size:"280,480",
 typeid:3,
 uuid:"BD6886CD-7075-4C46-82E7-54904D0C65F6"

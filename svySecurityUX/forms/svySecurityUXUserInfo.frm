@@ -453,5 +453,6 @@ navigatorID:"-1",
 onRecordSelectionMethodID:"B9E98EBE-901C-4B95-A3A1-6B1F1369D433",
 onShowMethodID:"603967D3-6BE8-438E-98B3-DEE2DE5D9E35",
 showInMenu:true,
+size:"300,515",
 typeid:3,
 uuid:"057A2E15-FF3E-422A-9AD4-FCEBD3CC5983"

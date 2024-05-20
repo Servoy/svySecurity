@@ -29,6 +29,11 @@ svyUUID:"D1C74832-8177-47B5-89A7-6820C18D37A0",
 width:50
 }
 ],
+columnsAutoSizingOn:{
+columnResize:false,
+svyUUID:"9DFC4801-12B6-49DA-B322-235F15C08DD0",
+toolPanelVisibleChange:false
+},
 cssPosition:{
 bottom:"60",
 height:"50",
