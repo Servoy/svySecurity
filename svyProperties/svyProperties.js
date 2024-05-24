@@ -2,7 +2,7 @@
  * @private
  * @type {Number}
  *
- * @properties={typeid:35,uuid:"F6E34104-CA03-4A9D-8ECB-2CCAB3E747CD",variableType:8}
+ * @properties={typeid:35,uuid:"F6E34104-CA03-4A9D-8ECB-2CCAB3E747CD",variableType:4}
  */
 var MAX_TENANTNAME_LENGTH = 50;
 
@@ -10,7 +10,7 @@ var MAX_TENANTNAME_LENGTH = 50;
  * @private
  * @type {Number}
  *
- * @properties={typeid:35,uuid:"F45AB1DC-D4F8-4304-AFE5-0F6206F04BC4",variableType:8}
+ * @properties={typeid:35,uuid:"F45AB1DC-D4F8-4304-AFE5-0F6206F04BC4",variableType:4}
  */
 var MAX_USERNAME_LENGTH = 254;
 
@@ -18,7 +18,7 @@ var MAX_USERNAME_LENGTH = 254;
  * @private
  * @type {Number}
  *
- * @properties={typeid:35,uuid:"08287BA8-C3FE-46A0-A801-382F605A33FE",variableType:8}
+ * @properties={typeid:35,uuid:"08287BA8-C3FE-46A0-A801-382F605A33FE",variableType:4}
  */
 var MAX_NAMESPACE_LENGTH = 500;
 
@@ -26,7 +26,7 @@ var MAX_NAMESPACE_LENGTH = 500;
  * @private
  * @type {Number}
  *
- * @properties={typeid:35,uuid:"3825EDC1-EC8B-4E78-BCC5-D9AEDEFB6BAF",variableType:8}
+ * @properties={typeid:35,uuid:"3825EDC1-EC8B-4E78-BCC5-D9AEDEFB6BAF",variableType:4}
  */
 var MAX_TYPE_LENGTH = 50;
 
@@ -34,7 +34,7 @@ var MAX_TYPE_LENGTH = 50;
  * @private
  * @type {Number}
  *
- * @properties={typeid:35,uuid:"91FC2B4E-B761-4A8A-A3E2-E59F5886D498",variableType:8}
+ * @properties={typeid:35,uuid:"91FC2B4E-B761-4A8A-A3E2-E59F5886D498",variableType:4}
  */
 var MAX_VALUE_LENGTH = 50000000;
 
@@ -42,7 +42,7 @@ var MAX_VALUE_LENGTH = 50000000;
  * @private
  * @type {Number}
  *
- * @properties={typeid:35,uuid:"C6CE548F-4176-410E-8E91-1C0DABD22178",variableType:8}
+ * @properties={typeid:35,uuid:"C6CE548F-4176-410E-8E91-1C0DABD22178",variableType:4}
  */
 var MAX_DISPLAYNAME_LENGTH = 500;
 
