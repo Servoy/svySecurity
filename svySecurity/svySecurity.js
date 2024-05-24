@@ -101,12 +101,30 @@ var ACCESS_TOKEN_DEFAULT_VALIDITY = 30 * 60 * 1000;
 var SECURITY_TABLES_FILTER_NAME = 'com.servoy.extensions.security.data-filter';
 
 /**
+ * @deprecated now using MAX_TENANTNAME_LENGHT & MAX_ROLENAME_LENGHT
+ * 
  * @private
  * @type {Number}
  *
  * @properties={typeid:35,uuid:"6F6E55FB-0644-4746-9FE2-ABA60111AEE9",variableType:4}
  */
 var MAX_NAME_LENGTH = 50;
+
+/**
+ * @private
+ * @type {Number}
+ *
+ * @properties={typeid:35,uuid:"7E5BF499-E942-470F-9C7A-E5A38182DEE6",variableType:4}
+ */
+var MAX_ROLENAME_LENGTH = 50;
+
+/**
+ * @private
+ * @type {Number}
+ *
+ * @properties={typeid:35,uuid:"87A8315D-3ABA-4DFC-A6AA-BBEB89A32228",variableType:4}
+ */
+var MAX_TENANTNAME_LENGTH = 50;
 
 /**
  * @private 
@@ -354,8 +372,8 @@ function createTenantRecord(name, masterTenantName) {
 	if (!name) {
         throw new Error('Name cannot be null or empty');
     }
-    if (!nameLengthIsValid(name, MAX_NAME_LENGTH)) {
-        throw new Error(utils.stringFormat('Name must be between 1 and %1$s characters long.', [MAX_NAME_LENGTH]));
+    if (!nameLengthIsValid(name, MAX_TENANTNAME_LENGTH)) {
+        throw new Error(utils.stringFormat('Name must be between 1 and %1$s characters long.', [MAX_TENANTNAME_LENGTH]));
     }
     if (getTenant(name)) {
         throw new Error(utils.stringFormat('Tenant name "%1$s" is not unique', [name]));
@@ -993,8 +1011,8 @@ function Tenant(record) {
             throw new Error('Role name cannot be null or empty');
         }
 
-        if (!nameLengthIsValid(name, MAX_NAME_LENGTH)) {
-            throw new Error(utils.stringFormat('Role name must be between 1 and %1$s characters long.', [MAX_NAME_LENGTH]));
+        if (!nameLengthIsValid(name, MAX_ROLENAME_LENGTH)) {
+            throw new Error(utils.stringFormat('Role name must be between 1 and %1$s characters long.', [MAX_ROLENAME_LENGTH]));
         }
 
         if (this.getRole(name)) {
@@ -3499,9 +3517,20 @@ function clearToken(){
 var init = function() {	
 	
 	// set MAX values based on column length
-	var propertiesTable = datasources.db.svy_security.users.getTable();
-	MAX_USERNAME_LENGTH = propertiesTable.getColumn('user_name').getLength();
+	var tenantsTable = datasources.db.svy_security.tenants.getTable();
+	var tenantColumn = tenantsTable.getColumn('tenant_name');
+	MAX_TENANTNAME_LENGTH = tenantColumn.getLength() ? tenantColumn.getLength() : MAX_TENANTNAME_LENGTH;
 	
+	// set MAX values based on column length
+	var usersTable = datasources.db.svy_security.users.getTable();
+	var userColumn = usersTable.getColumn('user_name')
+	MAX_USERNAME_LENGTH = userColumn.getLength() ? userColumn.getLength() : MAX_USERNAME_LENGTH;
+	
+	// set MAX values based on column length
+	var rolesTable = datasources.db.svy_security.roles.getTable();
+	var roleColumn = rolesTable.getColumn('role_name');
+	MAX_ROLENAME_LENGTH = roleColumn.getLength() ? roleColumn.getLength() : MAX_ROLENAME_LENGTH;
+
 	if (application.isInDeveloper()) {
 		syncPermissions();
 	} else if (getAutoSyncPermissionsEnabled()) {
