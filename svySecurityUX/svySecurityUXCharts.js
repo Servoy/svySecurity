@@ -306,6 +306,16 @@ function createChartTenantsWithMostUsers(chart){
             position: 'left'
         }
     };
+    
+	if (scopes.svySystem.isTINGClient()) {
+		options.plugins = {
+			legend: options.legend 
+		};
+		
+//		options.responsive = true;		
+		delete options.legend;
+	}
+    
     chart.setData(data);
     chart.setOptions(options);
 }

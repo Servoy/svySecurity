@@ -50,12 +50,12 @@ typeid:47,
 uuid:"8353CFDF-1132-4384-8EE2-6CAAC1B016FD"
 },
 {
-cssPosition:"-1,11,50%,11,0,30",
+cssPosition:"-1,11,44%,11,0,43",
 formIndex:1,
 json:{
 cssPosition:{
-bottom:"50%",
-height:"30",
+bottom:"44%",
+height:"43",
 left:"11",
 right:"11",
 top:"-1",

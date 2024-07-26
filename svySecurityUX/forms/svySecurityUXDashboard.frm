@@ -317,7 +317,8 @@ specname:\"flexcontainer\"\
 items:[
 {
 customProperties:"attributes:{\
-class:\"flex-item\"\
+class:\"flex-item\",\
+data-grow:\"1\"\
 },\
 properties:{\
 packagename:\"12grid\",\
@@ -383,7 +384,8 @@ specname:\"flexcontainer\"\
 items:[
 {
 customProperties:"attributes:{\
-class:\"flex-item\"\
+class:\"flex-item\",\
+data-grow:\"1\"\
 },\
 properties:{\
 packagename:\"12grid\",\
