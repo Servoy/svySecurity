@@ -487,7 +487,7 @@ function deleteTenant(tenant) {
          * @private
          */
         var tenantName = tenant;
-        tenant = scopes.svySecurity.getTenant(tenantName);
+        tenant = getTenant(tenantName);
     }
 
     // check active sessions
@@ -2125,7 +2125,7 @@ function Role(record) {
          * @private
          */
         var permissionName = permission instanceof String ? permission : permission.getName();
-        if (!scopes.svySecurity.getPermission(permissionName)) {
+        if (!getPermission(permissionName)) {
             throw 'Permission "' + permissionName + '" does not exist in system';
         }
         if (!this.hasPermission(permission)) {
