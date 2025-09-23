@@ -106,6 +106,32 @@ function createChartTotalTenantUsageOverTimeMonths(tenantName, chart){
         }
     };
     
+	if (scopes.svySystem.isTINGClient()) {
+		options = {
+			plugins: {
+				title: {
+					display: true,
+					text: utils.stringFormat('Usage for last %1$.0f months by users of tenant %2$s',
+						[monthsWindow, tenantName]
+					)
+				},
+				legend: {
+					display: false,
+					position: 'right'
+				}
+			},
+			scales: {
+				y: {
+					beginAtZero: true,
+					title: {
+						display: true,
+						text: 'Usage Hours'
+					}
+				}
+			}
+		}
+	}
+    
     chart.setData(data);
     chart.setOptions(options);
 }
@@ -224,6 +250,33 @@ function createChartUserUsageOverTimeMonths(tenantName, userName, chart){
             }]
         }
     };
+    
+    if (scopes.svySystem.isTINGClient()) {
+		options = {
+			plugins: {
+				title: {
+					display: true,
+					text: utils.stringFormat('Usage for last %1$.0f months by user %2$s', [monthsWindow, userName]),
+					position: 'top'
+				},
+				legend: {
+					display: false,
+					position: 'right'
+				}
+			},
+			scales: {
+				y: {
+					ticks: {
+						beginAtZero: true
+					},
+					title: {
+						display: true,
+						text: 'Usage Hours'
+					}
+				}
+			}
+		}
+    }
     
     chart.setData(data);
     chart.setOptions(options);
@@ -423,6 +476,28 @@ function createChartTotalUsageOverTimeMonths(chart){
             }]
         }
     };
+    
+    if (scopes.svySystem.isTINGClient()) {
+		options = {
+			plugins: {
+				legend: {
+					display: false,
+					position: 'bottom'
+				}
+			},
+			scales: {
+				y: {
+					ticks: {
+						beginAtZero: true
+					},
+					title: {
+						display: true,
+						text: 'Usage Hours'
+					}
+				}
+			}
+		}
+    }
     
     chart.setData(data);
     chart.setOptions(options);

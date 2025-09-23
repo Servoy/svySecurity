@@ -209,7 +209,6 @@ width:"0"
 },
 formIndex:0,
 gridOptions:{
-floatingFilter:"true",
 floatingFiltersHeight:"40",
 headerHeight:"10"
 },
