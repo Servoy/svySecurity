@@ -2,7 +2,7 @@
     "name":"svySecurityConsole",
     "displayName":"svySecurityConsole",
     "packageType": "Solution",
-    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/2017-fr.wp-orange-lock.svg/1024px-2017-fr.wp-orange-lock.svg.png",
+    "icon": "https://raw.githubusercontent.com/Servoy/servoy-extra-components/master/servoy.png",
     "description": "Management console to administer security and multi-tenancy",
     "wikiUrl": "https://github.com/Servoy/svySecurity/wiki/Security-Management-Console",
     "sourceUrl" : "https://github.com/Servoy/svySecurity",
