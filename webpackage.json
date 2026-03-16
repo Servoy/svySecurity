@@ -2,7 +2,7 @@
     "name":"svySecurity",
     "displayName":"svySecurity",
     "packageType": "Solution",
-    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/2017-fr.wp-orange-lock.svg/1024px-2017-fr.wp-orange-lock.svg.png",
+    "icon": "https://raw.githubusercontent.com/Servoy/servoy-extra-components/master/servoy.png",
     "description": "Security module to facilitate authentication, multi-tenancy, access control and more",
     "wikiUrl": "https://github.com/Servoy/svySecurity/wiki",
     "sourceUrl" : "https://github.com/Servoy/svySecurity",
